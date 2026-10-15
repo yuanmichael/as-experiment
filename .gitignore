@@ -1,0 +1,14 @@
+# environments
+.venv/
+__pycache__/
+*.pyc
+
+# raw data — downloaded from GEO, too large for git
+data/raw/
+*.h5ad
+*.h5
+*.tar
+*.gz
+
+# scratch
+.ipynb_checkpoints/
