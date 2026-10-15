@@ -1,0 +1,44 @@
+	title	uveitis status	gender	age	set	tissue	disease state	group	sex	gse
+GSM465907	Blood - Axial Spondyloarthropathy - 015A	No uveitis	Male	39	1	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465908	Blood - Axial Spondyloarthropathy - 019A	Uveitis	Male	37	1	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465909	Blood - Axial Spondyloarthropathy - 029A	No uveitis	Female	37	1	peripheral_blood	Axial Spondyloarthropathy	AS	Female	GSE18781
+GSM465910	Blood - Axial Spondyloarthropathy - 030A	No uveitis	Female	45	1	peripheral_blood	Axial Spondyloarthropathy	AS	Female	GSE18781
+GSM465911	Blood - Axial Spondyloarthropathy - 033A	Uveitis	Male	62	1	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465912	Blood - Axial Spondyloarthropathy - 058A	Uveitis	Male	35	1	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465913	Blood - Axial Spondyloarthropathy - 062A	No uveitis	Male	67	1	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465914	Blood - Axial Spondyloarthropathy - 066A	Uveitis	Male	68	1	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465915	Blood - Axial Spondyloarthropathy - 069A	Uveitis	Male	58	1	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465916	Blood - Axial Spondyloarthropathy - 074A	Uveitis	Male	61	1	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465917	Blood - Axial Spondyloarthropathy - 083A	Uveitis	Male	51	1	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465918	Blood - Axial Spondyloarthropathy - 083B	Uveitis	Male	51	2	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465919	Blood - Axial Spondyloarthropathy - 089A	Uveitis	Female	32	2	peripheral_blood	Axial Spondyloarthropathy	AS	Female	GSE18781
+GSM465920	Blood - Axial Spondyloarthropathy - 096A	Uveitis	Female	33	2	peripheral_blood	Axial Spondyloarthropathy	AS	Female	GSE18781
+GSM465921	Blood - Axial Spondyloarthropathy - 097A	Uveitis	Female	51	2	peripheral_blood	Axial Spondyloarthropathy	AS	Female	GSE18781
+GSM465922	Blood - Axial Spondyloarthropathy - 152A	Uveitis	Male	63	2	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465923	Blood - Axial Spondyloarthropathy - 159A	Uveitis	Male	34	2	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465924	Blood - Axial Spondyloarthropathy - 162A	Uveitis	Male	63	2	peripheral_blood	Axial Spondyloarthropathy	AS	Male	GSE18781
+GSM465925	Blood - Control - 017A	No uveitis	Female	68	1	peripheral_blood	Control	control	Female	GSE18781
+GSM465926	Blood - Control - 020A	No uveitis	Female	69	1	peripheral_blood	Control	control	Female	GSE18781
+GSM465927	Blood - Control - 021A	No uveitis	Female	59	1	peripheral_blood	Control	control	Female	GSE18781
+GSM465928	Blood - Control - 022A	No uveitis	Male	57	1	peripheral_blood	Control	control	Male	GSE18781
+GSM465929	Blood - Control - 023A	No uveitis	Female	83	1	peripheral_blood	Control	control	Female	GSE18781
+GSM465930	Blood - Control - 032A	No uveitis	Male	70	1	peripheral_blood	Control	control	Male	GSE18781
+GSM465931	Blood - Control - 051A	No uveitis	Male	32	1	peripheral_blood	Control	control	Male	GSE18781
+GSM465932	Blood - Control - 052A	No uveitis	Female	22	1	peripheral_blood	Control	control	Female	GSE18781
+GSM465933	Blood - Control - 055A	No uveitis	Female	36	1	peripheral_blood	Control	control	Female	GSE18781
+GSM465934	Blood - Control - 056A	No uveitis	Male	41	1	peripheral_blood	Control	control	Male	GSE18781
+GSM465935	Blood - Control - 065A	No uveitis	Female	25	1	peripheral_blood	Control	control	Female	GSE18781
+GSM465936	Blood - Control - 067A	No uveitis	Female	23	1	peripheral_blood	Control	control	Female	GSE18781
+GSM465937	Blood - Control - 088A	No uveitis	Female	34	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465938	Blood - Control - 090A	No uveitis	Female	49	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465939	Blood - Control - 092A	No uveitis	Female	24	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465940	Blood - Control - 111A	No uveitis	Female	25	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465941	Blood - Control - 112A	No uveitis	Female	24	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465942	Blood - Control - 138A	No uveitis	Female	47	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465943	Blood - Control - 140A	No uveitis	Female	32	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465944	Blood - Control - 141A	No uveitis	Female	27	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465945	Blood - Control - 153A	No uveitis	Female	29	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465946	Blood - Control - 154A	No uveitis	Female	33	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465947	Blood - Control - 155A	No uveitis	Male	45	2	peripheral_blood	Control	control	Male	GSE18781
+GSM465948	Blood - Control - 156A	No uveitis	Female	45	2	peripheral_blood	Control	control	Female	GSE18781
+GSM465949	Blood - Control - 157A	No uveitis	Female	45	2	peripheral_blood	Control	control	Female	GSE18781

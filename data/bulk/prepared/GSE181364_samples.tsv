@@ -1,0 +1,9 @@
+	group	title	gse	tissue
+AS_patient_1	AS	AS_patient_1	GSE181364	whole_blood
+AS_patient_2	AS	AS_patient_2	GSE181364	whole_blood
+AS_patient_3	AS	AS_patient_3	GSE181364	whole_blood
+AS_patient_4	AS	AS_patient_4	GSE181364	whole_blood
+AS_patient_5	AS	AS_patient_5	GSE181364	whole_blood
+Health_1	control	Health_1	GSE181364	whole_blood
+Health_2	control	Health_2	GSE181364	whole_blood
+Health_3	control	Health_3	GSE181364	whole_blood

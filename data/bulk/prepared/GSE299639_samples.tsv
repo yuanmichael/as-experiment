@@ -1,0 +1,13 @@
+	group	title	sex	gse	tissue
+AS_F1	AS	AS_F1	F	GSE299639	peripheral_blood
+AS_F2	AS	AS_F2	F	GSE299639	peripheral_blood
+AS_F3	AS	AS_F3	F	GSE299639	peripheral_blood
+AS_M1	AS	AS_M1	M	GSE299639	peripheral_blood
+AS_M2	AS	AS_M2	M	GSE299639	peripheral_blood
+AS_M3	AS	AS_M3	M	GSE299639	peripheral_blood
+HC_F1	control	HC_F1	F	GSE299639	peripheral_blood
+HC_F2	control	HC_F2	F	GSE299639	peripheral_blood
+HC_F3	control	HC_F3	F	GSE299639	peripheral_blood
+HC_M1	control	HC_M1	M	GSE299639	peripheral_blood
+HC_M2	control	HC_M2	M	GSE299639	peripheral_blood
+HC_M3	control	HC_M3	M	GSE299639	peripheral_blood

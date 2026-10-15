@@ -3,12 +3,19 @@
 __pycache__/
 *.pyc
 
-# raw data — downloaded from GEO, too large for git
+# raw data — downloaded from GEO, too large for git; every script re-fetches
 data/raw/
+data/bulk/*/
+data/bulk/platform_annot/
 *.h5ad
 *.h5
 *.tar
 *.gz
+*_series_matrix.txt
+
+# derived tables are kept (data/bulk/meta, data/bulk/prepared)
+!data/bulk/meta/
+!data/bulk/prepared/
 
 # scratch
 .ipynb_checkpoints/

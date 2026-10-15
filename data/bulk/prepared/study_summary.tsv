@@ -1,0 +1,8 @@
+gse	tissue	genes	AS	control	covars
+GSE73754	whole_blood	16600	52	20	sex,age
+GSE25101	whole_blood	9213	16	16	
+GSE18781	peripheral_blood	16678	18	25	sex,age,set
+GSE11886	monocyte_derived_macrophage	20848	8	9	
+GSE299639	peripheral_blood	6846	6	6	sex
+GSE181364	whole_blood	11570	5	3	
+GSE221786	il17_enriched_stimulated	12276	20	8	sex
