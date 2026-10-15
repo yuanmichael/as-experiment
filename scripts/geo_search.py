@@ -1,10 +1,18 @@
-"""Systematic GEO search for ankylosing spondylitis / axial spondyloarthritis
-expression series, via NCBI E-utilities. Writes a candidate inventory to
-data/geo_candidates.tsv for manual triage.
+"""Systematic GEO search for a disease's expression series, via NCBI E-utilities.
+Writes a candidate inventory for manual triage.
 
-Usage:  python scripts/geo_search.py
+Disease-agnostic: the only thing that changes between projects is the list of
+query spellings. Getting that list wrong is the main way a search misses data --
+AS cohorts hide under "axial spondyloarthritis" and "spondyloarthropathy", and
+IBD cohorts under "Crohn", "ulcerative colitis" and "inflammatory bowel".
+
+    python scripts/geo_search.py                         # ankylosing spondylitis
+    python scripts/geo_search.py --disease ibd
+    python scripts/geo_search.py --query "sarcoidosis" --query "Lofgren" \
+        --out data/sarcoid_candidates.tsv
 """
 
+import argparse
 import json
 import sys
 import time
@@ -18,15 +26,27 @@ EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 EMAIL = "michael@getwaverly.ai"
 TOOL = "as-experiment"
 
-# Cast wide: AS has several names in the literature, and the newer cohorts are
-# usually labelled "axial spondyloarthritis" rather than "ankylosing spondylitis".
-QUERIES = [
-    '"ankylosing spondylitis"[All Fields]',
-    '"axial spondyloarthritis"[All Fields]',
-    '"spondyloarthritis"[All Fields]',
-    '"spondyloarthropathy"[All Fields]',
-    '"radiographic axial spondyloarthritis"[All Fields]',
-]
+# Cast wide: a disease is rarely filed under one name. Each entry is one GEO
+# query; results are pooled and de-duplicated by accession.
+DISEASES = {
+    "as": [
+        "ankylosing spondylitis",
+        "axial spondyloarthritis",
+        "spondyloarthritis",
+        "spondyloarthropathy",
+        "radiographic axial spondyloarthritis",
+    ],
+    "ibd": [
+        "inflammatory bowel disease",
+        "Crohn disease",
+        "Crohn's disease",
+        "ulcerative colitis",
+        "ileal Crohn",
+        "colitis",
+        "IBD biopsy",
+    ],
+}
+DEFAULT_DISEASE = "as"
 
 # Restrict to series (GSE); the entry-type filter avoids GDS/GPL/GSM clutter.
 # Organism is filtered afterwards on the `taxon` field rather than in the query,
@@ -58,13 +78,34 @@ def esummary(uids: list[str]) -> list[dict]:
     return out
 
 
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--disease", choices=sorted(DISEASES), default=DEFAULT_DISEASE,
+                   help="preset list of query spellings")
+    p.add_argument("--query", action="append", default=[],
+                   help="extra search term; repeatable. Overrides --disease.")
+    p.add_argument("--out", type=Path, default=None,
+                   help="output TSV (default data/<disease>_candidates.tsv)")
+    p.add_argument("--min-samples", type=int, default=10)
+    return p.parse_args()
+
+
 def main() -> None:
     # Series titles contain non-latin-1 characters; the Windows console default
     # codec chokes on them.
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    args = parse_args()
+
+    terms = args.query or DISEASES[args.disease]
+    queries = [f'"{t}"[All Fields]' for t in terms]
+    out_path = args.out or (
+        Path(__file__).resolve().parents[1] / "data" /
+        ("geo_candidates.tsv" if args.disease == "as"
+         else f"{args.disease}_geo_candidates.tsv")
+    )
     records: dict[str, dict] = {}
 
-    for q in QUERIES:
+    for q in queries:
         term = q + FILTER
         uids = esearch(term)
         print(f"{len(uids):4d} hits  {q}")
@@ -108,21 +149,28 @@ def main() -> None:
     df["hints_control"] = text.str.contains(
         r"healthy|control|normal donor|hc\b|versus|compared", regex=True, na=False
     )
-    df["hints_as"] = text.str.contains(
-        r"ankylosing|spondyloarthrit|spondylitis|\bas\b|axspa", regex=True, na=False
-    )
+    # Build the disease hint from the query terms themselves, so this works for
+    # whatever disease was searched.
+    stems = sorted({t.lower().split()[0].rstrip("'s") for t in terms})
+    df["hints_disease"] = text.str.contains("|".join(stems), regex=True, na=False)
     df["hints_bulk"] = ~text.str.contains(
         r"single[- ]cell|scrna|single[- ]nucle|citeseq|cite-seq", regex=True, na=False
     )
 
-    df = df.sort_values(["hints_as", "hints_control", "n_samples"], ascending=False)
+    df = df.sort_values(
+        ["hints_disease", "hints_control", "n_samples"], ascending=False
+    )
 
-    out = Path(__file__).resolve().parents[1] / "data" / "geo_candidates.tsv"
+    out = out_path
+    out.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(out, sep="\t", index=False)
     print(f"\n{len(df)} expression/methylation series -> {out}")
 
-    strong = df[df["hints_as"] & df["hints_control"] & (df["n_samples"] >= 10)]
-    print(f"\n{len(strong)} with AS + control hints and n>=10:\n")
+    strong = df[
+        df["hints_disease"] & df["hints_control"] & (df["n_samples"] >= args.min_samples)
+    ]
+    print(f"\n{len(strong)} with disease + control hints and "
+          f"n>={args.min_samples}:\n")
     with pd.option_context("display.max_colwidth", 95, "display.width", 250):
         print(strong[["accession", "n_samples", "gdstype", "title"]].to_string(index=False))
 
