@@ -140,7 +140,7 @@ Sorted/stimulated cells (GSE221786 + GSE11886, *k* = 2) yield **0 genes at *q* <
 
 **Does not:** distinguish *composition* from *regulation*. A coordinated drop across an entire lineage's marker set is what you see when there are **fewer of those cells in the sample** — not necessarily when the cells present are behaving differently. Whole blood is a mixture, and this analysis measures the mixture. Neutrophil markers are only mildly up (+0.10), so it is not simple neutrophil-dilution of everything, but these data cannot resolve it further.
 
-**That is exactly what Project 2a is for.** Deconvolving these same five cohorts with the annotated 314k-cell GSE277117 reference would turn "the NK programme is down" into "there are fewer NK cells" or "NK cells are transcriptionally altered" — and it would test the CD14-monocyte finding at *n* ≈ 167 instead of *n* = 25.
+**That question is now answered — see the deconvolution section below.**
 
 **Caveats on the record:**
 
@@ -150,7 +150,93 @@ Sorted/stimulated cells (GSE221786 + GSE11886, *k* = 2) yield **0 genes at *q* <
 
 ---
 
+---
+
+# Deconvolution: composition or regulation?
+
+![deconvolution](figures/deconvolution.png)
+
+A lineage's entire marker set moving together is what you see when **there are fewer of those cells**. It is also what you see when **the cells are still there but transcribing less**. The meta-analysis alone cannot tell these apart, and they mean completely different things.
+
+There is a published result that makes this urgent. A [2021 meta-analysis of 95 flow-cytometry studies](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8291033/) — **4,020 AS patients and 3,065 controls**, counting cells by surface protein rather than transcript — found **NK cell percentages are not significantly different** in AS. That directly contradicts a pure-composition reading of our result.
+
+## The reference
+
+The annotated GSE277117 object: **312,325 cells, 25 AS patients, 23 CellTypist types**, including 20,105 CD16+ NK cells. Built on Modal; the laptop never loads it.
+
+- Signature built from **raw counts**, CPM-normalised per cell, with the `feature_types` filter applied **by index** so the 163 antibody-capture tags cannot return.
+- Markers chosen by **separation, not abundance**: per type, the genes with the largest gap between that type's mean and the next-highest type's.
+- Patients split in half — signature from 12, held-out pseudobulk from the other 13.
+
+## Validation first
+
+A cell type only earns the right to be interpreted if it is recovered from held-out pseudobulk, where the truth is known. Support-vector regression (CIBERSORT-style, both matrices standardised) substantially beat non-negative least squares.
+
+| lineage | true mean | *r* with truth | verdict |
+|---|---|---|---|
+| B | 16.0% | 0.944 | interpret |
+| monocyte | 28.7% | 0.914 | interpret |
+| CD4 T | 14.9% | 0.899 | interpret |
+| **NK** | **15.6%** | **0.833** | **interpret** |
+| DC | 1.4% | 0.759 | marginal |
+| CD8 T | 22.6% | **0.567** | **do not interpret** |
+| platelet | 0.6% | 0.015 | do not interpret |
+
+**CD8 T fails**, which is not surprising — Tem/Temra cytotoxic T cells share GNLY, NKG7 and PRF1 with NK cells, and the model cannot reliably tell them apart. Every CD8 number below is marked unvalidated and should not be used.
+
+## Result 1 — NK proportion is modestly lower in AS
+
+| lineage | pooled *g* | 95% CI | *p* | *I*² | |
+|---|---|---|---|---|---|
+| **NK** | **−0.540** | −0.91 to −0.17 | **0.004** | 11% | validated |
+| monocyte | +0.309 | −0.04 to +0.65 | 0.080 | 3% | validated |
+| CD4 T | +0.043 | −0.35 to +0.44 | 0.83 | 20% | validated |
+| B | −0.043 | −0.59 to +0.50 | 0.88 | 53% | validated |
+| CD8 T | −0.376 | −0.71 to −0.04 | 0.029 | 0% | *unvalidated — ignore* |
+| DC | −0.493 | −1.13 to +0.14 | 0.13 | 63% | *unvalidated — ignore* |
+
+So the composition shift is real but **much smaller than the expression shift** (*g* = −0.54 vs −0.83).
+
+**The monocyte result is a clean null.** The single-cell project's CD14-monocyte finding was a TNFi-response contrast, not AS-vs-healthy, so this neither confirms nor refutes it — but it does establish that monocyte proportion does not differ between AS and healthy at *n* = 167.
+
+## Result 2 — most of the cytotoxic deficit is *not* explained by cell number
+
+The obvious analysis — "adjust the NK signature for the estimated NK proportion" — is **circular by construction**, because the proportion was estimated from the same transcripts. The fix is disjoint gene sets:
+
+- **proportion** estimated from NK **identity** genes (receptors, lineage TFs), with every effector gene *deleted from the signature matrix*
+- **outcome** is the NK **effector** programme (granzymes, perforin, granulysin, NKG7)
+
+| | pooled *g* | 95% CI | *p* |
+|---|---|---|---|
+| NK effector cargo, raw | −0.978 | −1.33 to −0.63 | 4 × 10⁻⁸ |
+| NK effector cargo, **adjusted for NK proportion** | **−0.804** | −1.17 to −0.44 | 1 × 10⁻⁵ |
+| NK proportion (disjoint identity genes) | −0.540 | −0.91 to −0.17 | 0.004 |
+
+**82% of the effector deficit survives adjustment**, with *I*² = 0 in both. If composition explained it, the adjusted effect would have collapsed toward zero.
+
+**Reading:** AS blood has modestly fewer NK cells, and those NK cells are making substantially less cytotoxic cargo each. The second effect is the larger one.
+
+That is consistent with the [2022 single-cell study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8831943/) reporting reduced cytotoxic molecules and lower plasma granzymes, with granzyme B correlating negatively with disease activity.
+
+## What could still be wrong
+
+**The deconvolution cannot fully separate the two things it was brought in to separate.** If NK cells downregulate their *identity* genes as well as their effector genes, deconvolution reads that as "fewer NK cells." The −0.54 proportion effect is therefore an **upper bound** on the true composition shift, and the flow-cytometry result at *n* ≈ 7,000 (no difference in NK percentage) suggests the true shift is smaller still. Both sources of evidence point the same way: **the regulation component is the real one.**
+
+**A large unexplained compartment.** In real bulk samples, 30–59% of the signal is absorbed by two rare reference types (ILC3, late erythroid) acting as a sink, versus 1.8% in pseudobulk. That is neutrophils, reticulocyte globin and platform mismatch landing wherever they fit worst — the reference is PBMC-derived and two cohorts are whole blood. The sink *is* slightly larger in AS (*g* = +0.30 to +0.52 in four of five studies), which would inflate every apparent decrease. **Checked:** renormalising to the identified compartment only moves NK from −0.540 to −0.486 (*p* = 0.005, *I*² falls to 0). Not the explanation.
+
+**The reference is built from AS patients only.** GSE277117 has no healthy controls, so the cell-type profiles are "AS-like." If AS alters the NK expression profile, the signature is subtly mis-specified for healthy samples. There is no public AS-and-healthy PBMC reference of this size to check against.
+
+**Marker coverage varies three-fold** across cohorts (469–1,378 of 2,739 signature genes present), so the deconvolution is noisier in some studies than others — worst in GSE299639.
+
 ## Reproducing
+
+```bash
+modal run scripts/deconv_reference.py::peek     # inspect the annotated object
+modal run --detach scripts/deconv_reference.py  # signature matrix + held-out pseudobulk
+python scripts/deconv_validate.py               # recover known proportions, or stop
+python scripts/deconv_bulk.py                   # deconvolve cohorts; composition vs regulation
+python scripts/deconv_figure.py                 # figures/deconvolution.png
+```
 
 ```bash
 python scripts/geo_search.py        # GEO E-utilities sweep -> data/geo_candidates.tsv

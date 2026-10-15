@@ -19,3 +19,6 @@ data/bulk/platform_annot/
 
 # scratch
 .ipynb_checkpoints/
+
+# single-cell-derived pseudobulk: large, regenerable from Modal
+data/deconv/heldout_pseudobulk.tsv.gz
