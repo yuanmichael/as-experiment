@@ -310,6 +310,59 @@ What this does *not* show: that the embeddings lack useful information. Mal-ID n
 
 An honest caveat on widening the search: *p* = 0.021 above holds up because the sequence was pre-specified by two prior independent studies. Any embedding-based sweep has an effectively unlimited hypothesis space, so discovery has to run **AS versus PsA within one study** (assay-matched, immune to the 0.994 batch effect) with permutation nulls, and replicate against the 786 Emerson repertoires before anything counts.
 
+### The assay sets the ceiling: bulk RNA-seq cannot test this
+
+GSE221786 (= PRJNA916206) looked like a way to add 20 AS patients and 8 controls. It is **bulk RNA-seq, not TCR-seq** — `library_strategy=RNA-Seq`, `library_selection=cDNA` — but with a twist worth measuring rather than dismissing: the PBMCs were stimulated with CytoStim for 4 hours and enriched for IL-17 producers. Activated T cells transcribe far more TCR mRNA than resting blood, so the TCR content might have been lifted into usable range.
+
+It was not. Measured on the two deepest libraries, 4M reads each:
+
+| | AS_M_5 | AS_M_2 |
+|---|---|---|
+| TRBC anchor reads per 4M | 193 | 173 |
+| TCR content | 0.0048% | 0.0043% |
+| projected CDR3-spanning reads at full depth | 2,817 | 2,639 |
+| **detection floor** | **3.6 × 10⁻⁴** | **3.8 × 10⁻⁴** |
+
+The floor is ~4× coarser than the 10⁻⁴ threshold the expansion result is called at, so a patient sitting at 2 × 10⁻⁴ — comfortably expanded — would show **zero reads**. A table of zeros here would be uninterpretable, not negative. Depth cannot rescue it either: reaching 10⁻⁴ needs ~10,000 CDR3-spanning reads, i.e. ~190M reads per sample against the 70M deposited, and pooling is not available because the test is per-patient.
+
+The interesting part is that the hypothesis was right in direction and wrong in size. Resting whole blood runs near 1.4 × 10⁻⁵ TCR content; these activated, IL-17-enriched PBMCs reach ~4.5 × 10⁻⁵. Activation enrichment bought a real **~3×**, not the ~10× required. That generalises: activation protocols do not turn bulk RNA-seq into a clonotype-frequency assay.
+
+Cost of learning this: about 5 cents of measurement, after ~$1–2 lost to scanning two 72M-read libraries in full and hitting a 90-minute cap. Which was the wrong design — the quantity wanted is a *fraction*, and a fraction does not need the whole file. Streaming the first 4M reads and projecting onto the library's real depth answers it in ~4 minutes without the multi-GB download ever completing.
+
+### A denominator that nearly produced a confident wrong answer
+
+The first version of that pilot reported **0.50% of reads as TCR** — a 500-fold lift over resting blood, and a green light to spend real money on all 28 samples. It was noise, and the way it was caught is the generalisable part.
+
+`CASS` is the four-residue framework motif used throughout this project as the denominator: a count of CDR3-spanning reads, so that a zero for the target can be told apart from a broken scan. Expanded through codon alternatives it is 12 nucleotides matching one position in ~58,000. A 150bp read offers 139 positions and both strands are scanned, so **278 × 1.7 × 10⁻⁵ = 0.48% of reads match with no TCR present at all.** The two libraries came in at 0.5055% and 0.5036%: on the chance line, and agreeing to within 0.4% of each other, which biology does not do between two people.
+
+Replacing it fixed the measurement. The anchor is now an exact 25-mer, `GGCCACCTTCTGGCAGAACCCCCGC`, taken from a **173-nt stretch identical in TRBC1 and TRBC2** (Ensembl ENST00000633705 / ENST00000466254), so one pattern counts both constant-region alleles. Chance expectation is 2.2 × 10⁻¹³ per read: every hit is a real TCRβ transcript. A constant-region count is then converted to CDR3-spanning reads by window arithmetic — a CDR3 call needs the read to span ~45nt, giving a (150−45+1) start window against the anchor's (150−25+1), so CDR3 reads ≈ 0.84 × anchor reads. RNA-seq coverage leans 3′ and the constant region sits 3′ of CDR3, so the assumption errs towards caution.
+
+**The obvious worry is whether this invalidates the project's own numbers, since they all use `CASS` as the denominator. It does not, and the check is worth recording.** Auditing all 39 scanned Komech 2018 libraries:
+
+| | CASS as % of reads | spread | CV |
+|---|---|---|---|
+| Komech 2018 amplicon (39 libraries) | 0.022% – 0.966% | **44-fold** | **0.82** |
+| RNA-seq pilot, background-dominated (2 libraries) | 0.5036% – 0.5055% | 1.004-fold | 0.003 |
+
+A background-dominated count is nearly *constant* across libraries, because it depends only on read count and length. A signal-dominated count varies with the biology. The amplicon libraries vary 44-fold; the background-dominated ones agree to four significant figures. That settles it.
+
+Two further points fell out of the audit. Most amplicon libraries sit **below** the uniform-random prediction, some 7× below — because amplicon reads are not random sequence. They are near-copies of a few hundred nucleotides of TRB with a variable CDR3, and a fixed sequence either contains `CASS` or does not; the random-sequence rate simply does not apply. Bulk RNA-seq samples the whole transcriptome, which is diverse enough that the uniform model held to within 5%. So the same motif is safe in one assay and worthless in the other, and which one it is depends on the sequence diversity of the library, not on the motif.
+
+The lesson is not "degenerate motifs are bad". It is that **a denominator needs its own null**, and that two libraries agreeing too precisely is evidence of an artefact rather than reassurance. The pilot now also reports `CASS` as a multiple of its chance rate, and carries a third verdict — INCONCLUSIVE, when a library yields too few anchor reads to project from. The original had only USABLE and NOT USABLE, which is why a noise measurement came back as a confident green light.
+
+### Synovial fluid: the compartment where the clone was first found
+
+Running now, scope fixed in advance. PRJEB51315 holds more than the blood arm already analysed:
+
+| | patients | runs | reads |
+|---|---|---|---|
+| AS SF | 7 (`Bel Kos Lap Non Pon Shor Zar`) | 17 | 86M |
+| PsA SF | 17 | 47 | 245M |
+
+Three features decided the scope. Only **3 of the 7 AS SF patients are new** (`Lap`, `Non`, `Shor`) — the other four also have blood, so they give a **within-person blood-versus-joint comparison** rather than a between-group one. `Lap` and `Shor` carry CD8-sorted libraries only, which is the compartment the target clone occupies, so they are pre-enriched rather than impoverished. And **PsA synovial fluid exists in the same deposit from the same lab on the same 5′RACE assay**, which matters most: there is no healthy synovial fluid anywhere, because healthy joints have no effusion to sample, so the only possible control for AS synovium is synovium from another arthritis. Without it an AS carriage figure in joints would have no denominator to be read against.
+
+Synovial carriage will **not** be pooled into the blood denominator. The headline figure stays 9/25 at ≥ 10⁻⁴ in blood; SF is reported as its own comparison, AS joints against PsA joints, with the four paired patients reported as paired observations rather than as extra subjects. Each patient will carry its own detection floor, and any patient whose floor sits above 10⁻⁴ is **unevaluable rather than negative** — the rule that already set aside 7 of 32 AS subjects in blood.
+
 ## Reports
 
 | | |

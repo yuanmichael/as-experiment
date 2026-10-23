@@ -40,10 +40,28 @@ vol = modal.Volume.from_name("as-data", create_if_missing=True)
 PROJECT = "PRJEB51315"
 OUT = f"/data/tcr/{PROJECT}"
 
-# Blood only, which is what was costed. Synovial fluid would add 3 more AS
-# patients (10 total) for roughly another $2; it is a separate decision because
-# SF is a different compartment from the healthy blood controls.
-TISSUES = ("PB",)
+# Blood and synovial fluid. SF was held back at first because it is a different
+# compartment from the healthy blood controls, and it still is: SF carriage is
+# never pooled into the blood denominator. It earns its place on its own terms.
+#
+#     AS SF   7 patients / 17 runs /  86M reads
+#     PsA SF 17 patients / 47 runs / 245M reads
+#
+# Three things make the SF arm worth scanning rather than skipping:
+#
+#   * 3 AS patients (Lap, Non, Shor) appear only in SF, so they are invisible
+#     to the blood scan. Lap and Shor are CD8-sorted, which is the compartment
+#     the target clone occupies.
+#   * 4 AS patients (Bel, Kos, Pon, Zar) have both PB and SF, giving a
+#     within-person blood-versus-joint comparison rather than a group one.
+#   * There is no healthy synovial fluid anywhere -- healthy joints have no
+#     effusion to sample -- so the only possible control for AS synovium is
+#     synovium from another arthritis. PsA SF, same lab and same 5'RACE assay,
+#     is that control, and it makes the SF numbers interpretable at all.
+#
+# Blood runs already on the volume return their cached result, so widening this
+# tuple re-scans nothing.
+TISSUES = ("PB", "SF")
 
 # AS only. The first dispatch tried all 51 blood runs and the real throughput
 # turned out to be ~10 container-minutes per million reads, so 300M reads is
