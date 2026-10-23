@@ -1,0 +1,92 @@
+repo	study	n_repertoires
+ireceptor-ipa1	PRJEB8745	76
+ireceptor-ipa1	PRJEB1289	76
+ireceptor-ipa1	PRJEB9332	28
+ireceptor-ipa1	PRJNA206548	69
+ireceptor-ipa1	PRJNA248411	16
+ireceptor-ipa1	PRJNA195543	5
+ireceptor-ipa1	PRJNA188191	5
+ireceptor-ipa1	SRP001460	164
+ireceptor-ipa1	PRJNA229070	9
+ireceptor-ipa1	PRJNA280743	20
+ireceptor-ipa1	PRJNA368623	10
+ireceptor-ipa1	PRJNA275625	18
+ireceptor-ipa1	PRJNA321261	31
+ireceptor-ipa2	PRJNA330606	48
+ireceptor-ipa3	PRJNA312319	99
+ireceptor-ipa4	PRJNA316033	45
+ireceptor-ipa4	PRJNA315543	61
+ireceptor-ipa4	PRJNA506151	57
+ireceptor-ipa4	PRJNA325416	11
+ireceptor-ipa4	PRJNA356992	35
+ireceptor-ipa5	PRJNA493983	130
+ireceptor-ipa5	PRJNA381394	25
+vdjserver	ImmuneCODE-COVID-Release-002: COVID-19-IRST/AUSL	64
+vdjserver	4995411523885404651-242ac118-0001-012	105
+vdjserver	PRJNA1466709	211
+vdjserver	1371444213709729305-242ac11c-0001-012	29
+vdjserver	SUB15840447	67
+vdjserver	SOTON_iSci_11311R1	120
+vdjserver	ImmuneCODE-COVID-Release-002: COVID-19-DLS	433
+vdjserver	PRJNA362309	18
+vdjserver	PRJNA260556	6
+vdjserver	PRJNA624801	1
+vdjserver	TCR:PRJNA511481	92
+vdjserver	ImmuneCODE-COVID-Release-002: COVID-19-BWNW	50
+vdjserver	ImmuneCODE-COVID-Release-002: COVID-19-NIH/NIAID	357
+vdjserver	PRJNA645245	87
+vdjserver	PRJNA724733	20
+vdjserver	PRJNA349143	30
+vdjserver	PRJNA472381	10
+vdjserver	PRJNA300878	60
+vdjserver	ImmuneCODE-COVID-Release-002: COVID-19-Adaptive	160
+vdjserver	PRJNA608742	9
+vdjserver	PRJNA642962	2
+vdjserver	dewitt-2015-jvi	48
+vdjserver	robins-bcell-2016	6
+vdjserver	ImmuneCODE-COVID-Release-002: COVID-19-HUniv12Oct	193
+vdjserver	4505707319090933270-242ac113-0001-012	30
+vdjserver	PRJNA593622	28
+vdjserver	langkuhs-2018-plosone	50
+vdjserver	PRJNA747292	51
+vdjserver	PRJNA315079	8
+vdjserver	PRJNA680539	20
+vdjserver	3276777473314001386-242ac116-0001-012	60
+vdjserver	PRJNA406949	180
+vdjserver	BIOPROJECT:PRJNA639580	26
+vdjserver	PRJNA283640	6
+vdjserver	PRJNA578389	3
+vdjserver	PRJNA1232000	4
+vdjserver	PRJNA606979	14
+vdjserver	ImmuneCODE-COVID-Release-002: COVID-19-ISB	157
+vdjserver	PRJEB18631	71
+vdjserver	PRJNA272713	30
+vdjserver	emerson-2017-natgen	786
+vdjserver	PRJNA248475	32
+vdjserver	PRJNA549712	76
+covid19-1	PRJNA741267	30
+covid19-1	PRJNA630455	76
+covid19-1	PRJNA752617	96
+covid19-1	PRJNA628125	14
+covid19-1	PRJNA624801	2
+covid19-1	E-MTAB-9995	36
+covid19-1	PRJNA744851	234
+covid19-1	IR-Efimov-000002	62
+covid19-1	PRJCA002413	135
+covid19-1	PRJNA648677	16
+covid19-1	IR-Binder-000002	24
+covid19-1	PRJNA669143	60
+covid19-1	PRJNA731610	5
+covid19-1	IR-Binder-000001	136
+covid19-1	PRJNA638224	19
+covid19-1	IR-Efimov-000001	113
+covid19-1	PRJNA715378	64
+covid19-2	PRJNA608742	18
+covid19-2	PRJNA633317	100
+covid19-3	ImmuneCODE-COVID-Release-002: COVID-19-IRST/AUSL	64
+covid19-3	ImmuneCODE-COVID-Release-002: COVID-19-NIH/NIAID	357
+covid19-3	ImmuneCODE-COVID-Release-002: COVID-19-HUniv12Oct	193
+covid19-4	ImmuneCODE-COVID-Release-002: COVID-19-DLS	433
+covid19-4	ImmuneCODE-COVID-Release-002: COVID-19-Adaptive	160
+covid19-4	ImmuneCODE-COVID-Release-002: COVID-19-BWNW	50
+covid19-4	ImmuneCODE-COVID-Release-002: COVID-19-ISB	157

@@ -1,0 +1,451 @@
+acc	title	n_samples	n_files	suppl_gb	has_vdj	has_gex	paired	looks_5prime	pdat
+GSE272431	T cell receptor β-chains display abnormal shortening and repertoire sharing in type 1 diabetes	88	90	3.152	False	False	False	True	
+GSE178991	10X genomics single cell GEX and VDJ 5' sequencing of PBMC from Type 1 Diabetes patients treated with Treg therapy alone or plus low dose IL-2	84	1	2.5	False	True	False	True	
+GSE342939	Senescent activated naive B cells promote anti-citrullinated antigen T cell responses and the transition to clinical rheumatoid arthritis	78	211	5.649	True	True	True	True	
+GSE308968	Comparative Single-Cell Transcriptomics of Immune Profiles in LADA Versus Type 1 Diabetes	36	3	9.3	False	True	False	True	
+GSE288581	Single Cell Immune Profiling in Ankylosing Spondylitis Reveals Resistance of CD8+ T cells to Immune Exhaustion	30	62	0.834	True	True	True	True	
+GSE214974	Multi-modal single cell sequencing of B cells in primary Sjögren’s Syndrome	30	92	3.188	False	True	False	True	
+GSE134649	Colonic CD8 T Cell Topography in IBD revealed by Single-Cell Profiling	12	26	0.261	True	True	True	True	
+GSE232802	scRNAseq gene expression and VDJ-TCR analysis of PBMCs from patients with tattoo uveitis and sarcoidosis	8	10	0.142	True	False	False	True	
+GSE132832	Impaired ATM Activation in B Cells Promotes Osteoclastogenic Cytokine Production and Bone Erosion in Patients with Rheumatoid Arthritis	8	18	0.521	False	False	False	True	
+GSE314223	T cell immunity to SARS-CoV-2 vaccination in inflammatory bowel disease patients treated with anti-cytokine biologics	6	14	0.472	True	True	True	True	
+GSE197456	Characterization of peripheral blood TCR in patients with Type 1 Diabetes Mellitus by BD Rhapsody™ VDJ CDR3 Assay	4	7	0.008	False	True	False	True	
+GSE256256	Seven chain adaptive immune receptor repertoire analysis in rheumatoid arthritis reveals novel features associated with disease and clinically relevant phenotypes	112	3769	5.11	False	False	False	False	
+GSE320359	Clonal lymphocyte expansions and JAK-STAT pathway mutations define a pathogenic continuum driving resistance to Gluten-Free Diet in celiac disease	95	138	9.884	True	True	True	False	
+GSE274471	scRNAseq of the TCRs and BCRs of aqueous and blood immune cells in human uveitis	88	186	0.95	True	False	False	False	
+GSE291328	Antigen specificity of clonally-enriched CD8+ T cells in multiple sclerosis	36	1	0.022	True	False	False	False	
+GSE283500	scRNASeq Data of Tcells in psoriatic skin and healthy skin and TCR analysis of Treg sorted from Psoriatic skin	27	65	1.438	True	True	True	False	
+GSE216914	Single cell analysis reveals multiple subsets of CD8+ TRM and non-TRM cells with a type 17 signature in the inflamed psoriatic arthritis joint	12	22	0.581	True	True	True	False	
+GSE290921	CD4+ tissue resident memory Th17 cells drive IL-17A-mediated joint pathology in Spondyloarthritis	6	1	0.274	False	False	False	False	
+GSE157277	Transcriptomic and clonal characterization of T cells in the human central nervous system	6	8	0.196	False	False	False	False	
+GSE207037	Single-cell TCR sequencing of in vitro peripheral blood cell stimulation in ankylosing spondylitis	1	3	0.0	True	False	False	False	
+GSE107817	Transcript-indexed ATAC-seq reveals paired single-cell T cell receptor identity and chromatin accessibility for precision immune profiling	1360	1362	3.13	False	False	False	True	
+GSE107816	Transcript-indexed ATAC-seq reveals paired single-cell T cell receptor identity and chromatin accessibility for precision immune profiling [single cell]	1344	1346	3.101	False	False	False	True	
+GSE345045	Comparative transcriptomic and immune profiling identifies a shared molecular identity in clear cell odontogenic carcinoma and hyalinizing clear cell carcinoma [1]	1000	1006	0.288	False	False	False	True	
+GSE271896	Deep longitudinal immune profiling reveals reprogramming of memory T cells that links to B cell dysregulation with age	868	870	156.891	False	False	False	True	
+GSE345112	Comparative transcriptomic and immune profiling identifies a shared molecular identity in clear cell odontogenic carcinoma and hyalinizing clear cell carcinoma  [2]	810	816	0.251	False	False	False	True	
+GSE227756	NanoString immune profiling of pediatric brain tumors	571	573	0.004	False	False	False	True	
+GSE246622	Single-cell immune profiling reveals markers of emergency myelopoiesis that distinguish severe from mild respiratory syncytial virus (RSV) disease in infants	533	541	1.128	False	False	False	True	
+GSE190001	Detailed delineation of the immune response to COVID-19 mRNA vaccination via high-temporal frequency blood transcriptomics	439	2	0.007	False	False	False	True	
+GSE194378	Influenza vaccination reveals sex dimorphic imprints of prior mild COVID-19 [RNA-Seq]	412	2	0.065	False	False	False	True	
+GSE185341	Gender and prior exposure shape innate immune responses to a replication-defective herpes virus vaccine	398	3	0.013	False	True	False	True	
+GSE272993	Combination anti-PD-1 and anti-CTLA-4 therapy generates waves of clonal responses that include progenitor-exhausted CD8 T cells [dataset 1]	360	855	42.941	True	True	True	True	
+GSE79396	Integrated transcriptomics and metabolomics profiling delineates early molecular correlates of immunity to herpes zoster vaccination in humans	288	290	1.828	False	False	False	True	
+GSE275067	Deep longitudinal immune profiling reveals reprogramming of memory T cells that links to B cell dysregulation with age.	252	237	53.446	False	False	False	True	
+GSE123845	Multi-omics and immune profiling of breast cancers undergoing neoadjuvant chemotherapy identified dynamic cellular and molecular changes associated with clinical response	227	1	0.009	False	False	False	True	
+GSE270518	Immunological memory diversity in the human upper airway	201	341	3.347	True	True	True	True	
+GSE182920	Postmortem high-dimensional immune profiling of severe COVID-19 patients reveals distinct patterns of immunosuppression and immunoactivation [NanoString GeoMx]	195	21	0.007	False	False	False	True	
+GSE111015	Chromatin mapping and single-cell immune profiling defines the temporal dynamics of ibrutinib drug response in chronic lymphocytic leukemia	188	333	62.023	False	False	False	True	
+GSE247531	Single-cell landscape of hematopoiesis and immunological responses in patients with severe aplastic anemia treated with immunosuppression and eltrombopag	182	4	3.314	True	False	False	True	
+GSE237100	Matched analysis of detailed peripheral blood and tumor immune microenvironment profiles in bladder cancer	176	357	9.418	False	False	False	True	
+GSE111013	Chromatin mapping and single-cell immune profiling defines the temporal dynamics of ibrutinib drug response in chronic lymphocytic leukemia [ATAC-seq]	176	333	62.023	False	False	False	True	
+GSE301133	Lung mucosal and systemic responses at single-cell resolution in an aerosolised Mycobacterium bovis BCG human challenge model	159	238	5.578	True	True	True	True	
+GSE180347	Transcriptomic analysis of PD-L1 positive and negative hot lung adenocarcinomas identifies a different molecular immunogenic landscape	144	146	0.004	False	False	False	True	
+GSE350364	Single-dose pembrolizumab actuates intratumoral PRGN-2009-directed HPV-specific immunity in newly-diagnosed oropharyngeal cancers	136	274	4.953	True	True	True	True	
+GSE213862	Tumor immune profiling of gingivo-buccal oral cancer patients reveals two groups with significant differences in prognosis and immune contextures	135	1	0.006	False	False	False	True	
+GSE310879	Radiation, Immunotherapy, and T-cell reinvigoration: Dynamic Immune Profiling Predicts Response to SABR/Anti-PD-1 therapy in Oligometastatic Renal Cell Carcinoma [TCR-Seq]	128	130	0.14	True	False	False	True	
+GSE120442	Multiplexed enrichment and genomic profiling of peripheral blood cells reveal subset-specific immune signatures	128	3	0.004	False	False	False	True	
+GSE184662	Radiogenomics features of tumor dissemination in ABVD treated cHL patients	126	1	0.0	False	False	False	True	
+GSE25755	Leukocyte CD antibody microarray profiling reveals immune markers associated with aging and gender (datasets 1 and 2)	120	2	0.0	False	False	False	True	
+GSE261305	C3G signal in native and allograft	108	2	0.001	False	False	False	True	
+GSE132348	A gene expression-based model to predict metabolic response after two courses of ABVD in patients with classical Hodgkin Lymphoma	106	2	0.0	False	False	False	True	
+GSE182679	Signatures of GVHD and Relapse after Post-Transplant Cyclophosphamide Revealed by Immune Profiling and Machine Learning	101	0	0.0	False	False	False	True	
+GSE277573	Methylation cytometric pretreatment blood immune profiles with tumor mutation burden as prognostic indicators for survival outcomes in head and neck cancer patients on anti-PD-1 therapy	100	207	6.82	False	False	False	True	
+GSE114403	Immune profiling of pre- and post-treatment breast cancer tissues from the SOWG S0800 randomized neoadjuvant trail of weekly nab-paclitaxel with or without bevacizumab and dose dense doxorubicin and cyclophosphamide	100	102	0.001	False	False	False	True	
+GSE254331	Inflammatory pathways confer resistance to chemoradiotherapy in anal squamous cell carcinoma	98	100	47.375	False	False	False	True	
+GSE128990	Immune subtype of ovarian clear cell carcinoma	96	98	0.003	False	False	False	True	
+GSE296403	RNA-Seq of PBMC of FAP patient before and after a low-inflammatory diet	88	1	0.002	False	True	False	True	
+GSE206265	Influenza vaccination reveals sex dimorphic imprints of prior mild COVID-19 [single-cell CITEseq]	86	2	27.111	False	False	False	True	
+GSE316688	Multimodal discovery of a pathogenic B cell-dependent T cell state in multiple sclerosis	86	179	44.073	False	True	False	True	
+GSE169033	Immune evolution from preneoplasia to invasive lung adenocarcinomas and underlying molecular features	85	9	0.001	False	False	False	True	
+GSE302048	CDKN2A deletion remodels immune infiltrate in Diffuse Pleural Mesothelioma	82	85	0.002	False	False	False	True	
+GSE271255	Spatial immune profiling defines a subset of human gliomas with functional tertiary lymphoid structures [GEOMX]	81	2	0.001	False	True	False	True	
+GSE175433	Immune profiles of early onset vs late onset colorectal cancer	79	81	0.002	False	False	False	True	
+GSE335070	Malignant epithelial states drive immune dysfunction in ampulla of Vater carcinoma	75	43	2.473	False	True	False	True	
+GSE302399	Multimodal Transcriptomic Profiling of T Cell Responses to Triple-Negative Breast Cancer-Derived Exosomes	73	12	0.93	True	False	False	True	
+GSE216069	Multi-modal single-cell and whole-genome sequencing of minute, frozen specimens to propel clinical applications [scRNA and snRNA]	71	140	3.392	True	True	True	True	
+GSE174072	Multi-omic profiling reveals widespread dysregulation of innate immunity and hematopoiesis in COVID-19	70	72	173.407	False	False	False	True	
+GSE290264	Multiomic Study of Cutaneous T-Cell Lymphoma Reveals Single Cell Clonal Evolution in Progression and Therapy Resistance [bulk RNA-seq]	68	2	0.009	False	True	False	True	
+GSE148944	Characterization of the immune profile of oral tongue squamous cell carcinomas with advancing disease	67	1	0.001	False	False	False	True	
+GSE249131	Single-cell RNA sequencing of blood cells from patients with VEXAS syndrome.	66	4	0.644	True	False	False	True	
+GSE271059	Spatial immune profiling defines a subset of human gliomas with functional tertiary lymphoid structures [bulk RNA seq]	64	2	0.002	False	True	False	True	
+GSE147116	Gene expression profile unveils different biological effect of serum Vitamin in Hodgkin and Diffuse Large B-Cell Lymphoma	64	1	0.0	False	False	False	True	
+GSE329190	Zanubrutinib monotherapy for IgG4-related head and neck disease	62	126	2.641	True	False	False	True	
+GSE289059	Tumor immune microenvironment-associated prognostic and mifamurtide-response gene signatures for localized osteosarcoma: a correlative study of the ISG/OS2 trial	62	64	0.002	False	False	False	True	
+GSE200164	scRNAseq + scV(D)J of cerebrospinal fluid samples across age	59	2	2.1	False	True	False	True	
+GSE147125	Profiling of the immune microenvironment in FL [PanCancer Immune Profiling]	54	57	0.002	False	False	False	True	
+GSE315285	Immune receptor repertoire profiling in HIV-1 elite controllers and individuals with progressive disease	54	60	0.088	False	False	False	True	
+GSE328561	Longitudinal single-cell multi-omic profiling of PBMC from the TARA cohort: infants with perinatal HIV during antiretroviral therapy	52	55	2.708	True	True	True	True	
+GSE292189	Single cell and clonal analysis of AL amyloidosis plasma cells and their bone marrow microenvironment	52	56	1.152	True	True	True	True	
+GSE147115	DLBCL patients	52	1	0.0	False	False	False	True	
+GSE227991	Peripheral immunomodulatory effects of Apolipoprotein E4 on Alzheimer's disease - Immune Enrichment	50	2	0.673	False	True	False	True	
+GSE157007	Multidimensional single-cell analysis of human peripheral blood reveals characteristic features of the immune system landscape in aging and frailty	48	70	2.187	True	True	True	True	
+GSE288613	Immune profiling in subclinical secondary dengue-infected cases	46	48	0.826	True	False	False	True	
+GSE119220	NanoString nCounter Human HCC expression analysis	46	48	0.001	False	False	False	True	
+GSE248556	Single-cell transcriptome of PBMC response to Omicron breakthrough infection	45	77	3.537	True	True	True	True	
+GSE282913	Gene Expression Analysis of CD4 T Cells in Autoimmune Pancreatitis: Treatment-Correlated Expression Profiles	45	1	0.002	False	False	False	True	
+GSE296954	Differentiation of tumor-infiltrating GZMK+ effector memory T cells associates with response to neoadjuvant immunotherapy in head and neck cancer	44	90	0.988	True	True	True	True	
+GSE244965	Longitudinal Immune Profiling and Corticosteroid Modulation of the Immediate Innate Immune Response to ChAdOx1 nCoV-19	44	46	6.517	False	False	False	True	
+GSE217179	Serial Immune Profiling During Intraperitoneal Chemotherapy Shows Changes in Loco-regional Immunity in Ovarian Cancer	44	46	0.001	False	False	False	True	
+GSE306513	CCL18 as a immunosuppressive biomarker for prognosis in ABC diffuse large B-cell Lymphoma	43	45	0.001	False	False	False	True	
+GSE254030	Deep phenotyping of Post-infectious Myalgic Encephalomyelitis/Chronic Fatigue Syndrome [Protein plasma]	42	1	0.0	False	False	False	True	
+GSE251790	Deep phenotyping of Post-infectious Myalgic Encephalomyelitis/Chronic Fatigue Syndrome [Protein]	42	1	0.0	False	False	False	True	
+GSE272734	Combination anti-PD-1 and anti-CTLA-4 therapy generates waves of clonal responses that include progenitor-exhausted CD8 T cells [dataset 2]	40	142	3.749	True	True	True	True	
+GSE182612	Signatures of GVHD and Relapse after Post-Transplant Cyclophosphamide Revealed by Immune Profiling and Machine Learning [17941R-18740R]	38	2	0.003	False	True	False	True	
+GSE182610	Signatures of GVHD and Relapse after Post-Transplant Cyclophosphamide Revealed by Immune Profiling and Machine Learning [15065R]	37	1	0.002	False	True	False	True	
+GSE176189	Integrative single-cell and spatial transcriptomic analyses identify a pathogenic cholangiocyte niche and TNFRSF12A as therapeutic target for biliary atresia	36	38	1.98	True	True	True	True	
+GSE284434	Genomic and immune profiling of prognostic risk groups in IgM gammopathy reveals novel biomarkers beyond MYD88 L265P	36	38	0.001	False	False	False	True	
+GSE111360	Organoid modeling of the tumor immune microenvironment	35	86	2.305	True	True	True	True	
+GSE306950	Dysregulated NK Cell Activation and Myeloid-Lymphoid Imbalance Underpin COPD Progression: Insights from High-Dimensional Immune Profiling and Smoking-Induced Immune Remodeling	35	1	0.005	False	False	False	True	
+GSE236951	Gene based immune profiling of vermiform appendix GALT of adult patients with pancreatic cancer or colon diseases.	34	36	0.001	False	False	False	True	
+GSE293012	Single cell RNA sequencing of bone marrow cells in patients post allogenic stem cell transplantation	33	3	0.411	True	False	False	True	
+GSE310856	Cisplatin-based chemoradiation induces delayed systemic tumor-specific T cells expansion in patients with locally advanced head and neck cancer	33	1	0.002	False	True	False	True	
+GSE290557	Multiomic Study of Cutaneous T-Cell Lymphoma Reveals Single Cell Clonal Evolution in Progression and Therapy Resistance	32	66	2.177	False	True	False	True	
+GSE136394	Single-cell transcriptome analysis reveals gene signatures associated with T-cell persistence following adoptive cell therapy	32	50	1.204	False	True	False	True	
+GSE272005	Genomic and single-cell landscape of transformed cutaneous T-cell lymphoma	32	34	0.736	False	False	False	True	
+GSE190639	Placental Immune alterations in early-onset preeclampsia and late-onset preeclampsia	32	1	0.0	False	False	False	True	
+GSE227589	Immune and stromal transcriptional patterns in cHL	31	33	0.001	False	False	False	True	
+GSE290728	Epigenetic and Immunological Alterations in Umbilical Cord Blood of Overweight/Obese Women with Gestational Diabetes Mellitus: Insights into DNA Methylation Signatures and Immune Cell Dysregulation	30	65	2.156	False	False	False	True	
+GSE311339	Radiation, Immunotherapy, and T-cell reinvigoration: Dynamic Immune Profiling Predicts Response to SABR/Anti-PD-1 therapy in Oligometastatic Renal Cell Carcinoma [NanoString]	30	32	0.001	False	False	False	True	
+GSE300304	A platform for multisite immune profiling of premetastatic pancreatic cancer at single cell resolution	30	32	1.171	False	True	False	True	
+GSE272455	Immune profiling of lymph nodes drained to cold vs hot triple-negative breast tumors.	30	33	0.001	False	False	False	True	
+GSE161748	Transcriptomic analsyis of Epithelial and Mesenchymal carcinoma cells using the nCounter PanCancer Immune Profiling panel	30	32	0.001	False	False	False	True	
+GSE295599	Combinatorial delivery of low-dose irradiation and immunotherapy to patients with immune-excluded tumors effectively enhances CD8+ T cell functionality in tumors with homologous recombination repair deficiency [bulk RNA-seq]	29	44	0.052	False	True	False	True	
+GSE196711	Immune profiling of premalignant lesions in patients with Peutz-Jeghers Syndrome	29	1	0.003	False	False	False	True	
+GSE244867	Dominant CD4+ T cell receptors remain stable throughout antiretroviral therapymediated immune restoration in people with HIV	29	31	0.12	False	False	False	True	
+GSE150050	Tissue-specific transcriptional imprinting and heterogeneity in human innate lymphoid cells revealed by full-length single-cell RNA-sequencing	28	36	0.49	True	True	True	True	
+GSE315531	RNAseq analysis of overexpression of KLK5 in the HGSOC epithelial cells on ovarian cancer	28	1	0.001	False	False	False	True	
+GSE313108	Sentinel flaps recapitulate key inflammatory aspects of human face transplant rejection	28	30	0.001	False	False	False	True	
+GSE253633	Immune profiling-based targeting of pathogenic T cells with ustekinumab in ANCA-associated glomerulonephritis	28	96	30.403	False	True	False	True	
+GSE199471	BCG therapy downregulates HLA-I on malignant cells to subvert antitumor immune responses in bladder cancer [RNA-seq]	28	1	0.003	False	False	False	True	
+GSE194245	Global characterization of peripheral B cells in Parkinson’s disease by single-cell RNA and BCR sequencing	28	30	0.066	True	False	False	True	
+GSE251872	Deep phenotyping of Post-infectious Myalgic Encephalomyelitis/Chronic Fatigue Syndrome [PBMC RNA-Seq]	27	29	0.015	False	False	False	True	
+GSE239451	SARS-CoV-2 infection elucidates unique features of pregnancy-specific immunity [VDJ]	26	53	1.983	False	True	False	True	
+GSE213192	SARS-CoV-2 infection and recovery in children: Distinct T cell responses in MIS-C compared to COVID-19	26	29	0.351	False	True	False	True	
+GSE188249	Epigenetic priming enhances anti-tumor immunity in resistant ovarian cancer [RNA-Seq]	26	28	0.134	False	False	False	True	
+GSE182678	Signatures of GVHD and Relapse after Post-Transplant Cyclophosphamide Revealed by Immune Profiling and Machine Learning [17618R]	26	1	0.001	False	True	False	True	
+GSE245661	Deep phenotyping of Post-infectious Myalgic Encephalomyelitis/Chronic Fatigue Syndrome [RNA-Seq]	25	27	0.009	False	False	False	True	
+GSE273504	Engineered T cell therapy for central nervous system injury [CSF RNAseq + VDJ]	24	24	0.747	False	False	False	True	
+GSE167272	Single-cell multiomics sequencing (RNA, ADT and VDJ) of CD4+ T cells from peripheral blood of CMV+ and CMV- healthy humans.	24	4	0.449	False	False	False	True	
+GSE311792	A patient-specific lung tumoroid platform recapitulates tumor microenvironments for modeling in vitro therapeutic responses and immune-stromal interactions	24	1	0.009	False	False	False	True	
+GSE294441	Nanostring-Based Gene Expression Profiling of Melanoma Lymph Node Metastases	24	0	0.0	False	False	False	True	
+GSE182917	Postmortem high-dimensional immune profiling of severe COVID-19 patients reveals distinct patterns of immunosuppression and immunoactivation [RNA-seq]	24	2	0.001	False	False	False	True	
+GSE129492	Immune impact of neoadjuvant chemo/radio-therapy in the pancreatic cancer microenvironment	24	26	0.001	False	False	False	True	
+GSE106500	Immune Profiling of Premalignant Lesions in Patients with Lynch Syndrome	24	26	0.037	False	False	False	True	
+GSE291745	Macrophages direct location-dependent recall of B cell memory to vaccination [scRNA-seq and scVDJ-seq]	24	62	1.966	True	True	True	True	
+GSE193729	TTFields treatment effects on newly diagnosed Glioblastoma patients in peripheral T lymphocytes	24	198	0.045	True	False	False	True	
+GSE250138	Immune profiling-based targeting of pathogenic T cells with ustekinumab in ANCA-associated glomerulonephritis	23	211	5.081	False	True	False	True	
+GSE296867	Post-treatment peripheral-blood T cells from HNSCC patients undergoing neoadjuvant immunotherapy treatment.	22	46	0.281	True	True	True	True	
+GSE205919	The identification of TCF1+ progenitor exhausted T-cells in THRLBCL may predict a better response to PD-1/PD-L1 blockade	22	25	0.001	False	False	False	True	
+GSE186825	Epigenetic priming enhances anti-tumor immunity in resistant ovarian cancer [methylation array]	22	47	1.465	False	False	False	True	
+GSE297926	Gene expression of pediatric germ cell tumors using NanoString PanCancer Immune Profiling Panel	21	2	0.0	False	False	False	True	
+GSE344087	Single-cell multimodal immune profiling in MASLD [scRNA-seq]	20	23	0.502	False	True	False	True	
+GSE217177	Serial Immune Profiling During Intraperitoneal Chemotherapy Shows Changes in Loco-regional Immunity in Ovarian Cancer [II]	20	22	0.001	False	False	False	True	
+GSE141539	Expression profiles of SOX11-positive and SOX11-negative Mantle Cell Lymphoma (MCL) primary samples from lymph node and reactive lymph nodes (RLN).	20	22	0.001	False	False	False	True	
+GSE173231	Single cell immune profiling of human cervix biopsies	20	42	0.334	True	True	True	True	
+GSE132006	Comparison of gene expression profiles obtained from whole blood and peripheral blood mononuclear cells (PBMCs)	20	22	0.001	False	False	False	True	
+GSE316096	Clonal expansion of cytotoxic CD8+ T cells in lecanemab-associated ARIA	18	23	0.565	True	True	True	True	
+GSE186368	Single-cell sequencing in decidual tissues	18	44	1.031	True	True	True	True	
+GSE295600	Combinatorial delivery of low-dose irradiation and immunotherapy to patients with immune-excluded tumors effectively enhances CD8+ T cell functionality in tumors with homologous recombination repair deficiency [scRNA-seq]	18	20	0.301	False	True	False	True	
+GSE200036	Immune profiling and label-free detection of 2D MXenes at the single-cell and tissue level	18	1	0.001	False	True	False	True	
+GSE155223	Single-Cell Omics Reveals Dyssynchrony of the Innate and Adaptive Immune System in Progressive COVID-19 [single-cell RNA-seq]	18	20	1.08	False	False	False	True	
+GSE168940	Single-cell sequencing data for circulating CAR T cells in lymphoma patients	18	49	1.479	True	True	True	True	
+GSE242477	Single-cell profiling of acral melanoma infiltrating lymphocytes reveals a suppressive tumor microenvironment	17	33	1.311	True	True	True	True	
+GSE11881	Multiparameter Immune Profiling of Operational Tolerance in Liver Transplantation	17	19	0.405	False	False	False	True	
+GSE296771	TCR-stimulation of peripheral-blood CD8+ T cells.	16	34	0.967	True	True	True	True	
+GSE280312	Characterization of immune cell populations in the tumor microenvironment of colorectal cancer using high definition spatial profiling [VDJ]	16	34	0.104	True	True	True	True	
+GSE248669	Single-cell characteristics of longitudinal immune profiling in subjects with breakthrough infections caused by Omicron BA.5 sublineages	16	50	3.188	True	True	True	True	
+GSE107223	Transcript-indexed ATAC-seq reveals paired single-cell T cell receptor identity and chromatin accessibility for precision immune profiling [Ensembl]	16	18	0.043	False	False	False	True	
+GSE305118	Pro-inflammatory role of granzyme K producing bystander CD8 T cells in acute myeloid leukemia	15	22	0.362	True	True	True	True	
+GSE248838	Divergent local and systemic antitumor response in primary uveal melanomas	15	32	0.851	True	True	True	True	
+GSE235048	Multicolor spectral flow cytometry evaluation of peripheral blood mononuclear cells from NSCLC patients	15	1	0.001	False	False	False	True	
+GSE279914	Molecular fingerprints for bone marrow cells, myelodysplastic syndrome and aplastic anemia	14	38	2.788	True	True	True	True	
+GSE293039	Dynamic JAK-STAT/IFN-signaling in subclinical to clinical T cell-mediated rejection following liver transplantation	14	23	4.252	False	False	False	True	
+GSE302014	Single-cell immune profiling of third trimester pregnancies defines importance of chemokine receptors and prevalence of CMV-induced NK cells in the blood and decidua	14	3	0.088	False	True	False	True	
+GSE217175	Serial Immune Profiling During Intraperitoneal Chemotherapy Shows Changes in Loco-regional Immunity in Ovarian Cancer [I]	14	16	0.0	False	False	False	True	
+GSE214779	Towards Optimization of Precision Oncology in Metastatic Uterine Tumors	13	2	0.0	False	True	False	True	
+GSE230295	Molecular fingerprints for bone marrow cells, pediatric acute lymphoblastic leukemia	12	31	0.663	True	True	True	True	
+GSE172403	SIFT-seq: VDJ and scRNA-seq of T cells targeting public neoantigens	12	26	1.028	True	True	True	True	
+GSE337135	Immunophenotyping of peripheral CD8+ T cells from classical Hodgkin Lymphoma patients treated with PD-1 blockade	12	20	0.202	True	False	False	True	
+GSE306092	Patient-Derived Lymphoma Spheroids Reveal Predictive Markers of Glofitamab Resistance in Relapsed/Refractory B-NHL	12	14	4.796	False	False	False	True	
+GSE302502	Spatial immune profiling defines a subset of human gliomas with functional tertiary lymphoid structures [Xenium]	12	110	262.224	False	True	False	True	
+GSE273529	Varicella-zoster virus hijacks the type I interferon response and antigen presentation pathways in matured hiPSC-derived neurospheroids	12	14	0.0	False	False	False	True	
+GSE238120	Single-cell analysis of Diphtheria, Tetanus, and Pertussis (DTP)-vaccinated repertoire	12	23	0.595	True	True	True	True	
+GSE161747	Transcriptomic analsyis of Epithelial and Mesenchymal carcinoma cells using the nCounter PanCancer Immune Profiling panel (Nanostring Technologies) [human]	12	14	0.0	False	False	False	True	
+GSE148392	Immune-Related Gene Expressions in EOC using Nanostring analysis	12	1	0.0	False	False	False	True	
+GSE111014	Chromatin mapping and single-cell immune profiling defines the temporal dynamics of ibrutinib drug response in chronic lymphocytic leukemia [scRNA-seq]	12	3	0.096	False	True	False	True	
+GSE181682	Paired VDJ and transcriptome single cell sequencing in LMP2 multimer-positive human T cells treated with anti-PD-L1 and anti-TIM3 antibodies.	12	3	0.189	True	False	False	True	
+GSE164380	Distinct B cell repertoires characterize patients with mild and severe COVID-19 [VDJ]	11	13	0.007	True	False	False	True	
+GSE271545	UCPVax, a CD4 helper peptide vaccine induces polyfunctional Th1 cells, antibody response and epitope spreading to improve antitumor immunity  [TCR-seq]	10	13	0.038	False	False	False	True	
+GSE217178	Serial Immune Profiling During Intraperitoneal Chemotherapy Shows Changes in Loco-regional Immunity in Ovarian Cancer [III]	10	12	0.0	False	False	False	True	
+GSE164104	Gene expression in human recurrent glioblastoma before and after inoculation with the oncolytic herpes simplex virus G207 using NanoString pancancer immune profiling gene expression panel	10	1	0.0	False	False	False	True	
+GSE191089	Comprehensive comparison of adaptive immune response by inactivated SARS-CoV-2 vaccine between young and old	9	15	0.506	True	True	True	True	
+GSE333952	Baseline interferon signaling in monocytes and antibody-mediated innate activation at injection site shape mRNA vaccine reactogenicity [ATAC-seq]	9	2	0.003	False	True	False	True	
+GSE249998	Epitope-specific T cell responses after SARS-2 vaccination, including for a hypervaccinated individual	9	11	0.227	True	False	False	True	
+GSE222841	Transcriptional analysis on the impact of our mRNA adjuvant system on monocyte derived dendritic cells	9	11	0.0	False	False	False	True	
+GSE211590	Gene expression profile of Leishmania major infected THP1 cell lines	9	12	0.0	False	False	False	True	
+GSE220956	Combined transcriptome and T cell receptor alpha/beta (TRA/TRB) single cell RNA sequencing of donor-reactive T cells in stable kidney transplant recipients before and 3-5 years post-transplant.	8	11	0.028	False	False	False	True	
+GSE213243	Single-cell sequencing reveals effects of chemotherapy on the immune landscape and TCR/BCR clonal expansion in a relapsed ovarian cancer patient	8	18	0.945	True	True	True	True	
+GSE314972	Single-cell transcriptomic profiling of frontal fibrosing alopecia reveals preserved cellular architecture with stress-driven epithelial reprogramming and non-cytotoxic inflammation	8	1	0.383	False	False	False	True	
+GSE326101	Spatial predictors of response to chemo-immunotherapy in microsatellite stable metastatic colorectal cancer	8	18	1.09	False	True	False	True	
+GSE273419	CyroSCAPE: Scalable Immune Profiling Using Cryopreserved Whole Blood for Multi-omic Single Cell and Functional Assays	8	305	66.722	False	True	False	True	
+GSE272735	Combination anti-PD-1 and anti-CTLA-4 therapy generates waves of clonal responses that include progenitor-exhausted CD8 T cells [dataset 3]	8	30	0.489	True	True	True	True	
+GSE185432	Manufacture of GMP-compliant functional SARS-COV-2 cytotoxic T lymphocytes (CTLs) utilizing the CliniMACS® Cytokine Capture System; Gene expression using NanoString pancancer immune profiling gene expression panel	8	1	0.0	False	False	False	True	
+GSE201997	Massively parallel engineering of persistent CAR-Ts	8	17	1.478	False	False	False	True	
+GSE195812	Single-cell immune profiling reveals thymus-seeding populations, T cell commitment, and multi-lineage development in the human thymus	8	31	17.531	False	True	False	True	
+GSE183716	The innate and adaptive immune landscape of SARS-CoV-2-associated multisystem inflammatory syndrome in children (MIS-C) from acute disease to recovery	8	4	0.033	False	True	False	True	
+GSE285172	MZB1 knockout in human melanoma cells significantly modulates genes associated with cancer immune signaling	7	3	0.0	False	True	False	True	
+GSE214287	In Vitro Expanded Cord Blood γδ T Cells Acquired Unique Cell State Composition to Mediate Sustained Human AML Suppression [VDJ]	6	8	0.007	True	False	False	True	
+GSE210337	Single cell RNA-seq and TCR-seq of T cell responses against DNAJB1-PRKACA	6	8	0.023	True	False	False	True	
+GSE121637	Single-cell sequencing of peripheral blood and tumor-infiltrating immune cells in renal clear cell carcinoma [VDJ sequencing]	6	8	0.003	True	False	False	True	
+GSE121636	Single-cell sequencing of peripheral blood and tumor-infiltrating immune cells in renal clear cell carcinoma [5' RNA expression sequencing]	6	20	0.407	False	True	False	True	
+GSE314816	Single-cell insights into trophoblast heterogeneity and adaptive dysfunction in selective fetal growth restriction	6	20	5.283	False	True	False	True	
+GSE290006	Reduced vaccine-induced germinal center outputs in inflammatory bowel disease patients treated with anti-TNF biologics	6	16	0.033	True	True	True	True	
+GSE273718	Combination anti-PD-1 and anti-CTLA-4 therapy generates waves of clonal responses that include progenitor-exhausted CD8 T cells [dataset 4]	6	20	0.618	False	True	False	True	
+GSE155222	Single-Cell Omics Reveals Dyssynchrony of the Innate and Adaptive Immune System in Progressive COVID-19 [CITE-seq]	6	10	1.015	False	False	False	True	
+GSE156841	CMV-CTLs scVDJ-RNAseq	6	8	0.097	False	False	False	True	
+GSE342074	CYP1B1-Mediated Metabolic Reprogramming Drives Immune Dysregulation in Sepsis: A Single-Cell Transcriptomic and Therapeutic Exploration	6	20	0.923	False	True	False	True	
+GSE290883	Analysis of local mucosal immune dysregulation to guide pilot directed therapy for long-COVID olfactory loss [5' GEX]	6	20	1.861	False	True	False	True	
+GSE230439	Investigation of corneal limbal stem cells and immune repertoires in human infant cornea by multi-omics solution	5	9	0.069	False	True	False	True	
+GSE337136	Immunophenotyping of peripheral CD8+ T cells from classical Hodgkin Lymphoma patients treated with PD-1 blockade [TCR-seq]	5	7	0.005	False	False	False	True	
+GSE271543	UCPVax, a CD4 helper peptide vaccine induces polyfunctional Th1 cells, antibody response and epitope spreading to improve antitumor immunity  [scRNA-seq]	5	23	2.279	False	True	False	True	
+GSE171052	Case Report: Deep Immune Profiling Links Neutrophil and Plasmablast Dysregulation to Microvascular Damage in post-COVID-19 Multisystem Inflammatory Syndrome of Adults (MIS-A).	5	7	0.133	False	True	False	True	
+GSE311890	Single-cell transcriptomic and TCR profiling of long-term persisting CD19 CAR-T cells from patient peripheral blood	4	14	6.958	True	False	False	True	
+GSE232446	Neoantigen-Specific CD8 T Cells with High Structural Avidity Preferentially Reside in and Eliminate Tumors (VDJ)	4	6	0.007	True	False	False	True	
+GSE312390	C-terminal Occludin Peptide Suppresses Airway Inflammation via Barrier Restoration	4	6	0.001	False	False	False	True	
+GSE207438	Immune Profiling-Based Treatment for ANCA-Associated Glomerulonephritis with Ustekinumab	4	8	0.372	False	True	False	True	
+GSE317485	Single-cell RNA sequencing of circulating mock-electroporated CD2 wild-type and CD2-knockout 41BBzeta CART19 cells	4	6	0.941	False	True	False	True	
+GSE338671	A Novel Heterozygous STAT5B Loss-of-Function Variant Associated with Interleukin-17A-Responsive Systemic Juvenile Idiopathic Arthritis-like Disease	3	20	50.21	False	False	False	True	
+GSE333235	Baseline interferon signaling in monocytes and antibody-mediated innate activation at injection site shape mRNA vaccine reactogenicity [human_RNAseq]	3	5	0.024	False	True	False	True	
+GSE218261	CD39 Identifies Tumor-Reactive CD8 T cells in Patients With Lung Cancer [VDJ]	2	12	0.002	True	False	False	True	
+GSE184703	Expansion of Human Papillomavirus-Specific T Cells in Periphery and Cervix in a Therapeutic Vaccine Recipient Whose Cervical High-Grade Squamous Intraepithelial Lesion Regressed	2	7	0.378	True	True	True	True	
+GSE298194	RELA haploinsufficiency manifesting as an atypical phenotype of Crohn’s disease	2	9	0.743	False	True	False	True	
+GSE204763	Multi-modal skin atlas associates a multicellular immune-stromal community with altered cornification and T cell expansion in atopic dermatitis [scRNAseq_VDJ]	2	4	0.04	False	True	False	True	
+GSE157492	Tenofovir and dolutegravir reduce human T-cell leukemia virus 1 transmission and de novo viral spread in vivo	1	11	0.215	True	True	True	True	
+GSE343373	Single-cell dissection of a collision marrow with coexisting acute myeloid leukemia and a Waldenström-related lymphoplasmacytic compartment	1	4	0.235	False	False	False	True	
+GSE267774	Specific CD4+ T cell phenotypes associate with bacterial control in people who ‘resist’ infection with Mycobacterium tuberculosis	3076	2	0.004	False	False	False	False	
+GSE249632	Longitudinal analysis of antigen-specific T cells after Shingrix vaccination	2866	1	0.018	False	True	False	False	
+GSE166150	Immunomodulatory effects of PI3Kδ inhibition in murine and human solid tumors	2306	0	0.0	False	False	False	False	
+GSE196330	Single cell multi-omics reveals early elevated function and multiple fates within human progenitors of exhausted CD8+ T cells	1890	6	0.073	False	True	False	False	
+GSE242232	Autoantigen-specific CD4+ T cells acquire an exhausted phenotype and persist in human antigen-specific autoimmune diseases	928	2	0.008	True	True	True	False	
+GSE107646	Paired TCR and transcriptome analysis of single T cells characterizes clonally expanded human conventional and unconventional CD8+ T cells	921	2	0.032	False	False	False	False	
+GSE96993	Targeted reconstruction of T cell receptor sequence from single cell RNA-seq links CDR3 length to T cell differentiation state	770	1	0.024	False	False	False	False	
+GSE281263	Identification of a novel PDC-E2 epitope in Primary Biliary Cholangitis and application for engineered Treg therapy	632	2	0.004	False	False	False	False	
+GSE239935	Peripheral blood TCR clonotype diversity as an age-associated marker of breast cancer progression	596	0	0.0	False	False	False	False	
+GSE314342	Genome-scale perturb-seq in primary human CD4+ T cells reveals genes regulating T cell programs and human immune traits.	577	337	501.428	False	True	False	False	
+GSE206325	Intratumoral mregDC and Tfh-like niches enable local reinvigoration of CD8 T cells following PD-1 blockade	510	4	2.309	True	False	False	False	
+GSE280113	Progenitor effects and unique transcriptomic signatures linked to differentiation phenotype in clonally expanded antigen-specific CD8 T memory stem cells (TSCM)	509	2	0.008	False	False	False	False	
+GSE261515	Peripheral blood TCR clonotype diversity as an age-associated marker of breast cancer progression (TCR)	485	2	1.111	False	False	False	False	
+GSE346009	FLASH-seq single-cell profiling of peripheral blood and cerebrospinal fluid immune cells in multiple sclerosis	482	4	0.011	False	True	False	False	
+GSE134589	IMMUNE LANDSCAPES PREDICT CHEMOTHERAPY RESISTANCE AND IMMUNOTHERAPY RESPONSE IN ACUTE MYELOID LEUKAEMIA	432	434	0.012	False	False	False	False	
+GSE188429	Allelic variation in Class I HLA determines pre-existing memory responses to SARS-CoV-2 that shape the CD8+ T cell repertoire upon viral exposure	380	5	0.472	False	True	False	False	
+GSE230319	DNA-guided transcription factor cooperativity shapes face and limb mesenchyme	379	541	198.515	False	False	False	False	
+GSE217690	Multiplex profiling of developmental enhancers with quantitative, single-cell expression reporters	368	0	0.0	False	False	False	False	
+GSE303070	A spatial atlas of colorectal cancer reveals the influence of stromal niches on tumour differentiation	352	3	7.454	False	False	False	False	
+GSE306429	Perturbational single-cell RNA sequencing of 104 compounds across six immortalized and four primary cell lines	348	760	243.12	False	True	False	False	
+GSE215126	HIV specific CD8+ Trm-like cells in tonsils express exhaustive signatures in the absence of natural HIV control [smart-seq 2]	343	2	0.003	False	False	False	False	
+GSE235093	Pre-existing skin-resident CD8 and γδ T cell circuits mediate immune response in Merkel cell carcinoma and Predict immunotherapy efficacy	333	0	0.0	False	False	False	False	
+GSE294051	SWI/SNF Remodeling Complexes Regulate 3D Chromatin Architecture by Antagonizing CTCF and Cohesin	321	277	90.041	False	False	False	False	
+GSE135712	NanoString expression profiling in metastatic ovarian cancer	304	306	0.009	False	False	False	False	
+GSE178208	HIGH-RISK SUBTYPES OF CHRONIC LYMPHOCYTIC LEUKEMIA ARE DETECTABLE AS EARLY AS 16 YEARS BEFORE DIAGNOSIS	277	1	0.0	False	False	False	False	
+GSE309595	Longitudinal Analysis of Multiple Myeloma: Therapeutic Response and Immune Microenvironment Dynamics in the Context of Tumor Heterogeneity [scRNA-seq]	270	272	38.247	False	False	False	False	
+GSE315929	Differential T cell clonal dynamics underlie outcomes to frontline chemoimmunotherapy in advanced gastric cancer [TCR-seq]	268	271	0.077	True	False	False	False	
+GSE160903	Physical interaction with antigen presenting cells primes a T helper tumor lineage	268	271	0.454	False	False	False	False	
+GSE296826	Raw RNA-sequencing data for deriving BCR sequences from the NIH U01 project: Finding the optimal balance of immunotherapy efficacy and toxicity.	256	258	0.496	False	False	False	False	
+GSE225063	Blockade of LAG-3 and PD-1 leads to co-expression of cytotoxic and exhaustion gene modules in CD8+ T cells to promote antitumor immunity	256	261	6.368	False	False	False	False	
+GSE220994	Single cell-guided prenatal derivation of primary fetal epithelial organoids from the human amniotic and tracheal fluids	255	9	2.787	False	False	False	False	
+GSE161918	Time-resolved Systems Immunology Reveals a Late Juncture Linked to Fatal COVID-19	241	122	15.27	True	True	True	False	
+GSE84799	Multi-parametric profiling of non-small cell lung cancers reveals distinct immunophenotypes	221	31	0.001	False	False	False	False	
+GSE318420	Immunosuppressive monocytes are enriched in hepatocellular carcinoma patients with liver dysfunction in a phase II trial of combination sorafenib and nivolumab	210	632	7.593	False	True	False	False	
+GSE200996	Tissue-resident Memory and Circulating T cells are Early Responders to Pre-surgical Cancer Immunotherapy	204	216	4.692	True	False	False	False	
+GSE230316	DNA-guided transcription factor cooperativity shapes face and limb mesenchyme [ChIP-seq]	200	278	72.857	False	False	False	False	
+GSE327727	D-SPIN constructs regulatory network models from scRNA-seq that reveal organizing principles of perturbation response	194	79	13.608	False	True	False	False	
+GSE313642	Immunosuppressive monocytes are enriched in hepatocellular carcinoma patients with liver dysfunction in a phase II trial of combination sorafenib and nivolumab [CITE-Seq]	194	584	5.987	False	True	False	False	
+GSE235090	Pre-existing skin-resident CD8 and γδ T cell circuits mediate immune response in Merkel cell carcinoma and Predict immunotherapy efficacy [scRNA_tissue]	192	51	1.677	False	False	False	False	
+GSE288742	Clinical progression of clonal hematopoiesis is determined by a combination of mutation timing, clonal fitness, and structure	192	2	0.0	False	False	False	False	
+GSE230928	Control of cell identity and early neuronal fate commitment by the enhancer module of Integrator	181	321	59.345	False	True	False	False	
+GSE314941	Cohesin mutations suppress HLA class II gene expression to promote immune evasion during the progression to acute leukemia in children with Down syndrome	180	180	178.888	False	False	False	False	
+GSE201535	Heterologous ChAdOx1-BNT162b2 vaccination in Korean cohort induces robust immune and antibody responses that includes Omicron	173	211	1.034	False	True	False	False	
+GSE317605	A Phase II Trial of Pembrolizumab plus Granulocyte Macrophage Colony Stimulating Factor in Advanced Biliary Cancer [CITE-Seq]	168	507	1.948	False	True	False	False	
+GSE270387	Single cell profiling of peripheral blood mononuclear cells in diverse men with prostate cancer reveals lethal disease-associated immune signatures	165	167	2.336	True	True	True	False	
+GSE318761	Multi-omics profiling of CDK2 kinase-dependent transcriptomic and epigenetic changes	164	44	43.431	False	False	False	False	
+GSE201533	Heterologous ChAdOx1-BNT162b2 vaccination in a Korean cohort induces a robust genetic immune and antibody response that includes Omicron [RNA_seq]	161	163	0.053	False	False	False	False	
+GSE227488	Human CCR6+ Th cells show both an extended stable gradient of Th17 activity and imprinted plasticity	159	253	3.789	True	False	False	False	
+GSE272757	Driver mutation landscape of acute myeloid leukemia provides insights for neoantigen-based immunotherapy [RNA-seq]	147	1	0.007	False	False	False	False	
+GSE242792	Development and Validation of Targetable Prognostic Risk Score in Locally Advanced Nasopharyngeal Carcinoma	144	146	1.463	False	False	False	False	
+GSE279783	Autoreactive effector Treg cells with a compromised regulatory program in patients with coronary artery disease	144	2	0.006	False	True	False	False	
+GSE296419	The critical role of the host endogenous immune compartment after intracerebroventricular CAR T cell therapy in recurrent GBM	143	203	16.676	True	True	True	False	
+GSE288968	Multi-omics analysis identifies progenitors of CD4-CTLs [bulk TCR]	140	1	0.023	False	False	False	False	
+GSE200133	Revealing and harnessing CD39 for the treatment of colorectal cancer and liver metastases by engineered T cells	137	60	0.002	False	False	False	False	
+GSE182162	Neoadjuvant talimogene laherparepvec plus surgery vs surgery alone for resectable stage IIIB-IVM1a melanoma	135	137	0.0	False	False	False	False	
+GSE255530	Coordinated immune networks in leukemia bone marrow microenvironments distinguish response to cellular therapy	132	2	1.012	False	True	False	False	
+GSE306664	Revealing differential type I and type II IFN responses in different immune cells in various human diseases by a new IFNs transcriptomic atlas	131	135	13.882	False	False	False	False	
+GSE328391	Airway immune signatures of protection and disease progression in recent human tuberculosis household contacts [bulk RNA-seq]	125	3	0.015	False	True	False	False	
+GSE73089	The Immunobiology of Aging [I]	120	123	5.25	False	False	False	False	
+GSE233321	Single-cell map of the healthy human immune system across the lifespan reveals unique infant immune signatures	118	422	194.596	False	True	False	False	
+GSE335409	Barcode and integration-site sequencing of HIV-infected humanized mice following NK cell treatment	117	2	0.0	False	False	False	False	
+GSE279392	Single-cell RNA and TCR sequencing from skin, blood and cerebral spinal fluid (CSF) samples from Degos disease patients	116	304	6.848	True	True	True	False	
+GSE158667	Peanut oral immunotherapy suppresses clonally distinct subsets of T helper cells	113	117	3.297	False	True	False	False	
+GSE288856	Clonal CD8+ T Cells Populate the Leptomeninges and Coordinate with Immune Cells in Human Degenerative Brain Diseases	113	229	1.736	False	True	False	False	
+GSE227690	Ultraviolet radiation shapes dendritic cell leukaemia transformation in the skin	111	107	0.404	False	True	False	False	
+GSE176021	Distinct transcriptional programs characterize neoantigen-specific T cells in lung cancers treated with neoadjuvant PD-1 blockade [single-cell RNA-seq]	110	224	12.819	False	False	False	False	
+GSE189631	Landscape of immune-related signatures induced by targeting of epigenetic regulators in melanoma IV	107	109	0.003	False	False	False	False	
+GSE267168	CSF1R inhibition plus chemotherapy induces systemic anti-tumor immune responses in triple negative breast cancer and sensitizes tumors to anti-PD-1 therapy by relieving resident memory T cell dysfunction [luminex]	107	3	0.0	False	False	False	False	
+GSE292177	Genetically driven immune microenvironment states associate with therapeutic responses in MYD88 mutant lymphomas [scRNA-seq]	105	257	13.174	True	True	True	False	
+GSE311112	Single-cell RNA-seq analysis reveals distinct tumor and immunosuppressive T-cell phenotypes in CLL patients treated with ibrutinib	105	177	2.466	True	True	True	False	
+GSE187515	Single-cell multiomics of  CD4+ T cell clones in HIV-1 infected individuals	104	1	3.1	False	False	False	False	
+GSE307215	Spatiotemporal Single-Cell Profiling Reveals T Cell Clonal Dynamics and Phenotypic Plasticity in Human Graft-versus-Host Disease	104	268	14.97	False	True	False	False	
+GSE125527	Single-Cell Analyses Elucidate the Cellular and Molecular Landscape of Ulcerative Colitis	103	112	0.563	False	False	False	False	
+GSE287808	Temporal profiling of human lymphoid tissues reveals coordinated defence against viral challenge	102	240	6.292	True	True	True	False	
+GSE317455	Transcriptional pathways of localized early prostate cancer	102	104	0.003	False	False	False	False	
+GSE234261	Single cell multi-omic dissection of response and resistance to chimeric antigen receptor T cells against BCMA in relapsed multiple myeloma	100	128	1.384	True	True	True	False	
+GSE113282	Comprehensive Characterization of the Tumor Immune Micromilieu and its Interference with Outcome After Concurrent Chemoradiation in Patients with Locally Advanced Oropharyngeal Carcinomas	100	1	0.0	False	False	False	False	
+GSE345124	Combination of a CCL21-gene modified dendritic cell vaccine and pembrolizumab induces immune responses in non-small cell lung cancer [Bulk TCR-seq]	98	100	0.486	False	False	False	False	
+GSE133028	CSF B cells in relapsing multiple sclerosis are driven towards an antigen-experienced, inflammatory fate	98	100	0.907	False	False	False	False	
+GSE284579	The spatial organization of cDC1 with CD8+ T cells is critical for the response to immune checkpoint inhibitors in melanoma patients	96	2	0.0	False	False	False	False	
+GSE206030	DNMT3A and TET2 restrain mitochondrial DNA-mediated interferon signaling in macrophages	96	20	0.019	False	False	False	False	
+GSE250509	Protein expression from paired biopsies from a patient with METex14 skiping non-small cell lung cancer before and after treatment with neoadjuvant tepotinib (42 days)	94	2	0.0	False	True	False	False	
+GSE315928	Differential T cell clonal dynamics underlie outcomes to frontline chemoimmunotherapy in advanced gastric cancer [paired scRNA/TCR-seq]	94	97	12.6	False	True	False	False	
+GSE161508	Clonal expansion of CD8+ T cells reflects graft-versus-leukemia activity and precedes durable remission following DLI.	94	97	0.011	False	False	False	False	
+GSE239933	Peripheral blood TCR clonotype diversity as an age-associated marker of breast cancer progression (blood)	93	2	0.009	False	False	False	False	
+GSE167118	Clonal expansion and activation of tissue-resident memory-like Th17 cells expressing GM-CSF in the lung of severe COVID-19 patients	93	128	0.971	True	True	True	False	
+GSE309593	Longitudinal Analysis of Multiple Myeloma: Therapeutic Response and Immune Microenvironment Dynamics in the Context of Tumor Heterogeneity [CITE-Seq]	91	184	24.196	False	True	False	False	
+GSE305372	Human lungs maintain tissue-resident memory T cells against a broad spectrum of pathogens.	91	5	15.465	True	False	False	False	
+GSE256141	Single cell transcriptional landscape of liver transplant rejection reveals tissue persistence of clonally expanded, treatment-resistant T cells	90	212	0.383	True	True	True	False	
+GSE175450	Complement activation induces excessive T cell cytotoxicity in severe COVID-19	90	97	2.019	True	True	True	False	
+GSE74752	The Immunobiology of Aging [II]	90	93	1.963	False	False	False	False	
+GSE295715	Leukemia-mutated proteins PHF6 and PHIP form a chromatin complex that represses acute myeloid leukemia stemness	90	0	0.0	False	False	False	False	
+GSE229861	Tumor-reactive T cell clonotype dynamics underlying clinical response to TIL therapy in melanoma	89	91	0.783	True	False	False	False	
+GSE241957	Analyzing Flow Cytometry or Targeted Gene Expression Data Influences Clinical Discoveries — Profiling Blood Samples of Pancreatic Ductal Adenocarcinoma Patients	88	178	0.005	False	False	False	False	
+GSE308745	The Cd4+ T cell population Partners with Tpex CD8 T cells to mediate Antitumor Immunity in the Tumor Microenvironment.[PB cohort2]	87	119	4.786	True	True	True	False	
+GSE230318	DNA-guided transcription factor cooperativity shapes face and limb mesenchyme [RNA-seq]	87	89	0.109	False	False	False	False	
+GSE123813	Clonal replacement of tumor-specific T cells following PD-1 blockade [single cells]	86	7	0.149	False	True	False	False	
+GSE205501	Clonally expanded CD38hi cytotoxic CD8 T cells define the T cell infiltrate in checkpoint inhibitor-associated arthritis	86	1	0.011	False	False	False	False	
+GSE158848	Human effector/memory CD4 T cell subsets: deep TCR profiling.	86	88	0.189	False	False	False	False	
+GSE271413	A single-cell atlas of circulating immune cells over the first 2 months of age in extremely premature infants	83	143	4.498	True	True	True	False	
+GSE223606	Nanostring analysis of medulloblastoma samples using the PanCancer Immune Profile Nanostring Panel	83	1	0.0	False	False	False	False	
+GSE243905	Single-cell TCR profiling of CSF and blood cells of PWH reveals persistent and shared infected T cell clones across tissue compartments even after ART	82	88	7.419	False	True	False	False	
+GSE329527	Antigen-restricted Candida albicans Th17 cells link oral-gut immunity and adopt pathogenic features during intestinal inflammation	81	287	6.564	True	True	True	False	
+GSE144469	Molecular Pathways of Colon Inflammation Induced by Cancer Immunotherapy	81	62	3.082	True	False	False	False	
+GSE219098	Tracking B Cell Responses to the SARS-CoV-2 mRNA-1273 Vaccine	81	115	3.238	True	False	False	False	
+GSE314906	CX3CR1⁺ CD8⁺ Cytotoxic T Cells Drive Tumor Killing in Esophageal Squamous Cell Carcinoma During Neoadjuvant Therapy	81	2	25.05	False	True	False	False	
+GSE273170	Baseline Immune State and T cell Clonal Kinetics are Associated with Response to CAR-T Therapy in Large B-cell Lymphoma	81	84	0.656	False	False	False	False	
+GSE242738	Stereotypic persistent B cell receptor clonotypes in Alzheimer’s Disease	81	83	6.71	False	False	False	False	
+GSE185381	An inflammatory state remodels the immune microenvironment and improves risk stratification in acute myeloid leukemia	79	449	28.105	True	True	True	False	
+GSE128294	Large B-Cell Lymphomas in Pediatric and Young Adults Display Clinically Relevant Molecular Features Distinguishable from Adult Counterparts	79	191	5.667	False	False	False	False	
+GSE256033	UHRF1 ubiquitin ligase activity supports the maintenance of low-density CpG methylation	79	147	13.432	False	False	False	False	
+GSE230894	Control of cell identity and early neuronal fate commitment by the enhancer module of Integrator [ChIP-Seq]	79	81	39.872	False	False	False	False	
+GSE152522	Imbalance of regulatory and cytotoxic SARS-CoV-2-reactive CD4+ T cells in COVID-19	78	6	0.516	False	False	False	False	
+GSE233236	Pan-Cancer Single-Cell Dissection Reveals Phenotypically Distinct B Cell Subtypes	78	4	0.195	False	True	False	False	
+GSE230315	DNA-guided transcription factor cooperativity shapes face and limb mesenchyme [ATAC-seq]	78	173	122.549	False	False	False	False	
+GSE270680	A spatially resolved atlas of gastric cancer characterises a lymphocyte aggregated region [scRNA-seq]	77	233	9.774	False	True	False	False	
+GSE192402	Multi-modal single-cell and whole-genome sequencing of minute, frozen specimens to propel clinical applications	74	132	0.21	True	True	True	False	
+GSE324427	Myasthenia thymus reprograms class switched B cells into BAFF dependent survivors	73	171	29.982	True	True	True	False	
+GSE186537	Gene expression analysis of the bone marrow microenvironment reveals distinct immunotypes in smoldering multiple myeloma associated to progression to symptomatic disease	72	76	0.002	False	False	False	False	
+GSE314930	Cohesin mutations suppress HLA class II gene expression to promote immune evasion during the progression to acute leukemia in children with Down syndrome [CUT&Run]	72	140	30.079	False	False	False	False	
+GSE278838	Single-cell RNA transcriptomic profile from skin, blood and cerebral spinal fluid (CSF) from Degos disease patients.	70	212	6.684	False	True	False	False	
+GSE288966	Multi-omics analysis identifies progenitors of CD4-CTLs [bulk RNA-seq]	70	72	0.052	False	True	False	False	
+GSE235574	Comprehensive profiling and targeting of BCL-2 family members in nasopharyngeal carcinoma	69	71	0.002	False	False	False	False	
+GSE311993	Symptomatic SARS-CoV-2 breakthrough infections broaden the repertoire of Spike-reactive CD4 T cells	69	3	14.3	False	False	False	False	
+GSE159759	Single-cell  analysis  of  adipose tissue  T cells in diabetic persons with HIV  reveals high proportions of clonally expanded CMV-like CD4+ T cells with cytotoxic RNA transcriptomes	69	2	0.026	False	False	False	False	
+GSE266079	Expansion of peripheral T cell clonotypes predict response in patients with small cell neuroendocrine bladder and prostate cancers treated with chemo-immunotherapy in a phase I clinical trial	68	138	4.954	True	True	True	False	
+GSE283746	Comparative Single-Cell Analyses in Infants Revealed RSV-Specific Declines in NK Cell Responses and COVID-19-Specific Increases in Inflammatory Responses [COVID_RSV_scRNA]	68	684	77.846	False	True	False	False	
+GSE313894	Single cell characterization of the gastrointestinal HIV reservoir reveals heterogeneous cellular phenotypes.	68	96	7.64	False	True	False	False	
+GSE239676	Atlas of metastatic gastric cancer links ferroptosis to disease progression and immunotherapy response	68	4	0.95	False	True	False	False	
+GSE203610	Follicular lymphoma microenvironment characteristics associated with tumor cell mutations and MHC class II expression	67	4	0.491	True	True	True	False	
+GSE338952	Transcriptomic and epigenetic changes contribute to the development of splenic extramedullary hematopoiesis in myelofibrosis	67	100	97.538	True	True	True	False	
+GSE302339	Lung NR3C1+ and CXCR6 High CD4 T cells distinguish immunopathogenesis of human emphysema	67	67	2.104	False	True	False	False	
+GSE293652	Malignant ascites is associated with PIGR+RORC+ dendritic cell subset	66	137	12.169	False	True	False	False	
+GSE337533	A Single-Cell Atlas of Transcriptional and Immunoglobulin Repertoire Evolution in Early B Cell Development	66	157	4.059	True	True	True	False	
+GSE93157	Programmed death 1 receptor blockade and immune-related gene expression profiling in non-small cell lung carcinoma, head and neck squamous cell carcinoma and melanoma	65	1	0.0	False	False	False	False	
+GSE309375	Elevated Serum IL-10 in the Setting of Relapsed B-ALL in Patients Previously Treated with CART	65	75	0.722	False	True	False	False	
+GSE266695	Mild HIV-specific selective forces overlaying natural CD4+ T cell dynamics explain the clonality and decay dynamics of HIV reservoir cells.	65	67	1.543	False	False	False	False	
+GSE180045	Identification of Pathogenic Immune Cell Subsets in Checkpoint Inhibitor-induced Myocarditis	65	48	5.07	True	True	True	False	
+GSE317309	Combination of a CCL21-gene modified dendritic cell vaccine and pembrolizumab induces immune responses in non-small cell lung cancer	64	388	23.891	True	True	True	False	
+GSE168859	Coupled Single Cell RNA Sequencing and TCR Profiling of T Cells in Large Granular Lymphocytosis to Infer Pathophysiology and Mechanism of Drug Action	64	66	2.282	True	False	False	False	
+GSE280720	Functional characterization of Central Nervous System (CNS) and peripheral immune responses in Alzheimer's Disease after Bacillus Calmette Guerin (BCG) vaccination in older adults.	64	194	5.705	False	True	False	False	
+GSE230917	Control of cell identity and early neuronal fate commitment by the enhancer module of Integrator [RNA-Seq]	64	194	5.003	False	False	False	False	
+GSE347762	Neoadjuvant pepinemab in combination with nivolumab and/or ipilimumab in resectable metastatic melanoma: a pilot biomarker-driven trial	63	69	1.325	False	False	False	False	
+GSE234352	Tumor-reactive T cell clonotype dynamics underlying clinical response to TIL therapy in melanoma [TCR-Seq]	63	65	0.366	False	False	False	False	
+GSE284230	Spatially Resolved Insights Into Fistulating Crohn’s Disease Pathogenesis - scRNA-Seq	62	39	2.058	False	False	False	False	
+GSE141016	Tumor immune microenvironment difference primary and metastatic hepatocellular carcinoma	62	64	0.002	False	False	False	False	
+GSE234069	A structured evaluation of cryopreservation in generating single cell transcriptomic from cerebrospinal fluid	62	3	1.293	False	False	False	False	
+GSE279855	Automal Random Allelic Expression (aRMAE) analysis in clonally expanded T cells from healthy donors	61	38	0.012	False	False	False	False	
+GSE320155	scRNA‑seq of human intra‑hepatic CD4⁺ T cells reveals unique Treg transcriptional identities and two steady‑state tissue‑adaptation programs across healthy and HCC liver samples	60	3	1.381	False	False	False	False	
+GSE283461	AP-1 Dominated Coronary Inflammation as the Pivotal Culprit Causing Recurrent in-stent Restenosis	60	62	3.824	False	True	False	False	
+GSE332711	CD4/CD8 ratio is associated with structural reorganization of vaccine-induced immune responses in people living with HIV	60	62	4.729	False	False	False	False	
+GSE246179	Single cell analysis of epidermis from nickel-challenged skin	60	122	0.895	True	True	True	False	
+GSE288963	Multi-omics analysis identifies progenitors of CD4-CTLs [bulk ATAC-seq]	60	6	1.19	False	False	False	False	
+GSE207192	Two-Stage CAR T-Cell Differentiation in Patients with Large B-Cell Lymphoma	60	18	0.582	True	True	True	False	
+GSE260763	Expansion of memory Vδ2 T cells following SARS-CoV-2 vaccination revealed by temporal single-cell transcriptomics	60	58	2.13	True	True	True	False	
+GSE326573	T-cell Multiomic Analysis Identifies Subsets and Mechanisms of Interaction with Epithelial Cells in Idiopathic Pulmonary Fibrosis	59	34	0.966	False	True	False	False	
+GSE303537	Cannabidiol exerts antiinflammatory effects but maintains T effector memory cell differentiation in humans	59	179	23.571	False	True	False	False	
+GSE156298	Essential gene profiles for human pluripotent stem cells identify uncharacterized genes and substrate dependencies	59	61	0.126	False	False	False	False	
+GSE307261	CTLA-4 Blockade Shifts the B Cell Repertoire Towards Autoimmunity	58	62	3.14	True	True	True	False	
+GSE275929	Immune niches in brain metastases contain TCF1+ stem-like T cells, are associated with disease control and are modulated by preoperative SRS	58	89	4.426	False	True	False	False	
+GSE200131	Revealing and harnessing CD39 for the treatment of colorectal cancer and liver metastases by engineered T cells [NanoString]	58	61	0.002	False	False	False	False	
+GSE345464	Compartment-specific PPARδ activity controls the outcome of cancer – immune cell competition and immunotherapy efficacy	58	76	6.391	False	True	False	False	
+GSE292829	Inhibition of NFAT after human uterus transplant promotes loss of tissue-resident NK cells and attendant pregnancy complications [CITE-seq]	58	24	0.459	False	True	False	False	
+GSE301741	Single cell analysis highlights the significance of malignant cell IFN/MHC-II for immunotherapy response in head and neck squamous cell carcinoma	58	61	13.817	True	True	True	False	
+GSE314596	Targeting Modulated Vascular Smooth Muscle Cells in Atherosclerosis via FAP-Directed Immunotherapy [Human_CITEseq]	58	2	6.6	False	False	False	False	
+GSE298811	Immune dysregulation and stem-like CD8+ T cell enrichment in type 1 diabetes pancreatic lymph nodes	57	98	0.951	True	False	False	False	
+GSE274588	Enhancing Non-Small Cell Lung Cancer Treatment Utilizing Natural Killer Cell-Derived Extracellular Vesicles (NKEVS) As A Novel Adoptive Cellular Therapeutic [PBMC]	57	98	3.233	True	True	True	False	
+GSE256028	UHRF1 ubiquitin ligase activity supports the maintenance of low-density CpG methylation [EPIC methylation]	57	119	3.437	False	False	False	False	
+GSE99702	Cell-type specific epigenetic regulome in Systemic Sclerosis skin	57	2	0.003	False	False	False	False	
+GSE268991	Transcriptional profile and TCR sequences from tumor and adjacent normal human colorectal samples	56	73	0.091	True	True	True	False	
+GSE235091	Pre-existing skin-resident CD8 and γδ T cell circuits mediate immune response in Merkel cell carcinoma and Predict immunotherapy efficacy [scRNA_blood]	56	15	2.844	False	False	False	False	
+GSE267740	Targeting T cell plasticity by pooled single cell CRISPR-screening in preclinical models of kidney and gut inflammation	56	75	2.867	True	True	True	False	
+GSE217010	Identification of human exTregs as CD16+CD56+ cytotoxic CD4+ T cells.	56	4	0.004	False	True	False	False	
+GSE196456	Clonal dynamics of SARS-CoV-2-specific T cells in children and adults with COVID-19	56	1	16.0	False	False	False	False	
+GSE271406	Spatial-Temporal Analysis Revealed the Dynamic Changes of Leukemia Neighborhood After Receiving Pembrolizumab and Decitabine	55	53	0.437	False	True	False	False	
+GSE159407	Tracking immune cells from brain metastasis microenvironment to the cerebrospinal fluid	55	57	0.002	False	False	False	False	
+GSE318467	Single-cell transcriptomics of peripheral blood reveals race-associated gene expression divergence in breast cancer from precancerous stages	55	1	5.2	False	False	False	False	
+GSE309566	Deep exploration of the TCR CDR3β repertoire specific for viral CD4 T cell epitopes inside the circulating T cell repertoire	55	39	0.564	False	False	False	False	
+GSE308513	Sjögren’s syndrome patients shares stereotypic B cell receptor clonotypes including homologous rheumatoid factor clonotypes present in more than a half of the patients	55	67	5.085	False	False	False	False	
+GSE134578	Clonally expanded CD8 T cells patrol Alzheimer's cerebrospinal fluid	55	81	0.611	True	False	False	False	
+GSE268157	Mis-splicing derived neoantigens and cognate T cell receptors in splicing factor mutant leukemias	54	69	1.144	True	True	True	False	
+GSE211576	Novel prognostic implications of complement activation in the tumor microenvironment for de novo metastatic BRAF V600E mutant colorectal cancer	54	56	0.002	False	False	False	False	
+GSE339292	Overcoming senescence to engineer scalable universal T cell therapies [RNA-seq]	54	4	0.036	False	True	False	False	
+GSE221776	Intra-tumoral T cells in pediatric brain tumors display clonal expansion and effector properties	54	6	0.267	False	False	False	False	
+GSE90699	Immuno-related transcripts in the microenvironment of biliary tract cancers	53	1	0.0	False	False	False	False	
+GSE283744	Comparative Single-Cell Analyses in Infants Revealed RSV-Specific Declines in NK Cell Responses and COVID-19-Specific Increases in Inflammatory Responses [COVID_RSV_snATAC]	53	431	347.213	False	True	False	False	
+GSE284479	Altered thymopoiesis in thymoma is associated with defects in negative selection machinery and decreased Treg abundance	53	111	3.095	True	True	True	False	
+GSE295527	Evaluating the practical aspects and performance of commercial single-cell RNA sequencing technologies	52	64	59.466	True	True	True	False	
+GSE222633	Single-cell clonal tracking of persistent T-cells in allogeneic hematopoietic stem cell transplantation	52	35	0.256	True	True	True	False	
+GSE317416	Transcriptional Cancer Immune pathways of localized early prostate cancer	51	54	0.001	False	False	False	False	
+GSE291245	Chronic ER Stress Induced of Cell-surface Chaperones as the Therapeutic Targets of CAR Cells in Acute Myeloid Leukemia	51	58	0.087	False	False	False	False	
+GSE331278	PiggyBac-engineered membrane-bound IL-7 TILs combined with anti-PD-1 antibody demonstrates efficacy in recurrent ovarian cancer: a first-in-human phase 1 trial	50	1	0.631	False	False	False	False	
+GSE211644	Single cell transcriptomic and T cell repertoire analysis reveals trajectory of tumor - infiltrating lymphocyte states in pancreatic cancer	50	8	0.273	False	True	False	False	
+GSE184944	Immune gene expression analysis for oral leukplakia samples	49	51	0.001	False	False	False	False	
+GSE287301	Single-cell RNA-sequencing of HNSCC-infiltrating T cells	48	38	6.846	False	True	False	False	
+GSE266519	Hematopoietic Stem Cell Transplant and Healthy Donor Single cell RNA-seq (scRNA-seq) combined with T Cell Receptor (TCR) and B Cell Receptor (BCR) sequencing on Timepoints Surrounding SARS-CoV-2 Vaccination and Infection	48	7	0.771	True	True	True	False	
+GSE246960	Disruption of SUV39H1-mediated H3K9 methylation sustains CAR T cell function [scRNA/CITE-seq]	48	1	1.5	False	False	False	False	
+GSE195471	Pembrolizumab and decitabine for refractory or relapsed acute myeloid leukemia	48	1	0.46	False	False	False	False	
+GSE156728	Pan-Cancer Single Cell Landscape of Tumor-Infiltrating T Cells	48	28	0.382	True	False	False	False	
+GSE344480	Heatstroke induces immunosuppression through expansion of myeloid-derived suppressor cells and IL-10-mediated impairment of T cell cytotoxicity	48	1	0.009	False	True	False	False	
+GSE272885	In vivo double knockout CAR-T screen identifies synergistic gene pairs that enhance anti-tumor immunity [bulk RNA-seq]	48	1	0.038	False	False	False	False	
+GSE266455	hiv-seq reveals global host gene expression differences between hiv-transcribing cells from viremic and suppressed people with hiv	48	72	1.357	False	True	False	False	
+GSE270142	Activated polyreactive B cells are clonally expanded in autoantibody positive and patients with recentonset type 1 diabetes	48	91	1.784	True	True	True	False	
+GSE245191	Multiplex profiling of developmental enhancers with quantitative, single-cell expression reporters [bulkMPRA(promoters, cells v2)]	48	1	0.033	False	True	False	False	
+GSE216329	Single cell RNA sequencing reveals distinct T cell populations in immune-related adverse events of checkpoint inhibitors	48	146	2.292	False	True	False	False	
+GSE290458	IFN-γ induction of GBP1 drives aberrant macrophage activation in human skin granulomas	47	1	0.002	False	True	False	False	
+GSE290679	Metabolic Adaptations Rewire CD4 T Cells in a Subset-Specific Manner in Human Critical Illness with and without Sepsis	47	51	42.837	False	True	False	False	
+GSE175930	Clonally expanded, GPR15-expressing pathogenic effector Th2 cells are associated with eosinophilic esophagitis	47	137	0.936	False	True	False	False	
+GSE180186	Immune-related transcriptomic landscape of primary tumors and lymph node metastasis of chemotherapy-naïve breast cancer patients	46	48	0.001	False	False	False	False	
+GSE213095	Positive feedback between cDC1s and CD8+ T cells typifies the inflammation of HLA-B27+ arthritis	46	117	3.992	True	True	True	False	
+GSE256014	Single cell-RNA datasets from cell lines and dissociated mouse and maize tissues	46	95	30.434	False	True	False	False	
+GSE279309	Single-cell TCR  sequencing from skin, blood and cerebral spinal fluid (CSF) samples from Degos disease patients.	46	94	0.096	True	False	False	False	
+GSE182159	Single-cell RNA sequencing reveals intrahepatic immune characteristics related to disease status in HBV-infected patients	46	48	7.623	False	False	False	False	
+GSE153931	Severely ill COVID-19 patients display impaired exhaustion features in SARS-CoV-2-reactive CD8+ T cells	45	3	1.454	False	True	False	False	
+GSE242787	Development and Validation of Targetable Prognostic Risk Score in Locally Advanced Nasopharyngeal Carcinoma [Nanostring]	45	47	0.001	False	False	False	False	
+GSE202981	Tumor gene expression analysis of synovial sarcoma patients treated with NY-ESO-1 TCR T cells (NCT01343043)	45	0	0.0	False	False	False	False	
+GSE278119	Clonally expanded effector CD4+ cytotoxic T lymphocytes are associated with severe neurological adverse events after immune checkpoint inhibitor therapy	44	112	4.639	True	True	True	False	
+GSE181061	A single-cell map of dynamic chromatin landscapes of immune cells in renal cell carcinoma (scRNA-Seq and TCR-Seq)	44	35	0.845	True	True	True	False	
+GSE181597	Immune-related gene expression profiling of Epithelial Ovarian Cancer after Neoadjuvant chemotherapy	44	46	0.001	False	False	False	False	
+GSE90698	Immuno-related transcripts in biliary tract cancers	44	1	0.0	False	False	False	False	
+GSE338951	Transcriptomic and epigenetic changes contribute to the development of splenic extramedullary hematopoiesis in myelofibrosis [scRNA-3prime]	44	38	4.342	False	True	False	False	
+GSE156383	Features of repertoire diversity and heterogeneity in gene expression of CMV-specific CTL following allogeneic HCT	43	8	0.097	False	False	False	False	
+GSE204762	Multi-modal skin atlas associates a multicellular immune-stromal community with altered cornification and T cell expansion in atopic dermatitis [scRNA-seq]	43	45	46.403	False	True	False	False	
+GSE286518	Integrative CSF profiling identifies disease-specific immune responses in leptomeningeal disease	42	25	0.159	True	True	True	False	
+GSE254513	Cellular and Molecular Profiling of Collagenous Gastritis	42	3	1.109	False	False	False	False	
+GSE167825	Competition but not cross-competition controls T cell proliferation in transplant patients following cytomegalovirus reactivation	42	98	1.233	True	True	True	False	

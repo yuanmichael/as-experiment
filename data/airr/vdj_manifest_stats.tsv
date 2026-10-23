@@ -1,0 +1,8 @@
+gse	n_files	n_libraries	n_usable	n_contig_without_gex	gb	note	split
+GSE272993	847	121	121	0	12.92		train
+GSE329527	284	71	71	0	2.23		train
+GSE271413	141	29	27	0	1.49		train
+GSE167118	128	58	22	1	0.81		train
+GSE301133	207	65	34	29	0.8		train
+GSE266519	7	1	1	0	0.77		train
+GSE288581	60	15	15	0	0.28		test

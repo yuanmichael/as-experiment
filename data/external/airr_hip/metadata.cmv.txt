@@ -1,0 +1,28 @@
+file_name	sample_id	age	race	sex	cmv	hla	..filter..
+corr/HIP08653.txt.gz	HIP08653	52	caucasian,non-hispanic or latino	female	+	HLA-A*01,HLA-A*02,HLA-B*07,HLA-B*08	corr:2:0.05:all
+corr/HIP03370.txt.gz	HIP03370	41	caucasian,non-hispanic or latino	male	+	HLA-A*01,HLA-A*02,HLA-B*07,HLA-B*52	corr:2:0.05:all
+corr/HIP05815.txt.gz	HIP05815	NA	NA	male	+	HLA-A*01,HLA-A*02,HLA-B*07,HLA-B*61	corr:2:0.05:all
+corr/HIP04509.txt.gz	HIP04509	26	caucasian,non-hispanic or latino	female	+	HLA-A*02,HLA-A*03,HLA-B*07,HLA-B*14	corr:2:0.05:all
+corr/HIP10716.txt.gz	HIP10716	61	caucasian,non-hispanic or latino	female	+	HLA-A*02,HLA-A*03,HLA-B*07,HLA-B*15	corr:2:0.05:all
+corr/HIP00777.txt.gz	HIP00777	22	NA	male	+	HLA-A*02,HLA-A*03,HLA-B*07,HLA-B*27	corr:2:0.05:all
+corr/HIP09020.txt.gz	HIP09020	58	caucasian,non-hispanic or latino	female	+	HLA-A*02,HLA-A*03,HLA-B*07,HLA-B*27	corr:2:0.05:all
+corr/HIP14194.txt.gz	HIP14194	46	caucasian,non-hispanic or latino	female	+	HLA-A*02,HLA-A*03,HLA-B*07,HLA-B*27	corr:2:0.05:all
+corr/HIP13967.txt.gz	HIP13967	47	asian or pacific islander,non-hispanic or latino	male	+	HLA-A*02,HLA-A*03,HLA-B*07,HLA-B*40	corr:2:0.05:all
+corr/HIP13986.txt.gz	HIP13986	53	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-A*03,HLA-B*07,HLA-B*51	corr:2:0.05:all
+corr/HIP08986.txt.gz	HIP08986	34	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-A*03,HLA-B*07,HLA-B*62	corr:2:0.05:all
+corr/HIP05960.txt.gz	HIP05960	NA	NA	male	+	HLA-A*02,HLA-A*11,HLA-B*07	corr:2:0.05:all
+corr/HIP14051.txt.gz	HIP14051	48	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-A*11,HLA-B*07,HLA-B*44	corr:2:0.05:all
+corr/HIP03511.txt.gz	HIP03511	48	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-A*23,HLA-B*07,HLA-B*27	corr:2:0.05:all
+corr/HIP05590.txt.gz	HIP05590	49	caucasian,non-hispanic or latino	female	+	HLA-A*02,HLA-A*23,HLA-B*07,HLA-B*44	corr:2:0.05:all
+corr/HIP14227.txt.gz	HIP14227	45	caucasian,non-hispanic or latino	female	+	HLA-A*02,HLA-A*23,HLA-B*07,HLA-B*44	corr:2:0.05:all
+corr/HIP15854.txt.gz	HIP15854	30	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-A*23,HLA-B*07,HLA-B*58	corr:2:0.05:all
+corr/HIP13513.txt.gz	HIP13513	56	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-A*24,HLA-B*07,HLA-B*35	corr:2:0.05:all
+corr/HIP14041.txt.gz	HIP14041	52	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-A*24,HLA-B*07,HLA-B*55	corr:2:0.05:all
+corr/HIP10424.txt.gz	HIP10424	37	NA	female	+	HLA-A*02,HLA-A*24,HLA-B*07,HLA-B*62	corr:2:0.05:all
+corr/HIP03720.txt.gz	HIP03720	38	NA	male	+	HLA-A*02,HLA-A*26,HLA-B*07,HLA-B*60	corr:2:0.05:all
+corr/HIP13903.txt.gz	HIP13903	43	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-A*29,HLA-B*07,HLA-B*08	corr:2:0.05:all
+corr/HIP00594.txt.gz	HIP00594	21	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-A*32,HLA-B*07,HLA-B*61	corr:2:0.05:all
+corr/HIP12900.txt.gz	HIP12900	28	black or african american,non-hispanic or latino	male	+	HLA-A*02,HLA-A*33,HLA-B*07,HLA-B*15	corr:2:0.05:all
+corr/HIP11937.txt.gz	HIP11937	55	black or african american,non-hispanic or latino	female	+	HLA-A*02,HLA-A*68,HLA-B*07,HLA-B*08	corr:2:0.05:all
+corr/HIP14157.txt.gz	HIP14157	23	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-B*07,HLA-B*14	corr:2:0.05:all
+corr/HIP13994.txt.gz	HIP13994	64	caucasian,non-hispanic or latino	male	+	HLA-A*02,HLA-B*07,HLA-B*44	corr:2:0.05:all

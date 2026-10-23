@@ -1,0 +1,75 @@
+repo	diagnosis	n_repertoires
+ireceptor-ipa1	systemic lupus erythematosus	10
+ireceptor-ipa1	breast cancer	27
+ireceptor-ipa1	axillary adenitis	6
+ireceptor-ipa1	gastritis	20
+ireceptor-ipa1	bacterial gastritis	13
+ireceptor-ipa1	chronic lymphocytic leukemia	97
+ireceptor-ipa1	(blank)	252
+ireceptor-ipa1	multiple sclerosis	16
+ireceptor-ipa1	follicular lymphoma	4
+ireceptor-ipa1	celiac disease	10
+ireceptor-ipa1	hepatitis B	8
+ireceptor-ipa1	small lymphocytic lymphoma, follicular lymphoma	4
+ireceptor-ipa1	human immunodeficiency virus infectious disease	10
+ireceptor-ipa1	CLL/SLL	12
+ireceptor-ipa1	MALT lymphoma	8
+ireceptor-ipa1	diffuse large B-cell lymphoma	24
+ireceptor-ipa1	lymphadenitis	6
+ireceptor-ipa2	breast cancer	48
+ireceptor-ipa3	Fanconi anemia	3
+ireceptor-ipa3	juvenile myelomonocytic leukemia	3
+ireceptor-ipa3	severe combined immunodeficiency	5
+ireceptor-ipa3	bone marrow disease	4
+ireceptor-ipa3	congenital amegakaryocytic thrombocytopenia	4
+ireceptor-ipa3	acute myeloid leukemia	17
+ireceptor-ipa3	chronic granulomatous disease	4
+ireceptor-ipa3	combined T cell and B cell immunodeficiency	4
+ireceptor-ipa3	acute lymphocytic leukemia	27
+ireceptor-ipa3	(blank)	21
+ireceptor-ipa3	aplastic anemia	3
+ireceptor-ipa3	Wiskott-Aldrich syndrome	4
+ireceptor-ipa4	astrocytoma	4
+ireceptor-ipa4	oligodendroglioma	9
+ireceptor-ipa4	esophageal adenosquamous carcinoma	45
+ireceptor-ipa4	hepatocellular carcinoma, intrahepatic cholangiocarcinoma	7
+ireceptor-ipa4	glioblastoma multiforme	42
+ireceptor-ipa4	(blank)	17
+ireceptor-ipa4	lung cancer	57
+ireceptor-ipa4	hepatocellular carcinoma	28
+ireceptor-ipa5	chronic lymphocytic leukemia	14
+ireceptor-ipa5	(blank)	141
+vdjserver	esophagus squamous cell carcinoma	14
+vdjserver	adenocarcinoma	96
+vdjserver	renal cell carcinoma	30
+vdjserver	COVID-19	1239
+vdjserver	ovarian serous carcinoma	20
+vdjserver	endometrioid ovary carcinoma	1
+vdjserver	ovarian cystadenoma	12
+vdjserver	teratoma	1
+vdjserver	chronic lymphocytic leukemia	22
+vdjserver	uveitis	4
+vdjserver	neurosarcoidosis	2
+vdjserver	mucinous adenocarcinoma	24
+vdjserver	secondary progressive multiple sclerosis	6
+vdjserver	multiple sclerosis	21
+vdjserver	adenofibroma	1
+vdjserver	primary progressive multiple sclerosis	5
+vdjserver	ovarian cyst	1
+vdjserver	ovarian Brenner tumor	1
+vdjserver	relapsing-remitting multiple sclerosis	45
+vdjserver	ovarian serous cystadenofibroma	7
+vdjserver	transverse myelitis	10
+vdjserver	human immunodeficiency virus infectious disease	32
+vdjserver	neuromyelitis optica	6
+vdjserver	acute myeloid leukemia	3
+vdjserver	head and neck squamous cell carcinoma	51
+vdjserver	breast cancer	10
+covid19-1	(blank)	464
+covid19-1	COVID-19	658
+covid19-2	(blank)	4
+covid19-2	COVID-19	114
+covid19-3	(blank)	35
+covid19-3	COVID-19	579
+covid19-4	COVID-19	766
+covid19-4	(blank)	34

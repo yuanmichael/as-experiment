@@ -147,3 +147,153 @@ The AS result stands as a mechanistic finding — NK cells make less cytotoxic c
 If the goal is a diagnostic, the compartment argument says to pick a disease that **has** a draining compartment: gut disease (stool), airway disease (sputum, exhaled breath), urinary tract (urine), skin (tape strip). If the goal is understanding mechanism, AS remains interesting and blood remains usable.
 
 Those are different projects and should not be confused with each other.
+
+---
+---
+
+# Part II — the TCR repertoire thread
+
+A separate question from Part I. Part I asked *which compartment*; this asks *which kind of feature*. The answer that emerged: discrete sequence features behave completely differently from graded expression measurements, and T cells escape the compartment problem entirely because they circulate rather than being shed.
+
+## 9. Why GSE277117 could not have found TRBV9
+
+10x 3′ chemistry. Reads land at the transcript's 3′ end — the TCR **constant** region — while the V segment sits ~1,000 bp upstream and CDR3 ~600 bp upstream. Measured directly:
+
+| | total counts | % of cells |
+|---|---|---|
+| TRBC2 | 225,607 | 33.4% |
+| TRBC1 | 168,422 | 24.1% |
+| TRAC | 130,399 | 20.7% |
+| TRBV9 | 388 | 0.11% |
+| all 53 TRBV genes | 17,095 | — |
+
+**V:C ratio 0.024.** No VDJ annotation in the object. Assay limit, not power limit — sub-clustering T cells would not have helped.
+
+Secondary point: even perfect V-gene counts would not reproduce Faham. The finding is a CDR3 **sequence** carried on TRBV9, not TRBV9 abundance. A count matrix cannot hold a sequence.
+
+## 10. KLRB1+/CCR6+ CD8 phenotype in GSE277117
+
+Readable (ordinary gene expression), but thin.
+
+- 1,731 KLRB1+CCR6+ cells in CD8 lineage (2.4%)
+- **1,456 of them (84%) are MAIT or SLC4A10+** — a naive KLRB1+CCR6+ gate mostly re-finds MAIT cells
+- 275 non-MAIT cells across 25 patients (~11/patient)
+- exhaustion score −0.036 vs +0.006 in other CD8 (cell-level *p* = 0.0014, but 275 vs 71,668 cells — pseudo-replicated, 0.04 SD, not interpretable)
+- patient level: cohort B *p* = 0.289; cohort A (12 v 4) *p* = 0.058, direction = fewer in non-responders
+
+**Verdict:** direction consistent with the published phenotype, dataset cannot test it. Right question, wrong tissue — published work used synovial fluid. GSE288581 (AS synovial fluid + paired blood, 30 samples) is the dataset for this.
+
+## 11. TRUST4 on bulk RNA-seq — recovery measured
+
+GSE181364, 7 of 8 samples (orchestrator timed out; children completed). ~$2.
+
+| sample | group | productive TRBβ clonotypes | TCRβ reads assembled | largest clone |
+|---|---|---|---|---|
+| AS_patient_1 | AS | 87 | 146 | 4.1% |
+| AS_patient_2 | AS | 206 | 335 | 4.2% |
+| AS_patient_3 | AS | 146 | 311 | 13.2% |
+| AS_patient_4 | AS | 224 | 456 | 9.6% |
+| AS_patient_5 | AS | 116 | 179 | 3.4% |
+| Healthy_1 | HC | 292 | 493 | 5.3% |
+| Healthy_2 | HC | 332 | 498 | 2.6% |
+
+**Motif hits: 0** (exact `SVGLYSTDTQ` and partials `VGLYST`, `GLYSTDTQ`, `YSTDTQ`).
+
+**Recovery: ~300 TCRβ reads from 34M sequenced = 0.0009%.** Prior estimate was 0.02% — off by 20×. Causes: whole blood is globin/neutrophil dominated, and TRUST4 needs overlapping coverage to assemble contigs, not just junction-spanning reads.
+
+Detection floor ≈ **1% of repertoire**. We sampled ~150 of ~10⁶ clonotypes (0.015%).
+
+**The null is uninformative.** It rules out only that the AS clone is among the largest clones in blood. It cannot distinguish "absent from blood" from "present at 0.1%".
+
+Do not report TRBV9 *usage* (AS 2.79% vs HC 1.41%) as a finding — n=5 v 2 over ~150 clonotypes, and it is a graded gene-level measure of exactly the kind that does not discriminate.
+
+## 12. Faham's design — and a correction
+
+461 people (191 B27+ AS, 43 B27− AS, 227 controls), >77M clonotypes, Adaptive immunoSEQ (multiplex PCR on gDNA — inferred from affiliation, not stated in the abstract). Method: test 50 published sequences, then train/test split to discover motifs. 6 published + 11 discovered → 15 independent motifs.
+
+**Correction to the earlier analysis in this project.** The headline "30–39% of cases, 0% of controls" compares mostly-B27+ cases against mostly-B27− controls. The motif-vs-disease comparison (B27+ AS vs B27+ healthy) is **p = 0.049**, and p = 0.001 for the published subset. So a substantial part of the headline specificity belongs to HLA-B27, which is already routinely tested. The earlier PPV estimate of 65–80% overstates incremental value over a B27 test.
+
+## 13. Replicating the assay
+
+Not a barrier. Off-the-shelf TCR kits exist (Takara SMARTer Human TCR a/b, QIAseq Immune Repertoire, iRepertoire, Invivoscribe LymphoTrack), or Adaptive immunoSEQ as a service. Library prep is community-lab feasible; sequencing is outsourced. Adaptive's advantage is targeted multiplex PCR in sample prep, not custom hardware. Note Adaptive holds IP on multiplex amplification of rearranged receptor loci — fine for research, a problem for a competing commercial assay.
+
+**The bottleneck is sample collection, IRB and controls — never the assay.**
+
+## 14. Public repertoire data inventory (AIRR Data Commons)
+
+`scripts/airr_inventory.py`. 10 repositories queried (iReceptor ipa1–5, VDJServer, covid19-1–4). **5,356 repertoires, 56 diagnoses.**
+
+COVID-19 accounts for 3,356 (63%); 968 are blank; cancers make up ~600.
+
+**Inflammatory / autoimmune: 119 repertoires total.**
+
+| | n |
+|---|---|
+| multiple sclerosis (all subtypes) | 93 |
+| celiac disease | 10 |
+| systemic lupus erythematosus | 10 |
+| uveitis | 4 |
+| neurosarcoidosis | 2 |
+| **ankylosing spondylitis** | **0** |
+| **IBD / Crohn's / UC** | **0** |
+| **rheumatoid arthritis** | **0** |
+
+Caveats, all of which understate the true total: **immuneACCESS (Adaptive) is not in the ADC** and holds substantially more — Emerson's 666 CMV repertoires, probably the Faham AS data; needs an account. E-MTAB-11498 (Komech, 115 samples, 29 AS + 86 PsA) is in ArrayExpress/ENA, outside the ADC. The "0 healthy controls" result is a labelling artefact; controls are likely among the 968 blanks.
+
+**Conclusion drawn at the time — since retracted, see §15:** *a multi-disease inflammatory repertoire model cannot be built from public data today.*
+
+## 15. Raw-archive sweep — the §14 conclusion was wrong
+
+`scripts/repertoire_inventory.py`. GEO + ENA + BioStudies/ArrayExpress instead of the ADC. **2,715 candidate studies, 1,002 mentioning an inflammatory or autoimmune disease.**
+
+The §14 conclusion was an artefact of querying one curated index. The ADC indexes *curated* repertoire studies; the archives hold the rest, filed as ordinary sequencing. Two systematic blind spots:
+
+1. **ArrayExpress/ENA deposits.** Komech's own data sits here, invisible to the ADC.
+2. **10x 5′ libraries with V(D)J enrichment.** Indexed as "single-cell RNA-seq." These are dedicated, deep TCR sequencing *with a paired transcriptome*, and no repertoire inventory will ever surface them.
+
+### AS / SpA — ADC said 0; the real count is 6 studies
+
+| accession | design | size |
+|---|---|---|
+| **PRJNA393498** | Komech 2018 *Rheumatology* (`kex517`). 5′RACE TCRβ, PB + SF, TRBV9-sorted and CD8-depleted subsets. **Paper reports 25 AS + 108 healthy donors.** | 78 runs, 44.5 GB, 378M reads |
+| PRJEB51315 = E-MTAB-11498 | Komech 2022 *Front Immunol*. 29 AS + 86 PsA, 64 SF + 51 PB. No healthy controls. | 115 runs, 47.1 GB, 631M reads |
+| GSE288581 | AS, mass cytometry + scRNA-seq, clonally expanded CTL subset in SF | 30 samples |
+| E-MTAB-10948 | AS scRNA-seq, PB + SF, 2 HLA-B27+ patients, >55,000 cells. No VDJ stated. | — |
+| PRJNA853355 = GSE207037 | single-cell TCR, DC-stimulated CD4 T cells, AS | 1 run, 3.9 GB |
+| GSE290921 | SpA, CD4 TRM Th17 driving IL-17A joint pathology | 6 samples |
+
+**PRJNA393498 is the find.** Same lab and naming convention as E-MTAB-11498 (`Dv_PB_4`, `Kal_SF_8`, `Kos_SF_TRBV9`, `LK-BV9`), one study earlier, and its paper has the healthy-donor arm that E-MTAB-11498 lacks. Caveat: 78 runs is far short of 25 + 108, so the control repertoires are probably a previously published Chudakov-lab healthy cohort deposited separately — needs checking before it can be called an AS-vs-healthy dataset.
+
+Adjacent and directly on-target: **E-MTAB-9492** — 10x gene expression *plus* V(D)J from blood, synovial fluid and synovial tissue in psoriatic arthritis. Only 5 patients (3 paired PB/SF, 2 synovial tissue), but it is paired sequence-and-transcriptome in a spondyloarthritis across three compartments.
+
+### Cross-disease
+
+| disease | dedicated repertoire | paired single-cell | standouts |
+|---|---|---|---|
+| IBD | 33 | 8 | PRJEB27352 — monozygotic twins, genetics-controlled |
+| celiac | 11 | 0 | PRJNA650391, PRJNA678347, PRJNA1330789 — all three already ran Faham-style motif/classifier analyses |
+| type 1 diabetes | 8 | 5 | GSE272431 — >2×10⁸ TCRβ from sorted CD4 subsets, patients + healthy donors; GSE178991 — 10x GEX+VDJ, n=84 |
+| rheumatoid arthritis | 6 | 3 | GSE256256 — seven-chain AIRR, n=112, controls, TNFi phenotypes |
+| AS / SpA | 5 | 1 | above |
+| multiple sclerosis | 5 | 0 | GSE121082 is actually HTLV-I/HAM-TSP — matcher false positive |
+
+**Revised conclusion: a multi-disease inflammatory repertoire model is buildable from public data.** The constraint is curation, not existence.
+
+Known weakness of the sweep: `dedicated` is inferred from title text, and "AMPLICON" matches 16S microbiome studies — a substantial share of the IBD and psoriasis hits are gut-microbiome papers. The flag generates candidates; titles still need reading, and clonotype recovery per sample (≥10⁴ is the real bar) can only be measured from the data.
+
+### Paired GEX + V(D)J — training data for a cell-level model
+
+`scripts/vdj_paired_inventory.py`. Text queries have poor recall (GSE288581 deposits `filtered_contig_annotations.csv.gz` *and* `matrix.mtx.gz` but never says "VDJ" in its summary), so the sweep casts wide and lets GEO `filelist.txt` decide: a VDJ-shaped file and a GEX-shaped file in one series means the 10x cell barcode can join sequence to transcriptome.
+
+**Of 450 series checked out of 1,210 candidates: 122 have VDJ files, 197 have GEX, 86 have both — 6,008 samples, 500 GB of *processed* data.** Median series is 1–5 GB, so a usable training set is ~20 series and tens of GB, not the hundreds of GB the raw FASTQs would cost. Largest: GSE272993 (360 samples, checkpoint-blockade clonal responses), GSE161918 (241, COVID), GSE270518 (201, airway memory). Mostly cancer, COVID, transplant — which is fine, because the cell-level label is the cell's own expression state, not a diagnosis.
+
+Caveat: "both file types present" is not "barcodes overlap." That has to be checked by opening one of each, and is the first thing to verify.
+
+## 16. Open items
+
+- Check immuneACCESS directly (account required) for AS/IBD repertoires and the Faham deposit.
+- **PRJNA393498: locate the 108 healthy-donor repertoires.** If they are retrievable, this is the first public AS-vs-healthy dedicated repertoire comparison and the Faham replication becomes possible rather than hypothetical.
+- **E-MTAB-9492: confirm the GEX↔VDJ barcode pairing is intact.** If so it is training data for a cell-level `TCR sequence → cell state` model in a spondyloarthritis. n=5 is too small to train on; it is a test set.
+- E-MTAB-11498 would show what frequency AS clones sit at in blood versus synovial fluid — decides whether shallow sequencing has any chance. No healthy controls.
+- GSE221786 (20 AS / 8 HC, IL-17-enriched sorted T cells, 222 GB, est. $8–15): T-cell enriched, so recovery should be far better than whole blood. A positive would be informative; a null still would not. Not run.
+- GSE288581 — AS synovial fluid with paired blood, for the KLRB1/CCR6 phenotype.

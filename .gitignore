@@ -22,3 +22,11 @@ data/bulk/platform_annot/
 
 # single-cell-derived pseudobulk: large, regenerable from Modal
 data/deconv/heldout_pseudobulk.tsv.gz
+
+# repertoires — 1.2 GB of per-subject parquet, re-fetchable with adc_fetch.py
+data/airr/*/reps/
+# public-clone incidence matrix: 83 MB, rebuilt by rep_features.py --pass public
+data/airr/*/public_cdr3_min7.npz
+data/airr/*/public_cdr3_min7.clones.parquet
+# single-cell VDJ tables downloaded from GEO
+data/as_vdj/raw/
