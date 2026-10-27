@@ -222,6 +222,24 @@ Selection and evaluation have to be separated at *every* stage, not just the las
 
 ---
 
+## Data-handling rules, earned the hard way
+
+Every error in this project so far belongs to one of two families. Check both before believing any result.
+
+**Denominators.** Compute a numerator and its denominator in the *same code path*. A 34× frequency inflation survived review because the motif was counted on both strands and its denominator on one. Normalise depth before any diversity, clonality or presence comparison, and thin to a depth near the *shallowest* library, not a round number far below it. Never sum across sorted fractions (CD4/CD8/unsorted) when groups have different fraction mixes — it mixes denominators, and here it diluted a real effect.
+
+**Selection leakage.** Separate selection from evaluation at *every* stage, not just the last one. A fold-restricted final step makes a pipeline look cross-validated while an upstream filter has already seen all the labels; that alone turned a null result (p = 0.17) into AUC 0.96. A permutation test does not catch this unless the leaked stage sits inside the shuffle. Any threshold chosen by looking at results is post-hoc — report the threshold-free test alongside it.
+
+**Two control arms, always.** An external cohort kills public clonotypes; the study's own controls kill batch artefacts. Neither does the other's job: `CRVSGLWAKNIQYF` is absent from all 865 external repertoires (p = 2×10⁻⁵) and carried by 3 of 10 controls in its own deposit.
+
+**Every sweep reports a positive control.** A screen that cannot recover a signal known to be present is uninformative, not negative.
+
+**Persist the artefact.** The 167-sequence panel existed only in memory for several sessions, which made every number computed from it unreproducible. Write it to the repo, then score from the file.
+
+**Beware the glob.** Scan JSONs were duplicated across directories, so a recursive glob counted 153 runs as 306. Ratios survived; the detection floors derived from them were 2× optimistic. Count distinct accessions before aggregating.
+
+---
+
 ## Errors that each nearly became a finding
 
 ### A reverse-strand bug inflated every frequency by ~34×
