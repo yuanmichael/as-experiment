@@ -185,6 +185,22 @@ Absent from all 786 external repertoires, but carried by 30–50% of this deposi
 
 Thresholding one clonotype at a time is the wrong test, and arbitrary: "≥6 carriers and 0 controls" is a cut with no principle behind it. The alternative is a burden score — count how many candidate clonotypes a subject carries — evaluated leave-one-subject-out, selecting candidates from only the other 34 subjects.
 
+The panel is [`data/panel/as_burden_panel_167.tsv`](data/panel/as_burden_panel_167.tsv), rebuilt by [`scripts/build_panel.py`](scripts/build_panel.py). Selection rule: a CDR3 is kept if it appears in **≥5 of the 25 Komech AS patients** (presence = ≥2 reads, after thinning every subject to 800,000 junction reads) **and** in **≤5% of Emerson 2017's 786 healthy repertoires**. That yields 167 sequences. The score is the fraction of those 167 a subject carries — a count, not a model, with no weights and nothing learned.
+
+Note that the panel retains four known batch artefacts (the `CRVSGL[WGCR]AKNIQYF` family below). They are disease-indifferent, so they dilute the score rather than inflate it, and removing them after seeing the results would fit the panel to its own evaluation.
+
+Scores are continuous, and the overlap band is where the test fails:
+
+| sequences carried (of 167) | AS | healthy |
+|---|---|---|
+| 0–8 | 0 | 33 |
+| **9–16** | **4** | **18** |
+| 17–24 | 2 | 0 |
+| 25–34 | 5 | 0 |
+| 35–56 | 14 | 0 |
+
+AS patients carry a median of 38; healthy controls 6–9; nobody carries more than 56. The decision threshold of 0.10 is 17 sequences. The four AS patients in the 9–16 band are the false negatives behind the 84% sensitivity — the plausible target for a weighted model, since equal weighting treats a sequence in 20 AS patients the same as one in 5.
+
 | selection control arm | best LOO AUC |
 |---|---|
 | Komech's 10 healthy controls | **0.44** (at or below chance) |
