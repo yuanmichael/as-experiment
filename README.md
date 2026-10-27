@@ -222,6 +222,35 @@ Selection and evaluation have to be separated at *every* stage, not just the las
 
 ---
 
+## V genes: recoverable after all, and the clone is TRBV9
+
+Read-level extraction pattern-matches the junction and never compares the read to a reference, so it kept the CDR3 and discarded the germline V call. That is the wrong half for an HLA-driven disease. CDR3 contacts the **peptide**; CDR1 and CDR2 come entirely from the V segment and contact the **MHC molecule**. HLA-B27 is MHC class I, and this clone sits 35× higher in CD8 than CD4 cells — i.e. it is class-I restricted — so the V segment is the part doing the B27 reading.
+
+The V sequence was never missing from the data: 95% of junction-spanning reads carry ≥60 nt of V-segment sequence immediately 5′ of the conserved cysteine. [`scripts/vgene_pilot.py`](scripts/vgene_pilot.py) assigns V by comparing that region against every germline TRBV allele, using OLGA's IMGT-derived reference (GPL). No aligner is needed, since V segments are not spliced here. MiXCR would be more thorough but requires a **paid licence for commercial use**.
+
+**`CASSVGLYSTDTQYF` is TRBV9** — in all three AS patients tested (P18 ×23, P22 ×35, P19 ×13; 71 reads, none assigned elsewhere), 35 of 39 at distance 0 with a median margin of 3 over the runner-up gene. That reproduces the published TRBV9 association in AS from data previously thought untestable, and it is a fourth independent line pointing at one mechanism: CD8 → class I → B27 is class I → the V segment reads class I → the V segment is TRBV9. None of those is a thing a denominator bug or batch effect produces.
+
+Three things a fresh session needs to know before using this:
+
+- **TRBV9 is common and is not a marker.** It is 3.61% of V-assigned reads in an AS patient and 2.53% in a healthy control — roughly 1 in 30 of anyone's T cells, 7th–10th most used gene in both. What is rare is the *pair* (TRBV9 + that junction), not either part. V-gene usage on its own should be expected to discriminate weakly.
+- **Assignment needs a margin rule, not a distance cutoff.** Germline probes are unevenly spaced: TRBV9 sits 3 mismatches from TRBV13 and TRBV7-4, inside an absolute cutoff of 4. Requiring the best gene to beat the runner-up by ≥2 refuses a third of reads (90% → 53% of junctions) and visibly shifts the usage profile — TRBV20-1 moves 18.2% → 29.8% — because genes with close neighbours are refused more often. Irrelevant for naming one clone's V gene; essential for comparing profiles.
+- **Read length is a group confound.** 24 of 27 AS libraries are 2×100 bp against 8 of 12 healthy, so 11% of AS libraries are long-read against 33% of healthy (p = 0.091). Longer reads raise assignment rates gene-specifically, so `--truncate 100` is mandatory for any cross-group usage comparison. Probe length is capped by read length: at 150 bp the cysteine sits a median 78 nt in and a 45 nt probe works; at 100 bp the median is 31 nt and only 0.2% of reads clear 45, which is why the probe is 25 nt.
+
+### The representation question this reopens
+
+Two earlier failures share a cause. Exact CDR3 matching is too strict — 5.3M distinct strings, with near-identical receptors counted as unrelated. Edit-distance widening is too loose — 74% of healthy repertoires contain something within 1 edit of the clone, taking p from 0.0033 to 0.58. **Both ignored the V gene.** "Within 1 edit" sweeps in receptors built on different V segments that engage different MHC molecules; "within 1 edit *and* TRBV9" requires the same MHC-binding scaffold as well as a similar peptide-contact loop.
+
+| representation | size | status |
+|---|---|---|
+| exact CDR3 strings | 5.3M | too large for 36 patients; produced a leaked AUC of 0.96 |
+| V gene alone | 59 | too coarse — everyone carries every V gene |
+| V/J usage levels | 624 | testable, expect weak signal |
+| **(V gene + similar CDR3) families** | not yet computed | the biologically motivated unit; untested |
+
+The promising next step is re-running the similarity search *conditioned on V gene*, which repairs an already-diagnosed failure and needs no million-feature selection step to leak through. Testing V/J usage levels is the weaker hypothesis.
+
+---
+
 ## Data-handling rules, earned the hard way
 
 Every error in this project so far belongs to one of two families. Check both before believing any result.
@@ -352,7 +381,20 @@ modal run --detach scripts/as_trust4.py::cdr3_all
 # open-ended sweep, with a positive control
 python scripts/clono_sweep.py --tables <dir> --case as --ctrl healthy \
     --depth 800000 --min-case 4 --control-cdr3 CASSVGLYSTDTQYF
+
+# rebuild the burden panel; assign V genes (both local, no Modal)
+python scripts/build_panel.py --tables <dir>
+python scripts/vgene_pilot.py --runs SRR5812652 SRR5812641 --truncate 100
 ```
+
+Provenance of numbers quoted above, for anything not obvious from the script name:
+
+| script | what it produced |
+|---|---|
+| [`bulk_score.py`](scripts/bulk_score.py) | the NK score's AUC 0.77 and the back-pain-clinic PPVs |
+| [`rnaseq_pilot.py`](scripts/rnaseq_pilot.py) | the bulk RNA-seq ruling-out (detection floor 3.6–3.8×10⁻⁴) |
+| [`esm_embed.py`](scripts/esm_embed.py) | the ESM-2 negative result (nearest neighbours are anagrams) |
+| [`as_clonotypes.py`](scripts/as_clonotypes.py) | `data/as_vdj/clonotypes.parquet`, the GSE288581 sorted-CD8 numbers |
 
 ### Never let a last-step failure discard a finished run
 
