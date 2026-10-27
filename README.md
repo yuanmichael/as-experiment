@@ -181,99 +181,44 @@ Screening wider surfaced a second artefact class that one control arm cannot cat
 
 Absent from all 786 external repertoires, but carried by 30–50% of this deposit's *own healthy controls*. A one-residue ladder at a fixed position, deposit-specific and disease-indifferent. Tested against Emerson alone they reach p = 10⁻¹¹; tested against Komech's healthy controls they reach p = 0.71. **A candidate must clear both arms** — the external arm kills public clonotypes, the internal arm kills batch artefacts, and neither does the other's job.
 
-### Combining clonotypes works where single clonotypes fail
+### A multi-clonotype burden score: retracted
 
-Thresholding one clonotype at a time is the wrong test, and arbitrary: "≥6 carriers and 0 controls" is a cut with no principle behind it. The alternative is a burden score — count how many candidate clonotypes a subject carries — evaluated leave-one-subject-out, selecting candidates from only the other 34 subjects.
+Thresholding one clonotype at a time is arbitrary — "≥6 carriers and 0 controls" is a cut with no principle behind it — and it ignores that weak signals might combine. The alternative tried here was a burden score: build a panel of candidate sequences, then count how many of them a subject carries.
 
-The panel is [`data/panel/as_burden_panel_167.tsv`](data/panel/as_burden_panel_167.tsv), rebuilt by [`scripts/build_panel.py`](scripts/build_panel.py). Selection rule: a CDR3 is kept if it appears in **≥5 of the 25 Komech AS patients** (presence = ≥2 reads, after thinning every subject to 800,000 junction reads) **and** in **≤5% of Emerson 2017's 786 healthy repertoires**. That yields 167 sequences. The score is the fraction of those 167 a subject carries — a count, not a model, with no weights and nothing learned.
+The panel is [`data/panel/as_burden_panel_167.tsv`](data/panel/as_burden_panel_167.tsv), rebuilt by [`scripts/build_panel.py`](scripts/build_panel.py). A CDR3 is kept if it appears in **≥5 of the 25 Komech AS patients** (presence = ≥2 reads, after thinning every subject to 800,000 junction reads) **and** in **≤5% of Emerson 2017's 786 healthy repertoires**. That yields 167 sequences; the score is the fraction a subject carries. A wider panel at ≥4 carriers gives 1,014 sequences ([`as_burden_panel_1014.tsv`](data/panel/as_burden_panel_1014.tsv)).
 
-Note that the panel retains four known batch artefacts (the `CRVSGL[WGCR]AKNIQYF` family below). They are disease-indifferent, so they dilute the score rather than inflate it, and removing them after seeing the results would fit the panel to its own evaluation.
+**This reached AUC 0.962 within Komech, 0.991 against an independent healthy cohort, and 84% sensitivity at 100% specificity. All of those numbers were inflated by selection leakage and are withdrawn.**
 
-Scores are continuous, and the overlap band is where the test fails:
+The leak: the candidate pool was defined as clonotypes appearing in ≥5 of **all 25** AS patients, including the subject being held out. Only the second-stage carrier filter was fold-restricted. So for a held-out AS patient, the sequences they personally carry were preferentially in the pool, and their score was inflated by construction. The same flaw affects the external comparison, where in-sample AS scores were compared against out-of-sample healthy donors.
 
-| sequences carried (of 167) | AS | healthy |
-|---|---|---|
-| 0–8 | 0 | 33 |
-| **9–16** | **4** | **18** |
-| 17–24 | 2 | 0 |
-| 25–34 | 5 | 0 |
-| 35–56 | 14 | 0 |
+Rebuilt with the pool constructed from the 24 training patients only:
 
-AS patients carry a median of 38; healthy controls 6–9; nobody carries more than 56. The decision threshold of 0.10 is 17 sequences. The four AS patients in the 9–16 band are the false negatives behind the 84% sensitivity — the plausible target for a weighted model, since equal weighting treats a sequence in 20 AS patients the same as one in 5.
-
-| selection control arm | best LOO AUC |
-|---|---|
-| Komech's 10 healthy controls | **0.44** (at or below chance) |
-| **Emerson's 786 healthy controls** | **0.962** |
-| single best clonotype, presence alone | 0.720 |
-
-Selecting on "absent from 9 training controls" picks public clonotypes that happen to be missing from nine people, and held-out healthy subjects carry them just as often — so that score is worthless. Swap in 786 controls and the same score reaches **AUC 0.962**, well above the 0.720 of the best single clonotype.
-
-Permutation-tested with the nine-configuration grid search *inside* the null, so the p-value pays for the search: observed best-of-grid 0.962 against a null mean of 0.626 and a maximum of 0.838 over 100 shuffles, **p < 0.01**.
-
-#### It is not the batch effect
-
-Cohort membership is predictable from repertoires at AUC 0.994, so the first question is whether the score reads library prep rather than disease. Three checks say it does not:
-
-- The comparison is **within one deposit** — Komech AS against Komech's own healthy controls, same lab and protocol — the opposite setup from the cross-deposit 0.994 result.
-- Library prep batches are **interleaved, not disease-segregated**: 7 of Komech's batches (`MK-108/135/142/181/218/227/248`) contain both AS patients and healthy controls. Restricted to those — 8 AS, 7 healthy, batch held constant — **AUC = 0.991**. Fixing batch does not degrade the score.
-- Within the healthy controls the score barely moves across sequencing lanes (medians 0.036–0.066), and 22 of 25 AS patients score above the highest healthy control (0.090).
-
-#### Operating points, and why PPV is not yet meaningful
-
-| threshold | sensitivity | specificity | TP/FN | FP/TN |
-|---|---|---|---|---|
-| 0.07 | 92.0% (74–99%) | 80.0% (44–97%) | 23/2 | 2/8 |
-| 0.09 | 92.0% (74–99%) | 90.0% (55–100%) | 23/2 | 1/9 |
-| **0.10** | **84.0% (64–95%)** | **100.0% (69–100%)** | 21/4 | 0/10 |
-| 0.15 | 76.0% (55–91%) | 100.0% (69–100%) | 19/6 | 0/10 |
-| 0.20 | 56.0% (35–76%) | 100.0% (69–100%) | 14/11 | 0/10 |
-
-At threshold 0.10 the panel reaches **84% sensitivity at 100% specificity**, against the single clonotype's 56% at 98%. The gain is in sensitivity, which was the single clonotype's fatal weakness.
-
-**But PPV cannot be estimated from 10 controls.** At threshold 0.10 there are zero false positives, so PPV is 100% at every prevalence — meaningless. Drop to 0.09, one false positive, and PPV at 20% prevalence falls from 100% to **69.7%**. Specificity moves only in 10-point steps here and its confidence interval runs 69–100%. Any PPV from this is a statement about ten people, not about a test. The thresholds are also chosen on the same data that evaluates them.
-
-#### It transfers to an independent healthy cohort
-
-The panel was built with no Britanova data. Scored on [Britanova's](https://doi.org/10.5281/zenodo.826447) 80 healthy donors (clonotype tables, same amplicon platform), thinned to the same 800K depth:
-
-| group | n | median score | range |
+| panel rule | median size | leak-free LOO AUC | leak-free AS vs Britanova |
 |---|---|---|---|
-| Komech AS | 25 | **0.228** | 0.060–0.335 |
-| Komech healthy | 10 | 0.054 | 0.024–0.090 |
-| **Britanova healthy** | **41** | **0.036** | 0.000–0.096 |
+| ≥4 carriers | 907 | 0.528 | 0.680 |
+| **≥5 carriers** | 150 | **0.672** | 0.803 |
+| ≥6 carriers | 37 | 0.620 | 0.803 |
 
-| comparison | AUC | p |
-|---|---|---|
-| AS vs Komech healthy (10) | 0.962 | 1.3×10⁻⁵ |
-| **AS vs Britanova healthy (41)** | **0.991** | **1.4×10⁻¹¹** |
-| AS vs pooled 51 controls | 0.985 | 3.8×10⁻¹² |
+Permutation-tested with the carrier grid inside the null: **observed 0.672, null mean 0.561, 95th percentile 0.744, p = 0.17.** Not significant. The best operating point is 60% sensitivity at 80% specificity.
 
-Independent healthy donors score like healthy controls, not like AS patients. Operating points against all 51 controls:
+The cross-deposit 0.803 is not clean either. Komech's healthy controls score higher than Britanova's (0.054 vs 0.036) because they share deposit-specific sequences with Komech's AS patients — so part of that number is deposit discrimination, batch happening to work in the result's favour. The within-deposit figure is the one to trust, and it is null.
 
-| threshold | sensitivity | specificity | TP/FN | FP/TN |
-|---|---|---|---|---|
-| 0.09 | 92.0% (74–99%) | 96.1% (87–100%) | 23/2 | 2/49 |
-| **0.10** | **84.0% (64–95%)** | **100.0% (93–100%)** | 21/4 | **0/51** |
-| 0.15 | 76.0% (55–91%) | 100.0% (93–100%) | 19/6 | 0/51 |
+**There is no demonstrated multi-clonotype signal.** Two things are worth keeping from the attempt. The score *is* continuous rather than binary — AS patients carry a median of 38 of the 167 and healthy controls 6–9, with nobody above 56 — so "do you have the panel" was never the question; and the control arm dominates everything, since the same score built against Komech's 10 controls instead of Emerson's 786 lands at AUC 0.44.
 
-NPV 96.2% at 20% prevalence. PPV remains 100% at every prevalence because there are no false positives in 51 controls — read the specificity interval instead: the true value could be as low as 93%, which would put PPV near 75% at 20% prevalence.
+What survives untouched is every result for `CASSVGLYSTDTQYF`, which was specified from the literature before any of this data was examined, so no selection leak is possible. `CASSFGTGGINEQYF` was discovered by screening and is Bonferroni-corrected, but its carrier count was used both to select and to test it, so it needs the independent replication noted above.
 
-Caveats: Britanova is Chudakov's group, as Komech is, so this controls for cohort and population but not fully for protocol. The 0.10 threshold was chosen by looking at Komech's controls, then applied here unchanged. Only 41 of 80 donors reached 800K depth; at 200K (73 donors) healthy median is 0.006, the same conclusion at a lower scale.
-
-#### What it does not do: separate AS from psoriatic arthritis
-
-Scoring a *different* deposit's patients on the same 167-sequence panel:
+### Where the panel fails regardless: psoriatic arthritis
 
 | test | AUC | p |
 |---|---|---|
-| AS vs healthy, pooled 51 controls | **0.985** | 3.8×10⁻¹² |
-| PRJEB51315 AS vs PsA, blood | 0.59–0.67 | 0.087–0.299 |
+| PRJEB51315 AS vs PsA, blood | 0.43–0.67 | 0.087–0.700 |
 | PRJEB51315 AS vs PsA, synovial fluid | 0.63–0.64 | 0.157–0.222 |
 
-This was the open question and it is now resolved in one direction only. Two readings were possible: the panel might be **cohort-specific**, or **AS-versus-PsA** might simply be a harder contrast than AS-versus-healthy. Britanova settles it — an independent healthy cohort scores at 0.991, so the panel is not a cohort fingerprint, and the PsA failure is a genuine specificity limit rather than evidence against the panel.
+Even taking the leaky panel at face value, it never separated AS from psoriatic arthritis in either blood or joint. PsA is also chronic inflammatory arthritis, and the single known clonotype has the same weakness, sitting in 25% of PsA patients. With 16 PsA subjects in blood and 17 in synovial fluid from one deposit, the limit is clear in direction and poorly estimated in size — and it is the clinical blocker, since PsA is the differential that actually presents.
 
-That limit is the clinical blocker. A test separating AS from healthy at 0.99 and from PsA at 0.63 is not usable in a rheumatology clinic, where PsA is the differential that actually presents. The single known clonotype has the same weakness, sitting in 25% of PsA patients. PsA controls currently number 16 in blood and 17 in synovial fluid, from one deposit, so the limit is firmly established in direction and poorly estimated in size.
+#### The lesson
+
+Selection and evaluation have to be separated at *every* stage, not just the last one. Here the final scoring step was correctly fold-restricted, which made the procedure look cross-validated, while an earlier filter upstream had already seen all the labels. A permutation test does not catch this on its own: shuffling labels and re-running the *same leaky pipeline* reproduces the leak in the null only if the leaked stage is inside the shuffle. It was not, which is why the null looked clean at p < 0.01 and the honest answer is p = 0.17.
 
 ---
 
