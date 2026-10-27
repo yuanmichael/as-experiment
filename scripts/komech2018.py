@@ -24,9 +24,19 @@ The scan logic is deliberately duplicated from as_trust4.py rather than
 imported: that module builds its own modal.App at import time, and two apps in
 one process is a worse problem than forty lines of repetition.
 
+Beyond the targeted scan, this deposit is the only assay-matched AS-versus-
+healthy comparison available anywhere in the project: 25 AS patients and 10
+healthy controls, one lab, one 5'RACE protocol, unsorted blood. Every other
+AS-versus-healthy comparison we can build crosses a deposit boundary, and
+cohort membership is predictable from repertoires at AUC 0.994, so a
+cross-deposit sweep returns assay markers dressed as disease markers. That is
+why `cdr3_all` exists here: it extracts *every* clonotype per library, which
+turns open-ended discovery into a query instead of a project.
+
     python scripts/komech2018.py                  # list subjects, no compute
     modal run --detach scripts/komech2018.py::scan_all
     modal run scripts/komech2018.py::report
+    modal run --detach scripts/komech2018.py::cdr3_all
 """
 import modal
 
@@ -55,7 +65,9 @@ CODONS = {
 image = (
     modal.Image.debian_slim(python_version="3.12")
     .apt_install("wget")
-    .pip_install("pandas==2.2.3", "pyarrow==17.0.0")
+    # numpy is pinned, not inherited from pandas: cdr3_one's translation step
+    # depends on it, and an unpinned dependency once killed a finished run.
+    .pip_install("pandas==2.2.3", "pyarrow==17.0.0", "numpy==2.1.3")
 )
 
 
@@ -230,6 +242,182 @@ def summarise(rows: list[dict], limit: float = 4.5e-6) -> None:
     print()
     for d, (n, k) in sorted(cnt.items()):
         print(f"  {d}: {k}/{n} carriers at freq >= {limit:.1e}")
+
+
+# ---------------------------------------------------------------------------
+# Open-ended extraction: every CDR3 in every library, not just the target.
+# Ported from as_trust4.py rather than imported, for the reason in the module
+# docstring -- that module builds its own modal.App at import time.
+# ---------------------------------------------------------------------------
+
+GENETIC_CODE = {
+    "TTT": "F", "TTC": "F", "TTA": "L", "TTG": "L", "CTT": "L", "CTC": "L",
+    "CTA": "L", "CTG": "L", "ATT": "I", "ATC": "I", "ATA": "I", "ATG": "M",
+    "GTT": "V", "GTC": "V", "GTA": "V", "GTG": "V", "TCT": "S", "TCC": "S",
+    "TCA": "S", "TCG": "S", "CCT": "P", "CCC": "P", "CCA": "P", "CCG": "P",
+    "ACT": "T", "ACC": "T", "ACA": "T", "ACG": "T", "GCT": "A", "GCC": "A",
+    "GCA": "A", "GCG": "A", "TAT": "Y", "TAC": "Y", "TAA": "*", "TAG": "*",
+    "CAT": "H", "CAC": "H", "CAA": "Q", "CAG": "Q", "AAT": "N", "AAC": "N",
+    "AAA": "K", "AAG": "K", "GAT": "D", "GAC": "D", "GAA": "E", "GAG": "E",
+    "TGT": "C", "TGC": "C", "TGA": "*", "TGG": "W", "CGT": "R", "CGC": "R",
+    "CGA": "R", "CGG": "R", "AGT": "S", "AGC": "S", "AGA": "R", "AGG": "R",
+    "GGT": "G", "GGC": "G", "GGA": "G", "GGG": "G",
+}
+
+# IMGT junction convention: conserved Cys to the Phe of the J gene's FGxG.
+JUNCTION_RE = r"[YF][FYLIVH]C([ACDEFGHIKLMNPQRSTVWY]{4,30}?[FW])G[ACDEFGHIKLMNPQRSTVWY]G"
+
+NEIGHBOUR_DIST = 2
+MIN_READS = 2
+
+
+def edit_distance(a: str, b: str, cap: int) -> int:
+    if abs(len(a) - len(b)) > cap:
+        return cap + 1
+    prev = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        cur = [i] + [0] * len(b)
+        for j, cb in enumerate(b, 1):
+            cur[j] = min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (ca != cb))
+        if min(cur) > cap:
+            return cap + 1
+        prev = cur
+    return prev[-1]
+
+
+def _harvest(batch, comp, translated_frames, rx, counts) -> None:
+    """Both orientations: 5'RACE mates are not consistently stranded."""
+    joined = b"NNN".join(batch)
+    for buf in (joined, joined.translate(comp)[::-1]):
+        for pep in translated_frames(buf):
+            for m in rx.finditer(pep):
+                counts["C" + m.group(1)] += 1
+
+
+# The cap is set from measured throughput, not hope: extraction ran 7.2M reads
+# in 12.4 min on PRJEB51315 (~580k reads/min), and the largest library here is
+# 39.4M reads, so ~68 min. 3 hours leaves room for a slow ENA transfer without
+# being open-ended. A container killed for exceeding its limit dies outside the
+# interpreter, so no try/except can save it -- hence also return_exceptions.
+@app.function(image=image, volumes={"/data": vol}, cpu=2.0, memory=8192,
+              timeout=10800, max_containers=8)
+def cdr3_one(run: dict) -> dict:
+    """Extract every CDR3 in one run by translating reads, without assembling."""
+    import gzip
+    import json
+    import os
+    import re
+    import subprocess
+    import time
+    from collections import Counter
+
+    import numpy as np
+
+    acc = run["run_accession"]
+    os.makedirs(OUT, exist_ok=True)
+    out = f"{OUT}/{acc}_cdr3.tsv.gz"
+    meta_out = f"{OUT}/{acc}_cdr3.json"
+    if os.path.exists(meta_out):
+        with open(meta_out) as fh:
+            return json.load(fh)
+
+    bases = "ACGT"
+    codon_aa = np.array(
+        [GENETIC_CODE[bases[i] + bases[j] + bases[k]]
+         for i in range(4) for j in range(4) for k in range(4)] + ["X"],
+        dtype="U1")
+    code = np.full(256, 4, dtype=np.uint8)
+    for n, v in zip(b"ACGT", range(4)):
+        code[n] = v
+    comp = bytes.maketrans(b"ACGTN", b"TGCAN")
+    rx = re.compile(JUNCTION_RE)
+
+    def translated_frames(buf: bytes):
+        arr = code[np.frombuffer(buf, dtype=np.uint8)]
+        for frame in (0, 1, 2):
+            a = arr[frame:]
+            a = a[: len(a) - len(a) % 3].reshape(-1, 3).astype(np.int32)
+            bad = (a == 4).any(axis=1)
+            idx = a[:, 0] * 16 + a[:, 1] * 4 + a[:, 2]
+            idx[bad] = 64
+            yield "".join(codon_aa[idx])
+
+    counts: Counter = Counter()
+    n_reads = 0
+    t0 = time.time()
+    work = f"/tmp/{acc}"
+    os.makedirs(work, exist_ok=True)
+    res = {"run": acc, "status": "ok", **_meta(run)}
+    try:
+        urls = [u for u in (run.get("fastq_ftp") or "").split(";") if u]
+        if not urls:
+            res["status"] = "no fastq url"
+            return res
+        for u in urls:
+            dest = f"{work}/{os.path.basename(u)}"
+            subprocess.run(["wget", "-q", "-O", dest, f"https://{u}"], check=True)
+            batch: list[bytes] = []
+            with gzip.open(dest, "rb") as fh:
+                for i, line in enumerate(fh):
+                    if i % 4 != 1:
+                        continue
+                    n_reads += 1
+                    batch.append(line.strip())
+                    if len(batch) >= 200_000:
+                        _harvest(batch, comp, translated_frames, rx, counts)
+                        batch = []
+            if batch:
+                _harvest(batch, comp, translated_frames, rx, counts)
+            os.remove(dest)
+    except Exception as exc:                                # noqa: BLE001
+        res["status"] = f"{type(exc).__name__}: {str(exc)[:160]}"
+        return res
+
+    keep = {c: n for c, n in counts.items() if n >= MIN_READS}
+    near = {c: n for c, n in counts.items()
+            if c not in keep
+            and edit_distance(c, FULL_CLONOTYPE, NEIGHBOUR_DIST) <= NEIGHBOUR_DIST}
+    keep.update(near)
+    with gzip.open(out, "wt") as fh:
+        fh.write("cdr3\treads\n")
+        for c, n in sorted(keep.items(), key=lambda kv: -kv[1]):
+            fh.write(f"{c}\t{n}\n")
+
+    res.update(n_reads=n_reads, n_cdr3_all=len(counts), n_cdr3_kept=len(keep),
+               n_singleton_neighbours=len(near),
+               junction_reads=int(sum(counts.values())),
+               minutes=round((time.time() - t0) / 60, 1))
+    with open(meta_out, "w") as fh:
+        json.dump(res, fh)
+    vol.commit()
+    print(f"{acc} {run['disease']}/{run['subject']}: {n_reads:,} reads, "
+          f"{len(counts):,} CDR3s ({len(keep):,} kept), {res['minutes']} min",
+          flush=True)
+    return res
+
+
+@app.function(image=image, volumes={"/data": vol}, timeout=86400)
+def cdr3_all():
+    runs = ena_runs()
+    print(f"extracting CDR3s from {len(runs)} unsorted-PBMC runs")
+    results = list(cdr3_one.map(runs, return_exceptions=True))
+    rows = [r for r in results if isinstance(r, dict)]
+    for r in results:
+        if not isinstance(r, dict):
+            print(f"  worker died: {type(r).__name__}: {str(r)[:160]}")
+    for r in rows:
+        if r.get("status") != "ok":
+            print(f"  FAILED {r['run']}: {r['status']}")
+    ok = [r for r in rows if r.get("status") == "ok"]
+    print(f"\n{len(ok)}/{len(results)} runs extracted")
+    import collections
+    by = collections.defaultdict(set)
+    for r in ok:
+        by[r["disease"]].add(r["subject"])
+    for d, s in sorted(by.items()):
+        print(f"  {d}: {len(s)} subjects, {sum(1 for r in ok if r['disease'] == d)} runs, "
+              f"{sum(r['n_cdr3_kept'] for r in ok if r['disease'] == d):,} clonotype rows")
+    return ok
 
 
 @app.function(image=image, volumes={"/data": vol}, timeout=1800)
