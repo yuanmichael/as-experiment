@@ -217,19 +217,47 @@ At threshold 0.10 the panel reaches **84% sensitivity at 100% specificity**, aga
 
 **But PPV cannot be estimated from 10 controls.** At threshold 0.10 there are zero false positives, so PPV is 100% at every prevalence — meaningless. Drop to 0.09, one false positive, and PPV at 20% prevalence falls from 100% to **69.7%**. Specificity moves only in 10-point steps here and its confidence interval runs 69–100%. Any PPV from this is a statement about ten people, not about a test. The thresholds are also chosen on the same data that evaluates them.
 
-#### It does not transfer, which is the open question
+#### It transfers to an independent healthy cohort
+
+The panel was built with no Britanova data. Scored on [Britanova's](https://doi.org/10.5281/zenodo.826447) 80 healthy donors (clonotype tables, same amplicon platform), thinned to the same 800K depth:
+
+| group | n | median score | range |
+|---|---|---|---|
+| Komech AS | 25 | **0.228** | 0.060–0.335 |
+| Komech healthy | 10 | 0.054 | 0.024–0.090 |
+| **Britanova healthy** | **41** | **0.036** | 0.000–0.096 |
+
+| comparison | AUC | p |
+|---|---|---|
+| AS vs Komech healthy (10) | 0.962 | 1.3×10⁻⁵ |
+| **AS vs Britanova healthy (41)** | **0.991** | **1.4×10⁻¹¹** |
+| AS vs pooled 51 controls | 0.985 | 3.8×10⁻¹² |
+
+Independent healthy donors score like healthy controls, not like AS patients. Operating points against all 51 controls:
+
+| threshold | sensitivity | specificity | TP/FN | FP/TN |
+|---|---|---|---|---|
+| 0.09 | 92.0% (74–99%) | 96.1% (87–100%) | 23/2 | 2/49 |
+| **0.10** | **84.0% (64–95%)** | **100.0% (93–100%)** | 21/4 | **0/51** |
+| 0.15 | 76.0% (55–91%) | 100.0% (93–100%) | 19/6 | 0/51 |
+
+NPV 96.2% at 20% prevalence. PPV remains 100% at every prevalence because there are no false positives in 51 controls — read the specificity interval instead: the true value could be as low as 93%, which would put PPV near 75% at 20% prevalence.
+
+Caveats: Britanova is Chudakov's group, as Komech is, so this controls for cohort and population but not fully for protocol. The 0.10 threshold was chosen by looking at Komech's controls, then applied here unchanged. Only 41 of 80 donors reached 800K depth; at 200K (73 donors) healthy median is 0.006, the same conclusion at a lower scale.
+
+#### What it does not do: separate AS from psoriatic arthritis
 
 Scoring a *different* deposit's patients on the same 167-sequence panel:
 
 | test | AUC | p |
 |---|---|---|
-| Komech AS vs Komech healthy (same deposit) | 0.962 | <0.01 |
-| Komech AS vs Komech healthy, batch-matched | 0.991 | — |
-| **PRJEB51315 AS vs PsA (different deposit, batch-matched)** | **0.59–0.67** | 0.087–0.299 |
+| AS vs healthy, pooled 51 controls | **0.985** | 3.8×10⁻¹² |
+| PRJEB51315 AS vs PsA, blood | 0.59–0.67 | 0.087–0.299 |
+| PRJEB51315 AS vs PsA, synovial fluid | 0.63–0.64 | 0.157–0.222 |
 
-Two readings, not separable with current data. The panel may be **cohort-specific**, capturing shared HLA types or infection history in 25 Russian patients rather than AS biology — the batch-matched test rules out prep batch, not population. Or **AS-versus-PsA is simply a much harder contrast** than AS-versus-healthy, since PsA is also chronic inflammatory arthritis; the single known clonotype has the same problem, sitting in 25% of PsA patients. The second reading is plausible but it is also the comfortable one, so it is not leaned on.
+This was the open question and it is now resolved in one direction only. Two readings were possible: the panel might be **cohort-specific**, or **AS-versus-PsA** might simply be a harder contrast than AS-versus-healthy. Britanova settles it — an independent healthy cohort scores at 0.991, so the panel is not a cohort fingerprint, and the PsA failure is a genuine specificity limit rather than evidence against the panel.
 
-Established: the signal is real within Komech and is not a prep-batch artefact. Unproven: that it is AS biology which generalises. The test that resolves it is **healthy** controls from a third unrelated lab on the same platform ([Britanova](https://doi.org/10.5281/zenodo.826447)) — if they score like Komech's healthy controls the panel is real with a PsA specificity limit; if they score like AS patients it is a cohort fingerprint.
+That limit is the clinical blocker. A test separating AS from healthy at 0.99 and from PsA at 0.63 is not usable in a rheumatology clinic, where PsA is the differential that actually presents. The single known clonotype has the same weakness, sitting in 25% of PsA patients. PsA controls currently number 16 in blood and 17 in synovial fluid, from one deposit, so the limit is firmly established in direction and poorly estimated in size.
 
 ---
 
