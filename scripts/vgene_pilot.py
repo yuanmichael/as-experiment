@@ -59,6 +59,15 @@ PROBE_NT = 25          # nucleotides 5' of the conserved C used for assignment
 # -- and it is the difference between assigning 93% of a 150 bp library and 0.1%
 # of a 100 bp one.
 MAX_MISMATCH = 4       # beyond this the read is left unassigned
+MIN_MARGIN = 2         # best match must beat the runner-up GENE by this much
+
+# An absolute distance cutoff alone is not safe here, because germline V probes
+# are not evenly spaced: TRBV9's 25 nt probe sits only 3 mismatches from TRBV13
+# and TRBV7-4, inside a cutoff of 4. The margin rule is what makes a call
+# trustworthy -- two independent sequencing errors would be needed to flip it.
+# In practice this costs little: of 39 reads carrying CASSVGLYSTDTQYF, 35 match
+# TRBV9 at distance 0 with a median margin of 3, and the other 4 sit 9 away and
+# are correctly refused.
 TARGET = "CASSVGLYSTDTQYF"
 
 
@@ -104,18 +113,29 @@ def fastq_url(run: str) -> list[str]:
 
 
 def assign(probe: str, ref: dict[str, str]) -> tuple[str | None, int]:
-    """Nearest germline allele by Hamming distance, collapsed to the gene."""
+    """Nearest germline gene by Hamming distance, refusing ambiguous calls.
+
+    Returns (gene, distance), or (None, distance) when the read is either too
+    far from everything or too close to a second gene to be called.
+    """
     best, bestd = None, 10**9
+    runner = 10**9
     for allele, r in ref.items():
         d = sum(1 for a, b in zip(probe, r) if a != b)
+        gene = allele.split("*")[0]
         if d < bestd:
-            best, bestd = allele, d
-    if best is None or bestd > MAX_MISMATCH:
+            if best is not None and gene != best:
+                runner = bestd
+            best, bestd = gene, d
+        elif gene != best and d < runner:
+            runner = d
+    if best is None or bestd > MAX_MISMATCH or runner - bestd < MIN_MARGIN:
         return None, bestd
-    return best.split("*")[0], bestd
+    return best, bestd
 
 
-def scan(run: str, ref: dict[str, str], n_reads: int, probe_nt: int) -> dict:
+def scan(run: str, ref: dict[str, str], n_reads: int, probe_nt: int,
+         truncate: int = 0) -> dict:
     urls = fastq_url(run)
     if not urls:
         return {"run": run, "status": "no fastq url"}
@@ -131,7 +151,10 @@ def scan(run: str, ref: dict[str, str], n_reads: int, probe_nt: int) -> dict:
             if i % 4 != 1:
                 continue
             n += 1
-            nt = line.strip().translate(RC)[::-1].decode()
+            raw = line.strip()
+            if truncate:
+                raw = raw[:truncate]
+            nt = raw.translate(RC)[::-1].decode()
             for off in (0, 1, 2):
                 s = nt[off:]
                 s = s[:len(s) // 3 * 3]
@@ -166,6 +189,13 @@ def main() -> None:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--runs", nargs="+", required=True)
     ap.add_argument("--n-reads", type=int, default=400_000)
+    ap.add_argument("--truncate", type=int, default=100,
+                    help="trim every read to this many nt before assignment. "
+                         "Required for any cross-group V-usage comparison: 11%% "
+                         "of AS libraries here are long-read against 33%% of "
+                         "healthy ones (p = 0.091), longer reads raise the "
+                         "assignment rate gene-specifically, so an untruncated "
+                         "comparison measures read length as well as biology.")
     ap.add_argument("--probe-nt", type=int, default=PROBE_NT,
                     help="nucleotides 5' of the conserved C used for assignment; "
                          "lower it for short-read libraries")
@@ -179,7 +209,7 @@ def main() -> None:
         print("  WARNING: TRBV9 absent from the reference")
 
     for run in args.runs:
-        r = scan(run, ref, args.n_reads, args.probe_nt)
+        r = scan(run, ref, args.n_reads, args.probe_nt, args.truncate)
         if r["status"] != "ok":
             print(f"\n{run}: {r['status']}")
             continue
