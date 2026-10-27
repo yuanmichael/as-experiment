@@ -195,7 +195,41 @@ Selecting on "absent from 9 training controls" picks public clonotypes that happ
 
 Permutation-tested with the nine-configuration grid search *inside* the null, so the p-value pays for the search: observed best-of-grid 0.962 against a null mean of 0.626 and a maximum of 0.838 over 100 shuffles, **p < 0.01**.
 
-What this does and does not establish. It is within one deposit — Komech AS against Komech's own healthy controls — so it says a multi-clonotype signal exists and is detectable at n = 35. It says nothing about transfer, and cohort membership is predictable from repertoires at AUC 0.994, so the external validation is the whole game. That needs amplicon healthy controls from a third deposit ([Britanova](https://doi.org/10.5281/zenodo.826447)) scored against the same panel.
+#### It is not the batch effect
+
+Cohort membership is predictable from repertoires at AUC 0.994, so the first question is whether the score reads library prep rather than disease. Three checks say it does not:
+
+- The comparison is **within one deposit** — Komech AS against Komech's own healthy controls, same lab and protocol — the opposite setup from the cross-deposit 0.994 result.
+- Library prep batches are **interleaved, not disease-segregated**: 7 of Komech's batches (`MK-108/135/142/181/218/227/248`) contain both AS patients and healthy controls. Restricted to those — 8 AS, 7 healthy, batch held constant — **AUC = 0.991**. Fixing batch does not degrade the score.
+- Within the healthy controls the score barely moves across sequencing lanes (medians 0.036–0.066), and 22 of 25 AS patients score above the highest healthy control (0.090).
+
+#### Operating points, and why PPV is not yet meaningful
+
+| threshold | sensitivity | specificity | TP/FN | FP/TN |
+|---|---|---|---|---|
+| 0.07 | 92.0% (74–99%) | 80.0% (44–97%) | 23/2 | 2/8 |
+| 0.09 | 92.0% (74–99%) | 90.0% (55–100%) | 23/2 | 1/9 |
+| **0.10** | **84.0% (64–95%)** | **100.0% (69–100%)** | 21/4 | 0/10 |
+| 0.15 | 76.0% (55–91%) | 100.0% (69–100%) | 19/6 | 0/10 |
+| 0.20 | 56.0% (35–76%) | 100.0% (69–100%) | 14/11 | 0/10 |
+
+At threshold 0.10 the panel reaches **84% sensitivity at 100% specificity**, against the single clonotype's 56% at 98%. The gain is in sensitivity, which was the single clonotype's fatal weakness.
+
+**But PPV cannot be estimated from 10 controls.** At threshold 0.10 there are zero false positives, so PPV is 100% at every prevalence — meaningless. Drop to 0.09, one false positive, and PPV at 20% prevalence falls from 100% to **69.7%**. Specificity moves only in 10-point steps here and its confidence interval runs 69–100%. Any PPV from this is a statement about ten people, not about a test. The thresholds are also chosen on the same data that evaluates them.
+
+#### It does not transfer, which is the open question
+
+Scoring a *different* deposit's patients on the same 167-sequence panel:
+
+| test | AUC | p |
+|---|---|---|
+| Komech AS vs Komech healthy (same deposit) | 0.962 | <0.01 |
+| Komech AS vs Komech healthy, batch-matched | 0.991 | — |
+| **PRJEB51315 AS vs PsA (different deposit, batch-matched)** | **0.59–0.67** | 0.087–0.299 |
+
+Two readings, not separable with current data. The panel may be **cohort-specific**, capturing shared HLA types or infection history in 25 Russian patients rather than AS biology — the batch-matched test rules out prep batch, not population. Or **AS-versus-PsA is simply a much harder contrast** than AS-versus-healthy, since PsA is also chronic inflammatory arthritis; the single known clonotype has the same problem, sitting in 25% of PsA patients. The second reading is plausible but it is also the comfortable one, so it is not leaned on.
+
+Established: the signal is real within Komech and is not a prep-batch artefact. Unproven: that it is AS biology which generalises. The test that resolves it is **healthy** controls from a third unrelated lab on the same platform ([Britanova](https://doi.org/10.5281/zenodo.826447)) — if they score like Komech's healthy controls the panel is real with a PsA specificity limit; if they score like AS patients it is a cohort fingerprint.
 
 ---
 
