@@ -64,9 +64,28 @@ A note on the within-study numbers: Komech alone gives 48% sensitivity at 100% s
 
 ### The clone is CD8, which is what B27 predicts
 
-In PRJEB51315 synovial fluid, the clone sits ~34× higher in CD8-sorted than CD4-sorted libraries from the same joints. HLA-B27 is an MHC class I molecule; class I is read by CD8 T cells and class II by CD4. A genuinely B27-driven clone therefore *must* be CD8, and it is. This is the strongest evidence that the sequence is a real B27-restricted clone rather than an artefact, because no technical story predicts a compartment restriction that matches the immunology.
+Re-derived on the honest denominator across all 64 synovial libraries:
 
-(The 34× figure is still on the denominator described under "Errors" below; CDR3 tables for the synovial libraries are being extracted to re-derive it. Presence and the compartment direction are unaffected.)
+| group | subset | target freq | junction reads |
+|---|---|---|---|
+| **AS** | **CD8** | **1.00×10⁻³** | 4,378,333 |
+| AS | unsorted | 2.69×10⁻⁴ | 3,569,466 |
+| AS | CD4 | 2.88×10⁻⁵ | 2,533,848 |
+| PsA | CD8 | 8.78×10⁻⁵ | 10,914,688 |
+| PsA | CD4 | 1.56×10⁻⁶ | 6,397,279 |
+
+**AS joint CD8 sits 35× above AS joint CD4**, and 11× above PsA joint CD8. HLA-B27 is an MHC class I molecule; class I is read by CD8 T cells and class II by CD4. A genuinely B27-driven clone therefore *must* be CD8, and it is. No technical story predicts a compartment restriction that matches the immunology, which makes this the strongest evidence that the sequence is a real B27-restricted clone. (The 35× figure survived the denominator correction unchanged — it was computed within-subset both times.)
+
+### In the joint, the clone does reach 10⁻⁴
+
+The withdrawn ≥10⁻⁴ claim was about blood. Synovial fluid is a different story, because frequencies there are 10–100× higher:
+
+| group | n | present | ≥10⁻⁴ | max freq |
+|---|---|---|---|---|
+| **AS synovial** | 7 | 5/7 | **4/7** | 2.34×10⁻³ |
+| PsA synovial | 17 | 6/17 | 2/17 | 3.08×10⁻⁴ |
+
+Mann-Whitney on frequency, AS vs PsA joints: **p = 0.019** — threshold-free, and essentially unchanged from the pre-correction value, because both arms were inflated by the same mechanism. Every patient is evaluable (floors 1.3×10⁻⁷ to 2.2×10⁻⁵). AS joints reach 1.0×10⁻³–2.3×10⁻³ in three patients; no PsA joint exceeds 3.1×10⁻⁴.
 
 ---
 
@@ -145,6 +164,38 @@ Both survive Bonferroni correction for all 1,081 tests. The new clonotype reache
 Treat it as a candidate, not a finding: it is one cohort, 7 patients, discovered by a screen whose control arm is a different platform (Emerson is gDNA immunoSEQ, Komech is RNA amplicon), and its frequency distribution does not separate from Komech's own controls (Mann-Whitney p = 0.11). It needs replication in PRJEB51315 and the synovial arm before it means anything.
 
 The methodological result is the durable one: **a ten-control arm cannot distinguish a disease-specific clonotype from a public one, and a 786-control arm does it in one pass.** Every future candidate is screened against Emerson before anything else is done with it.
+
+It partially replicates in the joint: `CASSFGTGGINEQYF` is present in 2 of 7 AS synovial samples, both above 10⁻⁴ (1.1×10⁻⁴ and 1.0×10⁻⁴), against 1 of 17 PsA joints at 2.6×10⁻⁶. Mann-Whitney p = 0.061 — the right direction, not yet significant.
+
+### Two control arms, not one
+
+Screening wider surfaced a second artefact class that one control arm cannot catch. Of 21,206 clonotypes carried by ≥5 AS patients, only 9 are rare (≤1%) in Emerson — and five of those are a **batch family**:
+
+| cdr3 | AS /25 | Komech healthy /10 | Emerson /786 |
+|---|---|---|---|
+| CRVSGL**W**AKNIQYF | 7 | 3 | 0 |
+| CRVSGL**G**AKNIQYF | 6 | 3 | 0 |
+| CRVSGL**C**AKNIQYF | 6 | 4 | 0 |
+| CRVSGL**R**AKNIQYF | 5 | 1 | 0 |
+| CSWGTHDALCSNQPQHF | 6 | 5 | 0 |
+
+Absent from all 786 external repertoires, but carried by 30–50% of this deposit's *own healthy controls*. A one-residue ladder at a fixed position, deposit-specific and disease-indifferent. Tested against Emerson alone they reach p = 10⁻¹¹; tested against Komech's healthy controls they reach p = 0.71. **A candidate must clear both arms** — the external arm kills public clonotypes, the internal arm kills batch artefacts, and neither does the other's job.
+
+### Combining clonotypes works where single clonotypes fail
+
+Thresholding one clonotype at a time is the wrong test, and arbitrary: "≥6 carriers and 0 controls" is a cut with no principle behind it. The alternative is a burden score — count how many candidate clonotypes a subject carries — evaluated leave-one-subject-out, selecting candidates from only the other 34 subjects.
+
+| selection control arm | best LOO AUC |
+|---|---|
+| Komech's 10 healthy controls | **0.44** (at or below chance) |
+| **Emerson's 786 healthy controls** | **0.962** |
+| single best clonotype, presence alone | 0.720 |
+
+Selecting on "absent from 9 training controls" picks public clonotypes that happen to be missing from nine people, and held-out healthy subjects carry them just as often — so that score is worthless. Swap in 786 controls and the same score reaches **AUC 0.962**, well above the 0.720 of the best single clonotype.
+
+Permutation-tested with the nine-configuration grid search *inside* the null, so the p-value pays for the search: observed best-of-grid 0.962 against a null mean of 0.626 and a maximum of 0.838 over 100 shuffles, **p < 0.01**.
+
+What this does and does not establish. It is within one deposit — Komech AS against Komech's own healthy controls — so it says a multi-clonotype signal exists and is detectable at n = 35. It says nothing about transfer, and cohort membership is predictable from repertoires at AUC 0.994, so the external validation is the whole game. That needs amplicon healthy controls from a third deposit ([Britanova](https://doi.org/10.5281/zenodo.826447)) scored against the same panel.
 
 ---
 
