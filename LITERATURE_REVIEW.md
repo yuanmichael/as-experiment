@@ -269,6 +269,35 @@ The §14 conclusion was an artefact of querying one curated index. The ADC index
 
 Adjacent and directly on-target: **E-MTAB-9492** — 10x gene expression *plus* V(D)J from blood, synovial fluid and synovial tissue in psoriatic arthritis. Only 5 patients (3 paired PB/SF, 2 synovial tissue), but it is paired sequence-and-transcriptome in a spondyloarthritis across three compartments.
 
+### Spectrum sweep — "ankylosing spondylitis" was the wrong search term
+
+Earlier sweeps queried AS, axSpA and spondyloarthritis, which is the right spelling set for AS itself and misses the rest of the HLA-B27 family. [`scripts/spa_inventory.py`](scripts/spa_inventory.py) re-runs the sweep across ten disease terms × two assay passes (GEO), with ENA and ArrayExpress alongside: **114 human GEO series, 100 absent from the previous inventory.** Results in [`data/airr/spa_inventory.tsv`](data/airr/spa_inventory.tsv) and [`spa_parent_series.tsv`](data/airr/spa_parent_series.tsv).
+
+Two method notes. NCBI splits quoted phrases that are not in its phrase index, so `"reactive arthritis"` returns anything matching *reactive* AND *arthritis* — Tabula Sapiens, breast cancer, dental pulp. A literal phrase re-check on title+summary is mandatory. And the real finds come back as **GSM sample records, not series**: a 10x V(D)J library is often the only part of a study whose sample title says "TCR", so the parent series has to be resolved from the sample hit. 75 GSM hits resolved to 10 parent series.
+
+The useful ones, with paired single-cell transcriptome and TCR:
+
+| accession | n | what it is |
+|---|---|---|
+| **GSE250242** | 21 | RA + PsA, synovial fluid **and** synovial tissue, VDJ + CITE + GEX per patient |
+| **GSE250243** | 6 | "Clonal sharing of CD8+ T cells links skin and joint inflammation in PsA" — paired skin/joint TCR |
+| **GSE308887** | 22 | tissue-resident memory T cells of the human uveal tract, 11 TCR libraries |
+| **GSE178833** | 7 | intra-ocular dendritic cells in HLA-B27-associated acute anterior uveitis |
+| GSE216914 | 12 | PsA joint CD8 TRM, type-17 signature (already inventoried) |
+| GSE290921 | 6 | axSpA **and** PsA synovial tissue; previously dismissed here as "CD4-only", but it carries 2 axSpA synovial TCR libraries |
+
+Non-GEO, from ENA and ArrayExpress:
+
+| accession | what it is |
+|---|---|
+| **PRJNA828379** | peripheral SpA after COVID-19 in HLA-B27-positive **monozygotic twins** — genetics controlled by construction |
+| **PRJNA1131764/5/6** = GSE271474 | single-cell atlas of **enthesitis** — the primary AS lesion site |
+| **E-MTAB-15133** | single-cell RNA-seq of human **enthesis**, healthy and inflamed |
+| **E-MTAB-11791** | single-cell human synovium across inflammatory arthritis |
+| PRJNA800261 | RNA + surface epitope (CITE) sequencing in spondyloarthritis; probably the GSE194315 deposit |
+
+**What the sweep does not do: it does not solve the AS sample-size problem.** No large AS-versus-healthy bulk repertoire cohort exists in any public archive under any spelling. What it does supply is a **PsA disease-control arm on paired single-cell data** (GSE250242, GSE250243), which is the arm this project is thinnest on, and tissue-level access to the enthesis and uveal tract.
+
 ### Cross-disease
 
 | disease | dedicated repertoire | paired single-cell | standouts |
