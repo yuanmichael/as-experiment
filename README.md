@@ -142,7 +142,32 @@ Per sequence, thinned:
 
 Neither `VGIY` nor `VGIF` occurs in any of the 35 subjects, so Hanson's six-member grid is effectively a four-member family in this cohort. `CASSLGLFSTDTQYF` at 7 carriers has more support than any member except the known clone, but we found it, so it stays out of the primary test and is reported here only.
 
-**What this does not yet establish.** The control arm is 10 Komech donors of unknown HLA-B27 status, which cannot estimate specificity: 0/10 is consistent with anything up to ~26% carriage. The Emerson arm is the specificity test and needs per-subject repertoires, which are not currently on disk — per-sequence carriage bounds the union at 2.5–6.7% of 786 healthy donors, against 1.9% for the known clone alone, so the union certainly costs specificity and the question is how much. Hanson's B27-matched measurement of the two commonest members, 18/37 versus 2/19, is the closest existing answer.
+### Replicated in Hanson's own cohort, against a B27-matched control arm
+
+Matthew Brown supplied immuneACCESS access to the Hanson 2020 data: **193 Adaptive samples, 95 subjects, CD4 and CD8 sorted separately.** The export carries no diagnosis column, so group membership is inferred from the sample names — `A####` and `K####` subject prefixes, `_4` and `_8` for the sorted fractions. [`scripts/hanson_scan.py`](scripts/hanson_scan.py) tests that inference against two published statistics rather than assuming it:
+
+- Hanson reports `CASSVGLFSTDTQYF` in **12 of 37 B27+ AS patients and 0 controls** in CD8. Observed: **12 A-prefix subjects, 0 of 36 K-prefix**.
+- Hanson reports such clones in CD4 "at 1 count in 2 samples". Observed: **2 A-prefix subjects in CD4**, against 22 in CD8.
+
+Both reproduce exactly, so A = AS and K = control is confirmed by independent published numbers rather than by guesswork. CD8 compartment, presence at ≥1 template:
+
+| test | AS /48 | control /36 | sensitivity | specificity | one-sided Fisher p |
+|---|---|---|---|---|---|
+| `CASSVGLYSTDTQYF` alone | 12 | 2 | 25.0% | 94.4% | 0.016 |
+| `CASSVGLFSTDTQYF` alone | 12 | 0 | 25.0% | 100% | 0.00062 |
+| Hanson's Y+F pair | 19 | 2 | 39.6% | 94.4% | 0.00024 |
+| **union of the 7 pre-specified** | **22** | **2** | **45.8%** | **94.4%** | **2.9×10⁻⁵** |
+| union + the 2 exploratory | 26 | 3 | 54.2% | 91.7% | 7.1×10⁻⁶ |
+
+**The family nearly doubles sensitivity over the single clone at identical specificity**, in an independent cohort, on a different platform (Adaptive gDNA vs Komech's RNA amplicon), against controls selected to be B27-matched. CD8 depth does not differ between groups (median 66K vs 62K templates, p = 0.55), so this is not the depth artefact that has bitten this project before.
+
+Two sequences behave differently here than in Komech. `CASSVGIFSTDTQYF`, absent from all 35 Komech subjects, appears in 3 AS patients — so five of Hanson's six motif members are real, and only `VGIY` has never been seen. And the exploratory `CASSLGLYSTDTQYF` reaches 8/48 versus 0/36 (p = 0.0087), its strongest showing anywhere; it remains outside the primary test because we found it, not Hanson.
+
+**Caveats.** The labels are inferred, and should be confirmed against the authors' key before anything is published. The control arm's per-subject B27 status is unknown to us — Hanson states 19 of the controls are B27+, and the 2 control carriers are consistent with the 2 of 19 B27+ carriers they report, which would make specificity against B27+ controls closer to 89%. A single template is a permissive presence threshold at Survey depth.
+
+### The Emerson arm, still open
+
+Emerson's per-subject repertoires are not on disk — `data/airr/emerson-2017-natgen/reps` is empty and only the derived CMV classifier outputs survive. Per-sequence carriage bounds the union at 2.5–6.7% of 786 healthy donors against 1.9% for the known clone alone. Re-exporting Emerson is now possible through the same immuneACCESS login (it is a public project there), but the Hanson control arm above is the better test: same lab, same assay, CD8-sorted, and B27-enriched rather than unselected.
 
 ---
 
