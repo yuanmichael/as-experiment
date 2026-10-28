@@ -87,6 +87,25 @@ The withdrawn ≥10⁻⁴ claim was about blood. Synovial fluid is a different s
 
 Mann-Whitney on frequency, AS vs PsA joints: **p = 0.019** — threshold-free, and essentially unchanged from the pre-correction value, because both arms were inflated by the same mechanism. Every patient is evaluable (floors 1.3×10⁻⁷ to 2.2×10⁻⁵). AS joints reach 1.0×10⁻³–2.3×10⁻³ in three patients; no PsA joint exceeds 3.1×10⁻⁴.
 
+### The clone is one member of a sequence family
+
+[Hanson et al. 2020](https://eprints.qut.edu.au/210039/) define the AS-associated motif as **`CASSVG(V/I/L)(Y/F)STDTQYF`**, and their strongest single clone is the **F** variant, not ours: `CASSVGLFSTDTQYF` in 12/37 B27+ AS patients and 0 of all B27− patients and all controls (p = 1.6×10⁻⁵). The union of the F and Y variants reaches 18/37 (49%) B27+ AS versus 2/19 (11%) B27+ healthy (OR 8.05, p = 0.007). [Yang et al. 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC10511244/) solved structures for three members, which they call AS4.1 (`VGLYSTDTQ`), AS4.2 (`VGLFSTDTQ`) and AS4.3 (`VATYSTDTQ`).
+
+Six members are present in our Komech tables. Counts are presence at ≥2 reads after thinning every subject to 800,000 junction reads, as built by [`scripts/build_panel.py`](scripts/build_panel.py) — **not** the native-depth presence used in the table above, which is why the known clone reads 11 here and 12 there:
+
+| cdr3 | Komech AS /25 | Komech healthy /10 | Emerson healthy /786 | in panel 167 | previously reported |
+|---|---|---|---|---|---|
+| `CASSVGLYSTDTQYF` | 11 | 0 | 15 (1.91%) | yes | yes — the main result |
+| `CASSLGLFSTDTQYF` | **7** | **0** | 31 (3.94%) | yes | **no** |
+| `CASSVGLFSTDTQYF` | **6** | **0** | 20 (2.55%) | yes | **no** |
+| `CASSLGLYSTDTQYF` | **4** | **0** | 33 (4.20%) | no (≥4 only) | **no** |
+| `CASSVGVYSTDTQYF` | **4** | **0** | 11 (1.40%) | no (≥4 only) | **no** |
+| `CASSVATYSTDTQYF` | 4 | 0 | 7 (0.89%) | no (≥4 only) | yes — as a candidate |
+
+No `VGIY`, `VGVF` or `VGIF` variant reaches 4 carriers. Three of the six (`VGLY`, `LGLF`, `VGLF`) were inside the 167-sequence burden panel, each weighted as 1/167 of a count; the other three were below its ≥5-carrier cut. **The family has never been scored as a unit.** The union is bounded at 11–21 of 25 AS patients against 0 of 10 controls; the Emerson union sets the specificity cost, since the members are individually carried by 0.9–4.2% of 786 healthy donors against the known clone's 1.9%.
+
+Testing the union is a pre-specified test — the motif comes from the literature, not from our labels — so it carries no selection leakage. It is the natural replacement for the single-sequence result and is not yet run.
+
 ---
 
 ## Is anything else there? One candidate, and the control arm is everything
