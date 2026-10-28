@@ -124,7 +124,7 @@ Counts below are presence at ≥2 reads after thinning every subject to 800,000 
 | **union of the 7 pre-specified sequences** | **14** | **0** | **56.0%** | **0.0019** |
 | union, at native depth | 15 | 0 | 60.0% | 0.0010 |
 
-The union adds **three AS patients the known clone misses**, and it is the first open-ended result in this project to clear α = 0.01 in the within-study comparison. That matters because of the power arithmetic above: with 25 cases and 10 controls a marker needs ≥12 AS carriers and 0 controls before significance is even reachable, and the single clone sat at 11 after thinning. Threshold-free, the carrier count (0–7) gives Mann-Whitney **p = 0.0020**, rank-biserial AUC **0.780** — AS median 1 (range 0–3), healthy median 0 (range 0–0, no control carries any member).
+The union adds **three AS patients the known clone misses**, and it moves the thinned comparison from non-significant to significant. That matters because of the power arithmetic above: with 25 cases and 10 controls a marker needs ≥12 AS carriers and 0 controls before α = 0.01 is reachable at all, and the single clone sat at 11 after thinning. The union is pre-specified rather than discovered, so this is not an open-ended finding — it is the same kind of claim as the original clone, made on a better-chosen unit. Threshold-free, the carrier count (0–7) gives Mann-Whitney **p = 0.0020**, rank-biserial AUC **0.780** — AS median 1 (range 0–3), healthy median 0 (range 0–0, no control carries any member).
 
 Per sequence, thinned:
 
