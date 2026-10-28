@@ -165,6 +165,50 @@ Two sequences behave differently here than in Komech. `CASSVGIFSTDTQYF`, absent 
 
 **Caveats.** The labels are inferred, and should be confirmed against the authors' key before anything is published. The control arm's per-subject B27 status is unknown to us — Hanson states 19 of the controls are B27+, and the 2 control carriers are consistent with the 2 of 19 B27+ carriers they report, which would make specificity against B27+ controls closer to 89%. A single template is a permissive presence threshold at Survey depth.
 
+### Pooled across cohorts, and the PsA arm that still fails
+
+Three cohorts now have both arms. They are not merged — each contributes its own within-study 2×2, combined by Mantel-Haenszel, because cohort membership is predictable from repertoires at AUC 0.994 and pooling subjects across deposits would manufacture the result.
+
+| cohort | compartment | AS | sensitivity | control | specificity | p |
+|---|---|---|---|---|---|---|
+| Komech 2018 | unsorted blood, RNA amplicon | 14/25 | 56.0% | 0/10 | 100% | 0.0019 |
+| Hanson 2020 | sorted CD8, Adaptive gDNA | 22/48 | 45.8% | 2/36 | 94.4% | 2.9×10⁻⁵ |
+| GSE288581 | sorted CD8 memory, 10x | 3/4 | 75.0% | 0/4 | 100% | 0.071 |
+| **pooled** | three assays, three labs | **39/77** | **50.6%** (39.0–62.2) | **48/50** | **96.0%** (86.3–99.5) | MH OR **23.3** |
+
+PPV and NPV follow, against healthy comparators:
+
+| prevalence | PPV | NPV |
+|---|---|---|
+| 0.5% (population) | 6.0% | 99.7% |
+| 5% | 40.0% | 97.4% |
+| 20% (back-pain clinic) | 76.0% | 88.6% |
+| 50% | 92.7% | 66.0% |
+
+**And then psoriatic arthritis, where it still does not work.** PRJEB51315 is the only cohort with the differential that actually presents in clinic:
+
+| comparison | AS | PsA | specificity vs PsA | p |
+|---|---|---|---|---|
+| family union, blood | 5/7 | 5/16 | 68.8% | 0.092 |
+| family union, synovial fluid | 5/7 | 6/17 | 64.7% | 0.12 |
+| `CASSVGLYSTDTQYF` alone, blood | 5/7 | 4/16 | 75.0% | 0.052 |
+
+The union **loses** specificity against PsA relative to the single clone, 68.8% against 75.0%, because the extra family members are carried by PsA patients too. Every gain in this section is a gain against *healthy* people. Against the disease that has to be ruled out, the family is no better than one sequence and arguably worse — the same blocker the burden score hit, unmoved by a bigger cohort, on 7 and 16 subjects so poorly estimated in size but clear in direction.
+
+So the honest summary of the whole marker: **a rule-in test against healthy comparators, with no demonstrated ability to separate AS from the inflammatory arthritis it is confused with.** That is not a diagnostic, and no amount of additional AS-versus-healthy data will make it one.
+
+### What the bigger control arm actually buys
+
+The most valuable thing Hanson adds is not 48 cases. It is 36 controls. The smallest p-value a clonotype carried by *k* AS patients and zero controls can reach is fixed by the group sizes:
+
+| cohort | controls | carriers needed for p ≤ 0.01 |
+|---|---|---|
+| Komech | 10 | **12 of 25 (48%)** |
+| Hanson | 36 | **8 of 48 (17%)** |
+| pooled | 46 | 10 of 73 (14%) |
+
+This is the constraint that made the original sweep uninformative. The README's funnel recorded **1,075 clonotypes carried by 6–11 Komech AS patients and no control, none of which could ever be called significant**. In Hanson that entire zone is testable. An open-ended sweep is worth running again, in Hanson, for the first time.
+
 ### The Emerson arm, still open
 
 Emerson's per-subject repertoires are not on disk — `data/airr/emerson-2017-natgen/reps` is empty and only the derived CMV classifier outputs survive. Per-sequence carriage bounds the union at 2.5–6.7% of 786 healthy donors against 1.9% for the known clone alone. Re-exporting Emerson is now possible through the same immuneACCESS login (it is a public project there), but the Hanson control arm above is the better test: same lab, same assay, CD8-sorted, and B27-enriched rather than unselected.
@@ -454,7 +498,9 @@ A systematic inventory blind spot worth knowing: **10x 5′ libraries with V(D)J
 
 ## What is left in the data inventory
 
-The shortlist holds 119 candidate studies. For AS specifically it is exhausted: `PRJNA853355` is a single CD4 sample, `E-MTAB-11498` is the ArrayExpress mirror of `PRJEB51315` (same 115 runs), `GSE207037`/`GSE290921` are CD4-only, and `E-MTAB-10948` has no VDJ. Worth pursuing, in order:
+**The archives were never the limit; email was.** The largest AS repertoire dataset this project holds — Hanson 2020, 193 samples, 47 AS and 38 B27-matched controls with CD4 and CD8 sorted — is in no public archive. It sits on immuneACCESS under the authors' own account and was obtained by asking. Faham 2017's 191 B27+ AS patients are absent for a different reason: Sequenta's LymphoSIGHT platform never migrated after the 2015 Adaptive merger. Both were invisible to every inventory method in this repo. For AS, **assume investigator-held data exceeds public data and write to the corresponding author first.**
+
+The shortlist holds 119 candidate studies. For AS specifically the *public* archives are exhausted: `PRJNA853355` is a single CD4 sample, `E-MTAB-11498` is the ArrayExpress mirror of `PRJEB51315` (same 115 runs), `GSE207037`/`GSE290921` are CD4-only, and `E-MTAB-10948` has no VDJ. Worth pursuing, in order:
 
 1. **HLA-B27-associated acute anterior uveitis** — three untouched datasets (`GSE274471`, 88 samples of aqueous humour + blood scTCR; `GSE232802`; `PRJNA973988`). Uveitis is on the spondyloarthritis spectrum and shares the B27 association. If the clone is B27-driven rather than AS-driven it should appear in B27+ uveitis patients too — which would reframe it as a B27 marker and largely kill its diagnostic value over a B27 test. This is the single most informative experiment left.
 2. **Steel 2019** (immuneACCESS `/pub/steel-2019-ar`) — IL-17A+CD8+ cells in PsA, assay-matched to Emerson. The most on-target control available for the PsA arm, which currently rests on 16 subjects. Needs a user-performed export.

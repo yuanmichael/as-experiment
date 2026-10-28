@@ -251,16 +251,19 @@ The §14 conclusion was an artefact of querying one curated index. The ADC index
 1. **ArrayExpress/ENA deposits.** Komech's own data sits here, invisible to the ADC.
 2. **10x 5′ libraries with V(D)J enrichment.** Indexed as "single-cell RNA-seq." These are dedicated, deep TCR sequencing *with a paired transcriptome*, and no repertoire inventory will ever surface them.
 
-### AS / SpA — ADC said 0; the real count is 6 studies
+### AS / SpA — ADC said 0; the real count is 7 studies
 
 | accession | design | size |
 |---|---|---|
+| **immuneACCESS (no public accession)** | **Hanson 2020 *Arthritis Rheumatol* (`art.41252`). Adaptive hsTCRB "Survey", CD4 and CD8 sorted separately, 47 AS + 38 HLA-B27-matched healthy controls.** Obtained 2026-10-28 from the authors' immuneACCESS account. **The largest AS repertoire dataset this project has, and the only one with a B27-matched control arm.** | 193 samples, 2.9 GB, 95 subjects |
 | **PRJNA393498** | Komech 2018 *Rheumatology* (`kex517`). 5′RACE TCRβ, PB + SF, TRBV9-sorted and CD8-depleted subsets. **Paper reports 25 AS + 108 healthy donors.** | 78 runs, 44.5 GB, 378M reads |
 | PRJEB51315 = E-MTAB-11498 | Komech 2022 *Front Immunol*. 29 AS + 86 PsA, 64 SF + 51 PB. No healthy controls. | 115 runs, 47.1 GB, 631M reads |
 | GSE288581 | AS, mass cytometry + scRNA-seq, clonally expanded CTL subset in SF | 30 samples |
 | E-MTAB-10948 | AS scRNA-seq, PB + SF, 2 HLA-B27+ patients, >55,000 cells. No VDJ stated. | — |
 | PRJNA853355 = GSE207037 | single-cell TCR, DC-stimulated CD4 T cells, AS | 1 run, 3.9 GB |
 | GSE290921 | SpA, CD4 TRM Th17 driving IL-17A joint pathology | 6 samples |
+
+**Hanson 2020 is not in any public archive**, which is why every archive sweep missed it and why it took an email. It is hosted on Adaptive's immuneACCESS under the authors' own account, not in the published-projects catalogue; Faham 2017 is absent for a different reason (Sequenta's LymphoSIGHT platform never migrated after the 2015 merger). The export is Adaptive v1 format — 52 columns, `aminoAcid` and `count (templates/reads)` are the ones that matter — and carries **no diagnosis column**, so labels come from the `A####` / `K####` sample prefixes with `_4` / `_8` marking the sorted CD4 and CD8 fractions. That inference reproduces two of the paper's own published counts exactly ([`scripts/hanson_scan.py`](scripts/hanson_scan.py)), but the authors' key should still be requested. The general lesson: **for AS, investigator-held data behind an email is a larger resource than the public archives**, and no inventory method would have found it.
 
 **PRJNA393498 is the find.** Same lab and naming convention as E-MTAB-11498 (`Dv_PB_4`, `Kal_SF_8`, `Kos_SF_TRBV9`, `LK-BV9`), one study earlier, and its paper has the healthy-donor arm that E-MTAB-11498 lacks. Caveat: 78 runs is far short of 25 + 108, so the control repertoires are probably a previously published Chudakov-lab healthy cohort deposited separately — needs checking before it can be called an AS-vs-healthy dataset.
 
