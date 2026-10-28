@@ -193,9 +193,11 @@ PPV and NPV follow, against healthy comparators:
 | family union, synovial fluid | 5/7 | 6/17 | 64.7% | 0.12 |
 | `CASSVGLYSTDTQYF` alone, blood | 5/7 | 4/16 | 75.0% | 0.052 |
 
-The union **loses** specificity against PsA relative to the single clone, 68.8% against 75.0%, because the extra family members are carried by PsA patients too. Every gain in this section is a gain against *healthy* people. Against the disease that has to be ruled out, the family is no better than one sequence and arguably worse — the same blocker the burden score hit, unmoved by a bigger cohort, on 7 and 16 subjects so poorly estimated in size but clear in direction.
+The union **loses** specificity against PsA relative to the single clone, 68.8% against 75.0%, because the extra family members are carried by PsA patients too. Every gain in this section is a gain against *healthy* people.
 
-So the honest summary of the whole marker: **a rule-in test against healthy comparators, with no demonstrated ability to separate AS from the inflammatory arthritis it is confused with.** That is not a diagnostic, and no amount of additional AS-versus-healthy data will make it one.
+**How much that matters depends on the target condition, and earlier drafts of this README got it wrong.** They treated AS-versus-PsA as the blocker. For a patient, the costly failure is not being told PsA instead of AS — the two share their first-line biologics, TNF inhibitors and IL-17A inhibitors are licensed in both, and either diagnosis routes you to a rheumatologist and a treatment pathway. The costly failure is the one that actually happens: **years of undiagnosed inflammatory back pain treated as mechanical**, with a typical diagnostic delay of 7–9 years. Against *that* comparison the marker performs well.
+
+So state the target condition honestly as **B27-associated inflammatory spondyloarthritis versus no inflammatory disease**, not AS versus everything. On that reading a positive result says "refer this person", which is the decision that is being missed. Two places the AS/PsA distinction does still carry cost, and they should be named rather than waved away: IL-23 inhibitors work in PsA and **failed** in axial SpA, and methotrexate helps peripheral PsA but not axial disease — so the distinction changes second-line therapy even when it does not change the referral. And the comparison this project has never been able to make remains the important one: AS versus **mechanical** back pain, for which no public dataset exists at all.
 
 ### What the bigger control arm actually buys
 
@@ -207,7 +209,36 @@ The most valuable thing Hanson adds is not 48 cases. It is 36 controls. The smal
 | Hanson | 36 | **8 of 48 (17%)** |
 | pooled | 46 | 10 of 73 (14%) |
 
-This is the constraint that made the original sweep uninformative. The README's funnel recorded **1,075 clonotypes carried by 6–11 Komech AS patients and no control, none of which could ever be called significant**. In Hanson that entire zone is testable. An open-ended sweep is worth running again, in Hanson, for the first time.
+This is the constraint that made the original sweep uninformative. The funnel above recorded **1,075 clonotypes carried by 6–11 Komech AS patients and no control, none of which could ever be called significant**. In Hanson that entire zone became testable, and it has now been tested.
+
+### The 1,075 candidates do not replicate, and this time the sweep is informative
+
+[`scripts/komech_candidates_in_hanson.py`](scripts/komech_candidates_in_hanson.py) takes the candidate list from Komech and scores it in Hanson, so discovery and evaluation sit in different cohorts on different platforms with different control donors. No Hanson label informs which sequences are tested. Three controls run alongside: the CD4 fraction, where a CD8-restricted signal must vanish; the motif family, which must come out positive; and 1,075 decoy sequences drawn at random from clonotypes seen in Komech AS at any carrier count.
+
+Per sequence, in Hanson CD8 (48 AS vs 36 controls):
+
+| set | n | median AS carriers | p ≤ 0.01 | surviving FDR ≤ 0.10 |
+|---|---|---|---|---|
+| Komech candidates | 1,073 | 2 | 1 | **0** |
+| decoys | 1,075 | 0 | 0 | 0 |
+| **motif family** (positive control) | 7 | 3 | 1 | **2** |
+
+As a burden score — the panel defined in Komech, counted per Hanson subject, which is the leak-free version of the score that was retracted:
+
+| set | fraction | AS median (IQR) | control median (IQR) | AUC | p |
+|---|---|---|---|---|---|
+| Komech candidates | CD8 | 62 (30–85) | 62 (41–75) | **0.492** | 0.55 |
+| decoys | CD8 | 1 (0–2) | 2 (0–2) | 0.457 | 0.76 |
+| **motif family** | **CD8** | **0 (0–1)** | **0 (0–0)** | **0.707** | **2.4×10⁻⁵** |
+| motif family | CD4 | 0 (0–0) | 0 (0–0) | 0.507 | 0.36 |
+
+**AUC 0.492 is chance**, to three decimals, on 1,075 sequences and 84 subjects. The family reaches 0.707 in the same analysis, the same subjects and the same code path, and goes correctly null in CD4. So this is a controlled negative rather than an underpowered one.
+
+One trap avoided: per sequence the candidates do look better than the decoys, median 2 carriers against 0. That is **not** signal — candidates were selected for appearing in ≥6 Komech patients, so they are simply commoner clonotypes, and they are equally common in Hanson's *controls*. The burden comparison, which is within-cohort, is what settles it.
+
+**What this closes.** There is no second marker set hiding in the Komech repertoire at the 6–11 carrier level, and no distributed burden signal there either. The family is the signal. That is evidence for an antigen-driven clonal model of this disease and against a diffuse repertoire shift — the question this project has carried since the first sweep.
+
+One sequence is worth keeping on a list rather than in a result: `CASSFRASYEQYF`, 7/25 Komech AS, **8/48 Hanson AS, 0/36 controls, 0 in CD4**, p = 0.0087 — which does not survive correction for 1,073 tests and would need a third cohort to mean anything.
 
 ### The Emerson arm, still open
 
@@ -546,10 +577,20 @@ Provenance of numbers quoted above, for anything not obvious from the script nam
 
 | script | what it produced |
 |---|---|
+| [`motif_family_test.py`](scripts/motif_family_test.py) | the family union in Komech; **defines the seven pre-specified sequences, which every other script imports** |
+| [`hanson_scan.py`](scripts/hanson_scan.py) | the A/K label inference and its check against Hanson's published counts; scans the 193-sample export |
+| [`hanson_stats.py`](scripts/hanson_stats.py) | the Hanson Fisher tests — 22/48 vs 2/36 and the rest of that table |
+| [`komech_candidates_in_hanson.py`](scripts/komech_candidates_in_hanson.py) | the 1,075-candidate replication and its burden score, with decoy and CD4 controls |
+| [`family_cohorts.py`](scripts/family_cohorts.py) | family carriage in PRJEB51315 (AS vs PsA, blood and synovial) and GSE288581 |
+| [`family_meta.py`](scripts/family_meta.py) | the Mantel-Haenszel pooling, PPV/NPV table and the control-arm power floors |
+| [`cdr3_structure_compare.py`](scripts/cdr3_structure_compare.py) | the CDR3β RMSD matrix from Yang's seven PDB entries, and `figures/as-receptor-anatomy.html`'s overlay |
+| [`paley_tetramer_roc.py`](scripts/paley_tetramer_roc.py) | the AUC 0.837 Paley never published, from its figure source data |
 | [`bulk_score.py`](scripts/bulk_score.py) | the NK score's AUC 0.77 and the back-pain-clinic PPVs |
 | [`rnaseq_pilot.py`](scripts/rnaseq_pilot.py) | the bulk RNA-seq ruling-out (detection floor 3.6–3.8×10⁻⁴) |
 | [`esm_embed.py`](scripts/esm_embed.py) | the ESM-2 negative result (nearest neighbours are anagrams) |
 | [`as_clonotypes.py`](scripts/as_clonotypes.py) | `data/as_vdj/clonotypes.parquet`, the GSE288581 sorted-CD8 numbers |
+
+Nineteen scripts were removed in the same commit as this table: the ADC fetcher (the Data Commons holds no AS repertoires), the pre-`annotate_clean` annotator, `tcr_trust4` and `trbv_check` (superseded by `as_trust4` and `vgene_pilot`), `rep_classify`/`rep_features`/`ml_loso` (superseded by `repertoire_composition`), and the seven-script `vdj_*` pipeline for the cell-level arm, which is concluded — `vdj_expr_vae.py` is kept as the worked example of the Modal practices below. All are recoverable with `git log --diff-filter=D --name-only`.
 
 ### Never let a last-step failure discard a finished run
 
