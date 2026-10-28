@@ -1,0 +1,448 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Anatomy of the AS Receptor</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+  /* Layout: a single reading column of technical plates, each figure followed by its claim. */
+  :root {
+    --bg: #f4f6f8;
+    --surface: #ffffff;
+    --fg: #1a2531;
+    --muted: #5b6b7b;
+    --line: #d5dde5;
+    --alpha: #a9621a;
+    --alpha-soft: #f3e4d2;
+    --beta: #146e78;
+    --beta-soft: #d9ecee;
+    --pep: #9e2f64;
+    --pep-soft: #f6e0ea;
+    --hla: #657893;
+    --hla-soft: #e2e7ef;
+    --ghost: #9aa7b4;
+    --display: "Spectral", Georgia, "Times New Roman", serif;
+    --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f141a;
+      --surface: #161d25;
+      --fg: #e4ebf2;
+      --muted: #94a3b4;
+      --line: #27313c;
+      --alpha: #e3a761;
+      --alpha-soft: #38281a;
+      --beta: #52c3cd;
+      --beta-soft: #12323a;
+      --pep: #ea85ae;
+      --pep-soft: #3a1e2d;
+      --hla: #93a6c0;
+      --hla-soft: #1d2531;
+      --ghost: #5b6b7b;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f141a;
+    --surface: #161d25;
+    --fg: #e4ebf2;
+    --muted: #94a3b4;
+    --line: #27313c;
+    --alpha: #e3a761;
+    --alpha-soft: #38281a;
+    --beta: #52c3cd;
+    --beta-soft: #12323a;
+    --pep: #ea85ae;
+    --pep-soft: #3a1e2d;
+    --hla: #93a6c0;
+    --hla-soft: #1d2531;
+    --ghost: #5b6b7b;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 48px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+  header { display: flex; flex-direction: column; gap: 10px; }
+  .eyebrow {
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(30px, 5.5vw, 44px);
+    line-height: 1.12;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .standfirst { color: var(--muted); max-width: 62ch; margin: 0; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(21px, 3.4vw, 27px);
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 12px; max-width: 68ch; }
+  p:last-child { margin-bottom: 0; }
+  section { display: flex; flex-direction: column; gap: 16px; }
+  .lede { color: var(--muted); }
+  figure {
+    margin: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+  }
+  .scroll { overflow-x: auto; }
+  svg { display: block; max-width: 100%; height: auto; min-width: 620px; }
+  figcaption {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+  }
+  figcaption b { color: var(--fg); font-weight: 600; }
+  code, .seq { font-family: var(--mono); font-size: 0.92em; }
+  .seq { letter-spacing: 0.02em; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    min-width: 520px;
+  }
+  th, td {
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th {
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  td.num { font-variant-numeric: tabular-nums; text-align: right; }
+  tr.observed td { background: var(--pep-soft); }
+  tr.observed td:first-child { font-weight: 600; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .tag-yes { background: var(--pep-soft); color: var(--pep); }
+  .tag-no { background: var(--hla-soft); color: var(--muted); }
+  .key { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: var(--muted); }
+  .key span { display: inline-flex; align-items: center; gap: 7px; }
+  .dot { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+  .note {
+    border-left: 3px solid var(--pep);
+    padding: 2px 0 2px 16px;
+    color: var(--fg);
+  }
+  .note p { max-width: 64ch; }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Ankylosing spondylitis · receptor anatomy</div>
+    <h1>What the AS receptor actually touches</h1>
+    <p class="standfirst">Four names keep coming up around <span class="seq">CASSVGLYSTDTQYF</span> — TRAV21, TRBV9, TRBJ2-3, and the (Y/F)ST core. Each is a different physical part of the same object. Here is where each one sits, and which of them our sequencing can see.</p>
+  </header>
+
+  <section>
+    <h2>One receptor, six loops, two surfaces</h2>
+    <p class="lede">A T cell receptor is two protein chains, alpha and beta. Each chain ends in three flexible loops called CDR1, CDR2 and CDR3 — six in total — and those loops are the only parts that touch anything. What they touch is a short peptide lying in a groove on the HLA molecule of another cell.</p>
+    <figure>
+      <div class="scroll">
+        <svg viewBox="0 0 760 452" role="img" aria-label="Schematic side view of the AS T cell receptor docking onto a peptide held in the HLA-B27 groove. The alpha chain's CDR1 loop, supplied by TRAV21, reaches peptide position 4. The beta chain's CDR3 loop, whose residue 98 is the Y or F of the motif, reaches the centre of the peptide. The CD8 co-receptor holds the HLA alpha-3 domain below.">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+            </marker>
+            <marker id="arp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--pep)"></path>
+            </marker>
+          </defs>
+
+          <text x="40" y="24" font-family="var(--body)" font-size="11.5" fill="var(--muted)" letter-spacing="0.08em">T CELL</text>
+          <rect x="40" y="32" width="680" height="14" rx="7" fill="var(--hla-soft)" stroke="var(--line)"></rect>
+
+          <rect x="292" y="46" width="34" height="68" fill="var(--alpha-soft)" stroke="var(--alpha)"></rect>
+          <rect x="424" y="46" width="34" height="68" fill="var(--beta-soft)" stroke="var(--beta)"></rect>
+          <text x="309" y="86" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--alpha)">Cα</text>
+          <text x="441" y="86" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--beta)">Cβ</text>
+
+          <rect x="250" y="114" width="118" height="78" rx="30" fill="var(--alpha-soft)" stroke="var(--alpha)" stroke-width="1.5"></rect>
+          <text x="309" y="146" text-anchor="middle" font-family="var(--body)" font-size="13.5" font-weight="600" fill="var(--alpha)">Vα</text>
+          <text x="309" y="166" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--alpha)">TRAV21</text>
+
+          <rect x="382" y="114" width="118" height="78" rx="30" fill="var(--beta-soft)" stroke="var(--beta)" stroke-width="1.5"></rect>
+          <text x="441" y="146" text-anchor="middle" font-family="var(--body)" font-size="13.5" font-weight="600" fill="var(--beta)">Vβ</text>
+          <text x="441" y="166" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--beta)">TRBV9</text>
+
+          <path d="M 262 192 Q 272 220 282 192" fill="none" stroke="var(--alpha)" stroke-width="2"></path>
+          <path d="M 298 192 Q 308 222 318 192" fill="none" stroke="var(--alpha)" stroke-width="2.6"></path>
+          <path d="M 338 192 Q 348 218 358 192" fill="none" stroke="var(--alpha)" stroke-width="2" stroke-dasharray="3 3"></path>
+          <path d="M 394 192 Q 404 222 414 192" fill="none" stroke="var(--pep)" stroke-width="3.2"></path>
+          <path d="M 434 192 Q 444 220 454 192" fill="none" stroke="var(--beta)" stroke-width="2"></path>
+          <path d="M 470 192 Q 480 218 490 192" fill="none" stroke="var(--beta)" stroke-width="2"></path>
+
+          <text x="272" y="236" text-anchor="middle" font-family="var(--body)" font-size="10.5" fill="var(--alpha)">CDR2α</text>
+          <text x="308" y="222" text-anchor="middle" font-family="var(--body)" font-size="10.5" font-weight="600" fill="var(--alpha)">CDR1α</text>
+          <text x="348" y="236" text-anchor="middle" font-family="var(--body)" font-size="10.5" fill="var(--ghost)">CDR3α</text>
+          <text x="404" y="222" text-anchor="middle" font-family="var(--body)" font-size="10.5" font-weight="600" fill="var(--pep)">CDR3β</text>
+          <text x="444" y="236" text-anchor="middle" font-family="var(--body)" font-size="10.5" fill="var(--beta)">CDR1β</text>
+          <text x="484" y="222" text-anchor="middle" font-family="var(--body)" font-size="10.5" fill="var(--beta)">CDR2β</text>
+
+          <rect x="226" y="248" width="300" height="13" rx="6.5" fill="var(--hla-soft)" stroke="var(--hla)"></rect>
+          <text x="534" y="259" font-family="var(--body)" font-size="10.5" fill="var(--hla)">α1 helix</text>
+
+          <circle cx="250" cy="286" r="12" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="1.4"></circle>
+          <circle cx="282" cy="286" r="12" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="1.4" stroke-dasharray="3 2.5"></circle>
+          <circle cx="314" cy="286" r="12" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="1.4"></circle>
+          <circle cx="346" cy="286" r="12" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="3"></circle>
+          <circle cx="378" cy="286" r="12" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="1.4"></circle>
+          <circle cx="410" cy="286" r="12" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="3"></circle>
+          <circle cx="442" cy="286" r="12" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="1.4"></circle>
+          <circle cx="474" cy="286" r="12" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="1.4"></circle>
+          <circle cx="506" cy="286" r="12" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="1.4"></circle>
+
+          <text x="250" y="290" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--pep)">P1</text>
+          <text x="282" y="290" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--pep)">P2</text>
+          <text x="314" y="290" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--pep)">P3</text>
+          <text x="346" y="290" text-anchor="middle" font-family="var(--mono)" font-size="10.5" font-weight="600" fill="var(--pep)">P4</text>
+          <text x="378" y="290" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--pep)">P5</text>
+          <text x="410" y="290" text-anchor="middle" font-family="var(--mono)" font-size="10.5" font-weight="600" fill="var(--pep)">P6</text>
+          <text x="442" y="290" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--pep)">P7</text>
+          <text x="474" y="290" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--pep)">P8</text>
+          <text x="506" y="290" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--pep)">P9</text>
+
+          <line x1="308" y1="214" x2="342" y2="274" stroke="var(--alpha)" stroke-width="2" marker-end="url(#ar)" color="var(--alpha)"></line>
+          <line x1="406" y1="216" x2="410" y2="272" stroke="var(--pep)" stroke-width="2.6" marker-end="url(#arp)"></line>
+          <line x1="444" y1="214" x2="444" y2="246" stroke="var(--beta)" stroke-width="1.6" marker-end="url(#ar)" color="var(--beta)"></line>
+
+          <text x="534" y="286" font-family="var(--body)" font-size="10.5" fill="var(--pep)">peptide, 9 residues</text>
+          <line x1="282" y1="298" x2="282" y2="312" stroke="var(--pep)" stroke-width="1.6" stroke-dasharray="3 2.5"></line>
+          <text x="282" y="324" text-anchor="middle" font-family="var(--body)" font-size="10" fill="var(--muted)">Arg anchor</text>
+
+          <rect x="226" y="330" width="300" height="13" rx="6.5" fill="none" stroke="var(--hla)" stroke-dasharray="5 4"></rect>
+          <text x="534" y="341" font-family="var(--body)" font-size="10.5" fill="var(--muted)">α2 helix (cut away)</text>
+
+          <rect x="226" y="352" width="300" height="34" rx="6" fill="var(--hla-soft)" stroke="var(--hla)"></rect>
+          <text x="376" y="373" text-anchor="middle" font-family="var(--body)" font-size="11.5" fill="var(--hla)">HLA-B27 α1/α2 platform</text>
+
+          <rect x="246" y="388" width="88" height="30" rx="6" fill="var(--hla-soft)" stroke="var(--hla)"></rect>
+          <text x="290" y="407" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--hla)">β2m</text>
+          <rect x="438" y="388" width="88" height="30" rx="6" fill="var(--hla-soft)" stroke="var(--hla)"></rect>
+          <text x="482" y="407" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--hla)">α3</text>
+
+          <text x="40" y="440" font-family="var(--body)" font-size="11.5" fill="var(--muted)" letter-spacing="0.08em">ANTIGEN-PRESENTING CELL</text>
+          <rect x="226" y="420" width="494" height="14" rx="7" fill="var(--hla-soft)" stroke="var(--line)"></rect>
+
+          <rect x="606" y="46" width="30" height="68" fill="var(--beta-soft)" stroke="var(--beta)"></rect>
+          <rect x="586" y="114" width="70" height="62" rx="26" fill="var(--beta-soft)" stroke="var(--beta)" stroke-width="1.5"></rect>
+          <text x="621" y="151" text-anchor="middle" font-family="var(--body)" font-size="13" font-weight="600" fill="var(--beta)">CD8</text>
+          <polyline points="621,176 621,340 540,392" fill="none" stroke="var(--beta)" stroke-width="1.8" stroke-dasharray="4 3" marker-end="url(#ar)" color="var(--beta)"></polyline>
+          <text x="632" y="254" font-family="var(--body)" font-size="10.5" fill="var(--beta)">holds α3 —</text>
+          <text x="632" y="270" font-family="var(--body)" font-size="10.5" fill="var(--beta)">class I only</text>
+        </svg>
+      </div>
+      <figcaption>Side view along the groove, with the near (α2) helix cut away so the peptide is visible. <b>CDR1β and CDR2β read the HLA surface</b> — they come from the V gene, so being TRBV9 fixes them. <b>CDR1α, supplied by TRAV21, reaches peptide position 4.</b> <b>CDR3β drops into the middle of the peptide</b> and does nearly all the peptide reading in this family; CDR3α barely participates, which is unusual. P2 is the arginine that every HLA-B27 peptide must have to sit in the groove at all. CD8 grips the α3 domain, which exists only on class I molecules — that is why a B27-driven clone has to be a CD8 cell.</figcaption>
+    </figure>
+    <div class="key">
+      <span><span class="dot" style="background:var(--alpha)"></span>alpha chain (TRAV21)</span>
+      <span><span class="dot" style="background:var(--beta)"></span>beta chain (TRBV9), CD8</span>
+      <span><span class="dot" style="background:var(--pep)"></span>peptide and the CDR3β contact</span>
+      <span><span class="dot" style="background:var(--hla)"></span>HLA-B27</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where the letters in the sequence come from</h2>
+    <p class="lede">Our CDR3β string is not one thing. Its front end is copied from the V gene, its back end from the J gene, and only the few letters in between are improvised when the chromosome is cut and rejoined. The one letter that touches the peptide sits right at the join.</p>
+    <figure>
+      <div class="scroll">
+        <svg viewBox="0 0 760 250" role="img" aria-label="The CDR3-beta sequence CASSVGLYSTDTQYF split into three parts: CASS copied from the TRBV9 gene, VGLY improvised at the junction, and STDTQYF copied from the TRBJ2-3 gene. The Y at position eight is the residue that contacts the peptide and is the residue that varies across the sequence family.">
+          <defs>
+            <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--pep)"></path>
+            </marker>
+          </defs>
+
+          <text x="380" y="24" text-anchor="middle" font-family="var(--body)" font-size="12" font-weight="600" fill="var(--pep)">residue 98 — the only peptide contact</text>
+          <line x1="380" y1="32" x2="380" y2="68" stroke="var(--pep)" stroke-width="2" marker-end="url(#ar2)"></line>
+
+          <rect x="92" y="76" width="144" height="46" rx="5" fill="var(--beta-soft)" stroke="var(--beta)"></rect>
+          <rect x="236" y="76" width="144" height="46" rx="5" fill="var(--surface)" stroke="var(--line)"></rect>
+          <rect x="380" y="76" width="36" height="46" rx="5" fill="var(--pep-soft)" stroke="var(--pep)" stroke-width="2"></rect>
+          <rect x="416" y="76" width="252" height="46" rx="5" fill="var(--beta-soft)" stroke="var(--beta)"></rect>
+
+          <text x="110" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">C</text>
+          <text x="146" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">A</text>
+          <text x="182" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">S</text>
+          <text x="218" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">S</text>
+          <text x="254" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">V</text>
+          <text x="290" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">G</text>
+          <text x="326" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">L</text>
+          <text x="390" y="107" font-family="var(--mono)" font-size="19" font-weight="600" fill="var(--pep)">Y</text>
+          <text x="434" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">S</text>
+          <text x="470" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">T</text>
+          <text x="506" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">D</text>
+          <text x="542" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">T</text>
+          <text x="578" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">Q</text>
+          <text x="614" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">Y</text>
+          <text x="650" y="107" font-family="var(--mono)" font-size="19" fill="var(--fg)">F</text>
+
+          <path d="M 92 134 L 92 144 L 236 144 L 236 134" fill="none" stroke="var(--beta)" stroke-width="1.4"></path>
+          <text x="164" y="162" text-anchor="middle" font-family="var(--body)" font-size="12" font-weight="600" fill="var(--beta)">TRBV9</text>
+          <text x="164" y="178" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--muted)">inherited</text>
+
+          <path d="M 236 134 L 236 144 L 416 144 L 416 134" fill="none" stroke="var(--muted)" stroke-width="1.4"></path>
+          <text x="326" y="162" text-anchor="middle" font-family="var(--body)" font-size="12" font-weight="600" fill="var(--fg)">junction</text>
+          <text x="326" y="178" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--muted)">improvised at V–D–J joining</text>
+
+          <path d="M 416 134 L 416 144 L 668 144 L 668 134" fill="none" stroke="var(--beta)" stroke-width="1.4"></path>
+          <text x="542" y="162" text-anchor="middle" font-family="var(--body)" font-size="12" font-weight="600" fill="var(--beta)">TRBJ2-3</text>
+          <text x="542" y="178" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--muted)">inherited</text>
+
+          <line x1="92" y1="206" x2="668" y2="206" stroke="var(--line)" stroke-width="1"></line>
+          <text x="92" y="230" font-family="var(--body)" font-size="12" fill="var(--muted)">CDR1β and CDR2β come from TRBV9 too — they are not in this string at all.</text>
+        </svg>
+      </div>
+      <figcaption>Residue 98 is the <span class="seq">Y</span> here and the <span class="seq">F</span> in Hanson's clone. Tyrosine and phenylalanine are nearly the same shape — F is Y minus one oxygen — which is why both work on the same peptide and why this is a family rather than a single sequence. Change the J gene instead and the geometry collapses: <span class="seq">CASSLGLYSTMEQYF</span> uses TRBJ2-5 and is absent from all 57 subjects we have tested.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>The family, and what we have observed</h2>
+    <p class="lede">Hanson 2020 defines the motif as <span class="seq">CASSVG(V/I/L)(Y/F)STDTQYF</span> — six sequences, generated by two choices at residues 97 and 98. Counts below are presence at two or more reads in the Komech cohort after thinning every subject to 800,000 junction reads.</p>
+    <figure>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>sequence</th>
+              <th>residue 97</th>
+              <th>residue 98</th>
+              <th class="num">Komech AS /25</th>
+              <th class="num">Komech healthy /10</th>
+              <th class="num">Emerson healthy /786</th>
+              <th>named in literature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="observed">
+              <td class="seq">CASSVGLYSTDTQYF</td><td>L</td><td>Y</td>
+              <td class="num">11</td><td class="num">0</td><td class="num">15 · 1.91%</td>
+              <td>Faham, Komech; Yang AS4.1</td>
+            </tr>
+            <tr class="observed">
+              <td class="seq">CASSVGLFSTDTQYF</td><td>L</td><td>F</td>
+              <td class="num">6</td><td class="num">0</td><td class="num">20 · 2.55%</td>
+              <td>Hanson headline; Yang AS4.2</td>
+            </tr>
+            <tr class="observed">
+              <td class="seq">CASSVGVYSTDTQYF</td><td>V</td><td>Y</td>
+              <td class="num">4</td><td class="num">0</td><td class="num">11 · 1.40%</td>
+              <td>Hanson motif</td>
+            </tr>
+            <tr>
+              <td class="seq">CASSVGVFSTDTQYF</td><td>V</td><td>F</td>
+              <td class="num">&lt;4</td><td class="num">—</td><td class="num">—</td>
+              <td>Hanson motif</td>
+            </tr>
+            <tr>
+              <td class="seq">CASSVGIYSTDTQYF</td><td>I</td><td>Y</td>
+              <td class="num">&lt;4</td><td class="num">—</td><td class="num">—</td>
+              <td>Hanson motif</td>
+            </tr>
+            <tr>
+              <td class="seq">CASSVGIFSTDTQYF</td><td>I</td><td>F</td>
+              <td class="num">&lt;4</td><td class="num">—</td><td class="num">—</td>
+              <td>Hanson motif</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <figcaption>Three of the six are in our tables above the four-carrier floor of the panel build; the other three are below it, so <b>&lt;4</b> means not yet counted rather than absent. Hanson reports the union of the top two in <b>18 of 37 B27-positive AS patients against 2 of 19 B27-positive healthy controls</b>.</figcaption>
+    </figure>
+
+    <div class="note">
+      <p>Two further sequences sit next to this family and should be kept in a separate column. <span class="seq">CASSVATYSTDTQYF</span> is Yang's AS4.3 — a different junction, but a receptor they solved a structure for — at 4 AS, 0 healthy here. <span class="seq">CASSLGLFSTDTQYF</span> and <span class="seq">CASSLGLYSTDTQYF</span> are one edit from family members at 7 and 4 AS carriers with 0 controls, but <em>we</em> found them, so they are exploratory rather than pre-specified.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Which half of the receptor our data contains</h2>
+    <p class="lede">Every bulk repertoire dataset in this project sequences the beta chain only. The alpha chain — and therefore CDR1α, the loop that reaches peptide position 4 — has never been in any file we hold.</p>
+    <figure>
+      <div class="scroll">
+        <svg viewBox="0 0 760 236" role="img" aria-label="Comparison of what three assays capture. Bulk TCR-beta sequencing captures the beta chain only. Single-cell five-prime with V D J capture captures both chains and the cell's whole transcriptome. Tetramer staining captures antigen specificity and surface proteins but no sequence.">
+          <rect x="24" y="30" width="226" height="176" rx="8" fill="var(--surface)" stroke="var(--line)"></rect>
+          <text x="137" y="54" text-anchor="middle" font-family="var(--body)" font-size="13" font-weight="600" fill="var(--fg)">Bulk TCRβ</text>
+          <text x="137" y="72" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--muted)">Komech · Emerson · Hanson</text>
+          <rect x="52" y="90" width="76" height="52" rx="20" fill="none" stroke="var(--ghost)" stroke-width="1.5" stroke-dasharray="5 4"></rect>
+          <text x="90" y="121" text-anchor="middle" font-family="var(--body)" font-size="12" fill="var(--ghost)">Vα</text>
+          <rect x="146" y="90" width="76" height="52" rx="20" fill="var(--beta-soft)" stroke="var(--beta)" stroke-width="1.5"></rect>
+          <text x="184" y="121" text-anchor="middle" font-family="var(--body)" font-size="12" font-weight="600" fill="var(--beta)">Vβ</text>
+          <text x="137" y="166" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--ghost)">no alpha chain</text>
+          <text x="137" y="186" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--ghost)">no cell state</text>
+
+          <rect x="267" y="30" width="226" height="176" rx="8" fill="var(--surface)" stroke="var(--pep)"></rect>
+          <text x="380" y="54" text-anchor="middle" font-family="var(--body)" font-size="13" font-weight="600" fill="var(--fg)">Single-cell 5′ + V(D)J</text>
+          <text x="380" y="72" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--muted)">Paley · GSE288581</text>
+          <rect x="295" y="90" width="76" height="52" rx="20" fill="var(--alpha-soft)" stroke="var(--alpha)" stroke-width="1.5"></rect>
+          <text x="333" y="121" text-anchor="middle" font-family="var(--body)" font-size="12" font-weight="600" fill="var(--alpha)">Vα</text>
+          <rect x="389" y="90" width="76" height="52" rx="20" fill="var(--beta-soft)" stroke="var(--beta)" stroke-width="1.5"></rect>
+          <text x="427" y="121" text-anchor="middle" font-family="var(--body)" font-size="12" font-weight="600" fill="var(--beta)">Vβ</text>
+          <text x="380" y="166" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--pep)">both chains, same cell</text>
+          <text x="380" y="186" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--pep)">+ all ~20,000 genes</text>
+
+          <rect x="510" y="30" width="226" height="176" rx="8" fill="var(--surface)" stroke="var(--line)"></rect>
+          <text x="623" y="54" text-anchor="middle" font-family="var(--body)" font-size="13" font-weight="600" fill="var(--fg)">Tetramer + flow</text>
+          <text x="623" y="72" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--muted)">Paley</text>
+          <circle cx="600" cy="116" r="15" fill="var(--hla-soft)" stroke="var(--hla)"></circle>
+          <circle cx="632" cy="116" r="15" fill="var(--hla-soft)" stroke="var(--hla)"></circle>
+          <circle cx="616" cy="96" r="15" fill="var(--hla-soft)" stroke="var(--hla)"></circle>
+          <circle cx="616" cy="136" r="15" fill="var(--hla-soft)" stroke="var(--hla)"></circle>
+          <text x="623" y="166" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--muted)">which antigen it binds</text>
+          <text x="623" y="186" text-anchor="middle" font-family="var(--body)" font-size="11" fill="var(--ghost)">no sequence at all</text>
+        </svg>
+      </div>
+      <figcaption>Bulk TCRβ libraries amplify only the beta locus, so the other ~20,000 genes in each cell were never copied and no depth of sequencing recovers them. That is why Hanson could study 47 patients and still never have found <span class="seq">KLRB1</span>, and why Paley needed a different assay rather than a bigger cohort.</figcaption>
+    </figure>
+  </section>
+
+</div>

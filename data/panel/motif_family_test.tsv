@@ -1,0 +1,23 @@
+cdr3	arm	depth	source	case_carriers	n_case	ctrl_carriers	n_ctrl	sensitivity	specificity	fisher_p	fisher_p_two_sided
+CASSVGLYSTDTQYF	prespecified	thinned	Hanson motif; Yang AS4.1; Faham/Komech	11	25	0	10	0.44	1	0.0106834	0.0145771
+CASSVGLYSTDTQYF	prespecified	native	Hanson motif; Yang AS4.1; Faham/Komech	12	25	0	10	0.48	1	0.006232	0.0069421
+CASSVGLFSTDTQYF	prespecified	thinned	Hanson motif + headline clone; Yang AS4.2	6	25	0	10	0.24	1	0.109108	0.151932
+CASSVGLFSTDTQYF	prespecified	native	Hanson motif + headline clone; Yang AS4.2	6	25	0	10	0.24	1	0.109108	0.151932
+CASSVGVYSTDTQYF	prespecified	thinned	Hanson motif	4	25	0	10	0.16	1	0.241597	0.302903
+CASSVGVYSTDTQYF	prespecified	native	Hanson motif	6	25	0	10	0.24	1	0.109108	0.151932
+CASSVGVFSTDTQYF	prespecified	thinned	Hanson motif	2	25	0	10	0.08	1	0.504202	1
+CASSVGVFSTDTQYF	prespecified	native	Hanson motif	2	25	0	10	0.08	1	0.504202	1
+CASSVGIYSTDTQYF	prespecified	thinned	Hanson motif	0	25	0	10	0	1	1	1
+CASSVGIYSTDTQYF	prespecified	native	Hanson motif	0	25	0	10	0	1	1	1
+CASSVGIFSTDTQYF	prespecified	thinned	Hanson motif	0	25	0	10	0	1	1	1
+CASSVGIFSTDTQYF	prespecified	native	Hanson motif	0	25	0	10	0	1	1	1
+CASSVATYSTDTQYF	prespecified	thinned	Yang AS4.3 (structure solved)	4	25	0	10	0.16	1	0.241597	0.302903
+CASSVATYSTDTQYF	prespecified	native	Yang AS4.3 (structure solved)	4	25	0	10	0.16	1	0.241597	0.302903
+CASSLGLFSTDTQYF	exploratory	thinned	one edit from CASSVGLFSTDTQYF	7	25	0	10	0.28	1	0.0714847	0.0835257
+CASSLGLFSTDTQYF	exploratory	native	one edit from CASSVGLFSTDTQYF	10	25	0	10	0.4	1	0.0178057	0.0338546
+CASSLGLYSTDTQYF	exploratory	thinned	one edit from CASSVGLYSTDTQYF	4	25	0	10	0.16	1	0.241597	0.302903
+CASSLGLYSTDTQYF	exploratory	native	one edit from CASSVGLYSTDTQYF	5	25	0	10	0.2	1	0.163662	0.291505
+UNION_prespecified	prespecified	thinned	7 literature-named	14	25	0	10	0.56	1	0.00192133	0.00215579
+UNION_plus_exploratory	combined	thinned	9 sequences	14	25	0	10	0.56	1	0.00192133	0.00215579
+UNION_prespecified	prespecified	native	7 literature-named	15	25	0	10	0.6	1	0.00100641	0.00156804
+UNION_plus_exploratory	combined	native	9 sequences	16	25	0	10	0.64	1	0.000503205	0.000546826

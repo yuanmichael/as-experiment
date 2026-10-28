@@ -114,7 +114,54 @@ Counts below are presence at ≥2 reads after thinning every subject to 800,000 
 
 `<4` means below the panel build's four-carrier floor, i.e. not yet counted rather than absent. Three sequences (`VGLY`, `VGLF`, `LGLF`) were inside the 167-sequence burden panel, each weighted as 1/167 of a count; the rest were below its ≥5-carrier cut. The 3-mer composition model never represented any of them individually. **The family has never been scored as a unit.**
 
-The pre-specified test is the union of the seven literature-specified sequences, with the two exploratory ones reported separately. Union carriage is bounded at 11–21 of 25 AS against 0 of 10 controls; the Emerson union sets the specificity cost, since members are individually carried by 0.9–2.6% of 786 healthy donors against the known clone's 1.9%. Not yet run.
+### The union of the family clears significance where one sequence does not
+
+[`scripts/motif_family_test.py`](scripts/motif_family_test.py) scores the seven literature-named sequences as a unit, reusing `clono_sweep`'s loader, thinner and carrier matrix so presence means exactly what it means in `build_panel.py`. The panel was fixed by Hanson and Yang before we looked, so no membership decision saw our labels.
+
+| test (thinned to 800K) | AS /25 | healthy /10 | sensitivity | one-sided Fisher p |
+|---|---|---|---|---|
+| `CASSVGLYSTDTQYF` alone — the previous headline | 11 | 0 | 44.0% | 0.0107 |
+| **union of the 7 pre-specified sequences** | **14** | **0** | **56.0%** | **0.0019** |
+| union, at native depth | 15 | 0 | 60.0% | 0.0010 |
+
+The union adds **three AS patients the known clone misses**, and it is the first open-ended result in this project to clear α = 0.01 in the within-study comparison. That matters because of the power arithmetic above: with 25 cases and 10 controls a marker needs ≥12 AS carriers and 0 controls before significance is even reachable, and the single clone sat at 11 after thinning. Threshold-free, the carrier count (0–7) gives Mann-Whitney **p = 0.0020**, rank-biserial AUC **0.780** — AS median 1 (range 0–3), healthy median 0 (range 0–0, no control carries any member).
+
+Per sequence, thinned:
+
+| cdr3 | AS /25 | healthy /10 | source |
+|---|---|---|---|
+| `CASSVGLYSTDTQYF` | 11 | 0 | Hanson motif; Yang AS4.1 |
+| `CASSVGLFSTDTQYF` | 6 | 0 | Hanson motif **and headline clone**; Yang AS4.2 |
+| `CASSVGVYSTDTQYF` | 4 | 0 | Hanson motif |
+| `CASSVATYSTDTQYF` | 4 | 0 | Yang AS4.3 (structure solved) |
+| `CASSVGVFSTDTQYF` | 2 | 0 | Hanson motif |
+| `CASSVGIYSTDTQYF` | 0 | 0 | Hanson motif |
+| `CASSVGIFSTDTQYF` | 0 | 0 | Hanson motif |
+| `CASSLGLFSTDTQYF` | 7 | 0 | *exploratory* — one edit, found by us |
+| `CASSLGLYSTDTQYF` | 4 | 0 | *exploratory* — one edit, found by us |
+
+Neither `VGIY` nor `VGIF` occurs in any of the 35 subjects, so Hanson's six-member grid is effectively a four-member family in this cohort. `CASSLGLFSTDTQYF` at 7 carriers has more support than any member except the known clone, but we found it, so it stays out of the primary test and is reported here only.
+
+**What this does not yet establish.** The control arm is 10 Komech donors of unknown HLA-B27 status, which cannot estimate specificity: 0/10 is consistent with anything up to ~26% carriage. The Emerson arm is the specificity test and needs per-subject repertoires, which are not currently on disk — per-sequence carriage bounds the union at 2.5–6.7% of 786 healthy donors, against 1.9% for the known clone alone, so the union certainly costs specificity and the question is how much. Hanson's B27-matched measurement of the two commonest members, 18/37 versus 2/19, is the closest existing answer.
+
+---
+
+## The best blood discrimination anyone has measured is 0.84, and it is not a sequence test
+
+[Paley et al. 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11343591/) stained blood with an HLA-B27 tetramer loaded with **YeiH**, the bacterial peptide [Yang 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC10511244/) showed this receptor family recognises, and counted the T cells that bind it — no sequencing, no string matching. They report group comparisons but no discrimination statistic. Their figure-level source data is open, so [`scripts/paley_tetramer_roc.py`](scripts/paley_tetramer_roc.py) computes one from the per-subject values behind Figures 4B and 4C:
+
+| measurement | n | AUC (95% CI) | Mann-Whitney p |
+|---|---|---|---|
+| **YeiH-specific, % of CD8** | 31 patients vs **10 B27+ healthy** | **0.837 (0.673–0.961)** | 0.0008 |
+| YeiH-specific, per 10⁶ PBMC | same | 0.829 (0.645–0.974) | 0.0010 |
+| influenza NP-specific, % of CD8 — *specificity control* | same | 0.642 (0.473–0.805) | 0.093 |
+| influenza NP-specific, per 10⁶ PBMC — *same control* | same | 0.719 (0.545–0.871) | 0.020 |
+
+It holds in each disease separately against the same controls: B27+ uveitis AUC 0.841 (p = 0.0046), B27+ axSpA AUC 0.850 (p = 0.0045).
+
+**0.84 against B27-matched controls is the number to beat**, and it beats everything in this repo — the bulk NK score (0.77), the composition model (0.787 against unmatched controls), the motif-family carrier count (0.780 against 10 donors of unknown B27 status). It is also measuring the right thing: antigen specificity rather than sequence identity, so it is immune to depth, batch and the exact-match problem that has cost this project three representations.
+
+**Two caveats that keep it provisional.** The specificity control is not clean — influenza NP tetramers reach AUC 0.642–0.719 and p = 0.020 on one of the two scales, so some of the YeiH separation may be a general difference in the patients' CD8 compartment rather than YeiH specificity itself. The per-person YeiH/NP ratio would settle it and the source data may support it if the two sheets are ordered by subject, which is unverified. And 10 controls cannot estimate specificity: the best Youden cut gives 97% sensitivity at 60% specificity, which is a wide-CI guess, not an operating point.
 
 ---
 
